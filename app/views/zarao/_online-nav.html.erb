@@ -1,0 +1,72 @@
+<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/">
+                <img src="/assets/zarao-logo-white.png" width="100">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" style="color: black" >
+            <ul class="navbar-nav ml-auto">
+              <% if current_user.is_admin? %>
+              <li class="nav-item">
+                  <a href="<%= edit_my_space_path %>" class="btn btn-link">
+                          <i class="material-icons fa fa-user-secret"></i>  Edit my space</a>
+              </li>
+              <% end %>
+              <li class="nav-item">
+                  <a href="<%= my_space_path %>" class="btn btn-link">
+                          <i class="material-icons fa fa-group"></i> My space</a>
+              </li>
+                <li class="dropdown nav-item h-xs-12">
+                    <li class="dropdown nav-item">
+                        <a href="javascript:;" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
+                            <div class="row">
+                                <% if current_user.has_fullname? %>
+                                    <div class="col-8 pr-0 text-center">
+                                        <span class="btn btn-link" style="margin-right: -8px!important;"><%= current_user.fullname %></span>
+                                    </div>
+                                <% end %>
+                                <div class="col-2 text-left pl-0 ml-0">
+                                    <div class="profile-photo-small">
+                                        <%= image_tag current_user.avatar, class: "rounded-circle ", alt: "Circle Image", width: "40",height: "40" %>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-with-icons">
+                            <a href="<%= my_profile_path %>" class="dropdown-item">
+                                <i class="material-icons fa fa-user"></i> Me</a>
+                            <a href="<%= edit_my_profile_path %>" class="dropdown-item">
+                                <i class="material-icons fa fa-cogs"></i> Edit profile</a>
+                            <a href="<%= edit_user_registration_path %>" class="dropdown-item">
+                                <i class="material-icons fa fa-cog"></i> Account setting</a>
+                            <a href="/users/sign_out" data-method="DELETE" class="dropdown-item">
+                                <i class="material-icons fa fa-sign-out"></i> Sign out</a>
+                        </div>
+                    </li>
+
+                <!-- <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</nav>

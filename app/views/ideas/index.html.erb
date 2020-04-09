@@ -1,0 +1,74 @@
+<h1 class="fs-xs-30 fs-sm-50 fs-md-50 fs-lg-50 fs-xl-50 fs-xxl-50"> <%= t('idea.admin.new') %> <span id="unready_ideas_length" class="badge badge-info mx-1 fs-xs-25 fs-sm-50 fs-md-50 fs-lg-50 fs-xl-50 fs-xxl-50"><%= @unready_ideas.length %></span></h1>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th><%= t('idea.admin.created') %></th>
+                <th><%= t('activerecord.attributes.title') %></th>
+                <th><%= t('activerecord.attributes.description') %></th>
+                <th colspan="3"><%= t('activerecord.attributes.action') %></th>
+            </tr>
+        </thead>
+        <tbody id="unready_ideas">
+            <tr class="text-center">
+                <td colspan="5"><%= t('idea.admin.waiting') %> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+$unready_ideas = $(`#unready_ideas`);
+
+function appendIdea(idea_id = 0, user_fullname = '', idea_name = '', idea_description = '', allow_url = '', destroy_url = '') {
+    $unready_ideas.prepend(`
+      <tr id="idea${idea_id}">
+        <td>
+            ${idea_id}
+        </td>
+        <td style="width: 10%" >
+            ${user_fullname}
+        </td>
+        <td style="width: 10%">
+            ${idea_name}
+        </td>
+        <td style=" max-height: 54px ; overflow: hidden; width: auto; display: -webkit-box; -webkit-line-clamp: 3; -moz-line-clamp: 3; -webkit-box-orient: vertical;">
+            ${idea_description}
+        </td>
+        <td style="width: 10%">
+            ${allow_url}
+        </td>
+        <td style="width: 10%">
+            ${destroy_url}
+        </td>
+    </tr>
+    `);
+}
+</script>
+<% @unready_ideas.each do |idea| %>
+<script type="text/javascript">
+$idea_id = <%= idea.id %>;
+$user_fullname = "<%= idea.admin.fullname %>";
+$idea_name = '<%= idea.name %>';
+$idea_description = `<%= idea.description %>`;
+$allow_url = '<%= link_to t('tags.buttons.save'), admin_idea_path(id: idea.id), method: :patch, data: {remote: true}, for: "#idea#{idea.id}", class: "btn btn-success action" %>';
+$destroy_url = `
+    <%= link_to idea_path(id: idea.id), method: :delete, data: { confirm: 'Are you sure?', remote: true }, for: "#idea#{idea.id}", class: "text-danger" do %>
+      <i class="fa fa-trash-o" style="font-size: 300%"></i>
+    <% end %>
+    `;
+
+appendIdea(idea_id = $idea_id, user_fullname = $user_fullname, idea_name = $idea_name, idea_description = $idea_description, allow_url = $allow_url, destroy_url = $destroy_url);
+</script>
+<% end %>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $(`.action`).click(function(event) {
+        /* Act on the event */
+        $target = $($(this).attr('for'));
+        $target.fadeOut('slow', function() {
+            $target.remove();
+        });
+    });
+});
+</script>

@@ -1,0 +1,7 @@
+$("#load-more").hide('fast', function() {
+    $(this).remove();
+});
+
+$("#search-main-div").append(`
+    <%= render 'searches/index', pagy: @pagy, result: @fullall, items: @items, item_type: @item_type, divclasses: "" %>
+`);

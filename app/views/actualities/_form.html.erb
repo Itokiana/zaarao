@@ -1,0 +1,15 @@
+<%= form_with(model: actuality, url: actuality.persisted? ? actuality_path(id: actuality.id) : actualities_path, local: true, html: {id: "actuality-form"}) do |form| %>
+<div class="form-group">
+    <%= form.label :name, t('activerecord.attributes.title') %>
+    <%= form.text_field :name, class: "form-control", required: "" %>
+</div>
+<div class="form-group">
+    <%= form.label :description, t('activerecord.attributes.description'), class: "label-control mb-0" %>
+        <%= form.text_area :description, class: "form-control", placeholder: "Dernière nouvelle! Les échapés du zoo ont revendiquer 5 tonnes de bannanes et 500kg d'herbes à chat. Oh mais où va ce monde, on se le demande.", required: "" %>
+</div>
+<div class="actions">
+    <%= form.submit t('tags.buttons.save'), class: "btn btn-success collapse", id: "create-actuality-btn" %>
+    <%= form.submit t('tags.buttons.save'), class: "btn btn-success", id: "fake-create-actuality-btn" %>
+</div>
+<% end %>
+<%= render 'shared/tinymce-editor', textarea: "textarea#actuality_description", menubar: "file insert" %>

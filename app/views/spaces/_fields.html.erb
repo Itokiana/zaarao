@@ -1,0 +1,16 @@
+<div class="form-group">
+    <%= f.label :admin_id, class: "text-white form-label" %>
+    <%= collection_select(:space, :admin_id, @users, :id, :email, {}, {class: "custom-select"}) %>
+    
+</div>
+<div class="form-group">
+    <%= f.label :name, class: "text-white" %>
+    <%= f.text_field :name, class: "form-control" %>
+</div>
+<div class="form-group">
+    <%= f.label :description, class: "text-white" %>
+    <%= f.text_area :description, class: "form-control" %>
+</div>
+<div class="form-group text-right">
+	<%= f.submit "Submit", :disable_with => 'Submiting...', class: "btn btn-warning" %>
+</div>

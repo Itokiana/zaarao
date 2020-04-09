@@ -1,0 +1,18 @@
+<div class="media media-post">
+    <a class="author float-left" href="javascript:;">
+        <div class="avatar">
+            <img class="media-object" alt="64x64" src="<%= url_for(current_user.avatar) %>">
+        </div>
+    </a>
+    <div class="media-body">
+        <%= form_with(model: comment, url: comments_path(item_id: item.id, item_type: item_type), html: {id: 'new-comment-form'}) do |f| %>
+        <%= f.text_area :content, class: "form-control", placeholder: t('comments.placeholders.new_comment'), rows: "4" %>
+        <div class="media-footer">
+            <button type="submit" class="btn btn-primary float-right">
+                <i class="material-icons">reply</i>
+                <%= t('comments.buttons.reply') %>
+            </button>
+        </div>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,325 @@
+<!--   Core JS Files   -->
+<!-- <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script src="/assets/js/core/popper.min.js" type="text/javascript"></script> -->
+<!-- <script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script> -->
+<!-- <script src="/assets/js/plugins/moment.min.js"></script> -->
+<!--  Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<!-- <script src="/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script> -->
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<!-- <script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script> -->
+<!--  Google Maps Plugin    -->
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+<!-- <script src="/assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script> -->
+<%= render 'mdb_pro/js' %>
+
+<script>
+/* When the openFullscreen() function is executed, open the video in fullscreen.
+Note that we must include prefixes for different browsers, as they don't support the requestFullscreen method yet */
+function toggleFullscreen(elem) {
+    elem = elem || document.documentElement;
+    if (!document.fullscreenElement && !document.mozFullScreenElement &&
+        !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+    }
+}
+
+// jQuery(document).ready(function($) {
+//     document.getElementById('questions-list').addEventListener('dblclick', function() {
+//         toggleFullscreen(this);
+//     });
+// });
+</script>
+<script>
+$(document).ready(function() {
+    //init DateTimePickers
+    materialKit.initFormExtendedDatetimepickers();
+
+    // Sliders Init
+    // materialKit.initSliders();
+});
+
+function scrollToDownload() {
+    if ($('.section-download').length != 0) {
+        $("html, body").animate({
+            scrollTop: $('.section-download').offset().top
+        }, 1000);
+    }
+}
+</script>
+<script type="text/javascript" src="/assets/summernote-dist/summernote-bs4.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $('.summernote').summernote({
+        height: 300,
+        tabsize: 2
+    });
+});
+</script>
+<!-- <script type="text/javascript">
+function bgClickable() {
+
+    $(`.img-clickable`).click(function(event) {
+        /* Act on the event */
+        event.preventDefault();
+        window.location.href = $(this).attr('href');
+    });
+};
+bgClickable();
+</script> -->
+<% if user_signed_in? %>
+<script type="text/javascript">
+function updateUserLanguage(language_id = 0) {
+    $auth_token = $(`input[name='authenticity_token']`).val(),
+        $language_id = language_id;
+    $.ajax({
+        url: `<%= edit_my_profile_path %>`,
+        type: 'PATCH',
+        dataType: 'script',
+        data: {
+            authenticity_token: $auth_token,
+            'user[language_id]': $language_id
+        }
+    });
+}
+</script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $(`.language`).click(function(event) {
+        $language_id = $(this).attr('data-language-id');
+        updateUserLanguage(language_id = $language_id);
+    });
+});
+</script>
+<% end %>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $(`.language`).click(function(event) {
+        event.preventDefault();
+        $current_url = String(`<%= "#{request.fullpath}" %>`);
+
+        $old_language = '<%= "#{request.fullpath.slice(0..2)}" %>';
+
+        $new_language = String($(this).attr('for'));
+
+        if (`${$old_language}` == "/mg" || `${$old_language}` == "/en" || `${$old_language}` == "/fr") {
+            $new_url = $current_url.replace(`${$old_language}`, `/${$new_language}`);
+        } else {
+            $new_url = "/" + $new_language + $current_url;
+        }
+
+        setTimeout(function() {
+            window.location.href = $new_url;
+        }, 500);
+    });
+});
+</script>
+<script type="text/javascript">
+// function readURL(input) {
+//     if (input.files && input.files[0]) {
+
+//         var reader = new FileReader();
+
+//         reader.onload = function(e) {
+//             $('.image-upload-wrap').hide();
+
+//             $('.file-upload-image').attr('src', e.target.result);
+//             $('.file-upload-content').show();
+
+//             $('.image-title').html(input.files[0].name);
+//         };
+
+//         reader.readAsDataURL(input.files[0]);
+
+//     } else {
+//         removeUpload();
+//     }
+// }
+
+// function removeUpload() {
+//     $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+//     $('.file-upload-content').hide();
+//     $('.image-upload-wrap').show();
+// }
+// $('.image-upload-wrap').bind('dragover', function() {
+//     $('.image-upload-wrap').addClass('image-dropping');
+// });
+// $('.image-upload-wrap').bind('dragleave', function() {
+//     $('.image-upload-wrap').removeClass('image-dropping');
+// });
+
+function getCallForIdea(project_id = 0) {
+    $.ajax({
+        url: '/call_for_ideas',
+        type: 'GET',
+        dataType: 'script',
+        data: { project_id: project_id }
+    });
+}
+
+function getComments(idea_id = 0, project_id = 0) {
+    $.ajax({
+        url: '/comments',
+        type: 'GET',
+        dataType: 'script',
+        data: { idea_id: idea_id, project_id: project_id }
+    });
+}
+
+function getOptions(question_id) {
+    $.ajax({
+        url: '/options',
+        type: 'GET',
+        dataType: 'script',
+        data: { question_id: question_id }
+    });
+}
+
+function createOption(question_id, name) {
+    $auth_token = $(`input[name="authenticity_token"]`).val();
+    $.ajax({
+        url: '/options',
+        type: 'POST',
+        dataType: 'script',
+        data: {
+            authenticity_token: $auth_token,
+            'option[question_id]': question_id,
+            'option[name]': name
+        }
+    });
+}
+
+function getQuestions() {
+    $.ajax({
+        url: '/questions',
+        type: 'GET',
+        dataType: 'script'
+    });
+}
+
+
+function editInput() {
+    $(`[data-editable="true"]`).keyup(function(event) {
+        let id = $(this).attr('id'),
+            url = $(this).attr('data-url'),
+            content = $(this).val(),
+            contentName = $(this).attr('name');
+        updateInput(id = id, url = url, content = content, contentName = contentName);
+    });
+}
+
+editInput();
+
+function updateInput(id = null, url = "", content = "", contentName = "") {
+    $locale = $(`html`).attr('lang');
+    $auth_token = $(`input[name='authenticity_token']`).val(),
+        $id = id, $url = url, $content = content, $contentName = contentName;
+    console.log($contentName);
+    $attributes = ["authenticity_token", "id", $contentName],
+        $values = [$auth_token, $id, $content];
+    $data = {
+        authenticity_token: $auth_token,
+        id: $id,
+        "question[name]": $content
+    };
+    $.ajax({
+        url: $url,
+        type: 'PATCH',
+        dataType: 'script',
+        data: $data
+    });
+}
+
+
+function getRatings(idea_id = 0, project_id = 0, call_for_idea_id = 0) {
+    $.ajax({
+        url: '/ratings',
+        type: 'GET',
+        dataType: 'script',
+        data: {
+            idea_id: idea_id,
+            project_id: project_id,
+            call_for_idea_id: call_for_idea_id
+        }
+    });
+}
+
+function rate() {
+    $('.rating-label').click(function(event) {
+        rating_negative = $(`#rating_negative`);
+        event.preventDefault();
+        if ($(this).hasClass('positive')) {
+            rating_negative.removeAttr('checked');
+        } else {
+            rating_negative.attr('checked', 'checked');
+        }
+        setTimeout(function() {
+            $(`#submit-rating-btn`).trigger('click');
+        }, 100);
+    });
+};
+
+function unclick() {
+    return false;
+}
+
+function removeCard() {
+    $(`.remove`).click(function(event) {
+        /* Act on the event */
+        $target = $($(this).attr('for'));
+        $modal = $($(this).attr('for') + "-modal");
+        $modal.modal('hide');
+        $target.fadeOut('slow', function() {
+            $target.remove();
+        });
+    });
+}
+
+function getReady() {
+    $clickTime = 0;
+    $(`#fake-ready-btn`).click(function(event) {
+        $clickTime += 1;
+        if ($clickTime % 2 != 0) {
+            $(`[name*=ready]`).attr('checked', 'checked');
+            $(`[name*=confirmed]`).attr('checked', 'checked');
+        } else {
+            $(`[name*=ready]`).removeAttr('checked');
+            $(`[name*=confirmed]`).removeAttr('checked');
+        };
+    });
+}
+</script>
+<%= render 'tails/js' %>
+<script type="text/javascript" src="/assets/linx-js/forms/submit-form.js"></script>
+<script type="text/javascript">
+$spinner = $(`<section><div class="spinner rotating mx-auto"></div></section>`);
+jQuery(document).ready(function($) {
+    submitForm(form_tag = 'form.with-loader', loader = $spinner);
+});
+</script>
+<script type="text/javascript" src="/assets/linx-js/inputs/checkbox-submit.js"></script>
+<script type="text/javascript" src="/assets/linx-js/flashes/flash.js"></script>
+<script type="text/javascript" src="/assets/linx-js/scroll-here.js"></script>
+<script type="text/javascript">
+    $(document).on('ready turbolinks:load', function() {
+        scrollHere(where_id = '.scroll-here');
+    });
+</script>

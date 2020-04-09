@@ -1,0 +1,279 @@
+<style type="text/css">
+.app-fab--absolute-1,
+.app-fab--absolute-2,
+.app-fab--absolute-3,
+.app-fab--absolute-4 {
+    z-index: 5;
+    position: fixed;
+    right: 1rem;
+}
+
+.app-fab--absolute-1 {
+    bottom: 1rem;
+}
+
+.app-fab--absolute-2 {
+    bottom: 5rem;
+}
+
+.app-fab--absolute-3 {
+    bottom: 9rem;
+}
+
+.app-fab--absolute-4 {
+    bottom: 13rem;
+}
+
+@media(min-width: 1024px) {
+    .app-fab--absolute {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .app-fab--absolute-1,
+    .app-fab--absolute-2,
+    .app-fab--absolute-3,
+    .app-fab--absolute-4 {
+        right: 1.5rem;
+    }
+}
+</style>
+<% if user_signed_in? %>
+<% if controller_name != "ideas" %>
+<% if current_user.is_admin? %>
+<a href="/share-an-idea" data-turbolinks="false" class="mdc-fab app-fab--absolute-1 bg-info text-white zi-100" aria-label="Add" title="<%= t('tags.buttons.share_your_idea') %>">
+    <div class="mdc-fab__ripple"></div>
+    <span class="mdc-fab__icon material-icons">add</span>
+</a>
+<!-- <div class="dropup drop-up-btn">
+    <button class="dropdown-toggle btn btn-info p-xs-7" data-toggle="dropdown">
+        <b class="caret"></b>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right dropdown-with-icons">
+        <a href="/create-a-survey" class="dropdown-item text-gray-dark">
+            <%= t('surveys.create_new_survey') %>
+            <img src="/assets/sondage.png" alt="" width="25" class="w-1 ml-auto">
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="/create-a-project" class="dropdown-item text-gray-dark">
+            <%= t('projects.create_new_project') %>
+            <img src="/assets/project.png" alt="" width="25" class="w-1 ml-auto">
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="/share-an-actuality" class="dropdown-item text-gray-dark">
+            <%= t('actualities.create_new_actuality') %>
+            <img src="/assets/actu.png" alt="" width="25" class="w-1 ml-auto">
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="/share-an-idea" class="dropdown-item">
+            <%= fa_icon "bullhorn 2x", text: t('call_for_idea.new_idea'), right: true, class: "w-1 ml-auto" %></a>
+    </div>
+</div> -->
+<!-- <div class="dropup">
+    <a href="/share-an-idea" class="new-idea-btn btn btn-info p-xs-7" data-toggle="dropdown"><%# fa_icon "bullhorn 4x", text: "", right: true %></a>
+    <div class="dropdown-menu dropdown-menu-right">
+        <h6 class="dropdown-header">Dropdown header</h6>
+        <a href="#pablo" class="dropdown-item">Action</a>
+        <a href="#pablo" class="dropdown-item">Another action</a>
+        <a href="#pablo" class="dropdown-item">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href="#pablo" class="dropdown-item">Separated link</a>
+        <div class="dropdown-divider"></div>
+        <a href="#pablo" class="dropdown-item">One more separated link</a>
+    </div>
+</div> -->
+<% else %>
+<a href="/share-an-idea" class="mdc-fab app-fab--absolute-1 bg-info text-white" aria-label="Add">
+    <div class="mdc-fab__ripple"></div>
+    <span class="mdc-fab__icon material-icons">add</span>
+</a>
+<% end %>
+<% end %>
+<% else %>
+<a href="<%= new_user_session_path %>" class="mdc-fab app-fab--absolute-1 bg-info text-white" aria-label="Person" data-toggle="modal" data-target="#loginModal">
+    <div class="mdc-fab__ripple"></div>
+    <span class="mdc-fab__icon material-icons text-white">person</span>
+</a>
+<!-- <div class="dropup mdc-fab app-fab--absolute-1">
+    <button class="btn bg-transparent" data-toggle="dropdown">
+        <div class="mdc-fab__ripple"></div>
+        <span class="mdc-fab__icon material-icons">add</span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-left dropdown-with-icons">
+        <a href="/" class="dropdown-item btn btn-info p-xs-7">
+            <i class="material-icons fa fa-home"></i> Home
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="/users/sign_in" class="dropdown-item btn btn-info p-xs-7" data-toggle="modal" data-target="#loginModal">
+            <i class="material-icons fa fa-sign-in"></i> Sign in
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="/users/sign_up" class="dropdown-item btn btn-info p-xs-7" data-toggle="modal" data-target="#signupModal">
+            <i class="material-icons">assignment</i> Sign up
+        </a>
+    </div>
+</div> -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-login" role="document">
+        <div class="modal-content">
+            <%= render 'users/sessions/new' %>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-signup" role="document">
+        <div class="modal-content">
+            <div class="card card-signup card-plain">
+                <div class="modal-header">
+                    <h3 class="modal-title card-title">Register</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="material-icons">clear</i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5 ml-auto">
+                            <div class="info info-horizontal">
+                                <div class="icon icon-rose">
+                                    <i class="material-icons">timeline</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Marketing</h4>
+                                    <p class="description">
+                                        We've created the marketing campaign of the website. It was a very interesting collaboration.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="info info-horizontal">
+                                <div class="icon icon-primary">
+                                    <i class="material-icons">code</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Fully Coded in HTML5</h4>
+                                    <p class="description">
+                                        We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="info info-horizontal">
+                                <div class="icon icon-info">
+                                    <i class="material-icons">group</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Built Audience</h4>
+                                    <p class="description">
+                                        There is also a Fully Customizable CMS Admin Dashboard for this product.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 mr-auto">
+                            <div class="social text-center">
+                                <button class="btn btn-just-icon btn-round btn-twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </button>
+                                <button class="btn btn-just-icon btn-round btn-dribbble">
+                                    <i class="fa fa-dribbble"></i>
+                                </button>
+                                <button class="btn btn-just-icon btn-round btn-facebook">
+                                    <i class="fa fa-facebook"> </i>
+                                </button>
+                                <h4> or be classical </h4>
+                            </div>
+                            <form class="form" method="" action="">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="material-icons">face</i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="First Name...">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="material-icons">mail</i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Email...">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="material-icons">lock_outline</i>
+                                                </span>
+                                            </div>
+                                            <input type="password" placeholder="Password..." class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="" checked>
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                            I agree to the
+                                            <a href="#something">terms and conditions</a>.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+<style type="text/css">
+.dropup .dropdown-toggle:after {
+    margin: 0 !important;
+}
+
+.drop-up-btn .dropdown-toggle {
+    border-radius: 50%;
+    padding: 20px 24px;
+}
+
+.drop-up-btn .dropdown-with-icons .material-icons {
+    margin-top: -1em !important;
+}
+
+.drop-up-btn,
+.home-btn,
+.new-idea-btn,
+.login-btn {
+    z-index: 999;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    border-radius: 50%;
+    padding: 2%;
+}
+
+.modal-login {
+    height: 100vh;
+    padding-top: 120px;
+    margin-top: 0 !important;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 767px) {
+    .modal-login {
+        padding-top: 120px;
+        margin: 0 0.5rem;
+    }
+}
+</style>

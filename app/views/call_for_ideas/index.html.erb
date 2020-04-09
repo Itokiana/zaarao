@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Call For Ideas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @call_for_ideas.each do |call_for_idea| %>
+      <tr>
+        <td><%= call_for_idea.project_id %></td>
+        <td><%= call_for_idea.name %></td>
+        <td><%= call_for_idea.type_id %></td>
+        <td><%= link_to 'Show', call_for_idea %></td>
+        <td><%= link_to 'Edit', edit_call_for_idea_path(call_for_idea) %></td>
+        <td><%= link_to 'Destroy', call_for_idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Call For Idea', new_call_for_idea_path %>

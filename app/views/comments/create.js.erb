@@ -1,0 +1,10 @@
+$body = $("body");
+$(`#<%= @item_type %>-<%= @item.id %>-comments`).prepend(`<%= render 'comments/comment', comment: @comment, defcon: @defcon %>`);
+$(`#comment_content`).val("");
+
+$where = $(`#comment<%= @comment.id %>`);
+$height = $where.offset().top - 75;
+
+$('html, body').animate({ scrollTop: $height }, 1000, function() {});
+
+$(`#new-comment-form`).removeClass('disabled');

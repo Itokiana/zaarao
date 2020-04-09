@@ -1,0 +1,202 @@
+<div class="container mt-6 makeTop">
+    <div class="row flex-lg-nowrap">
+        <div class="col">
+            <div class="row">
+                <div class="col mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="e-profile">
+                                <%= render partial: 'avatar/new', avatar: current_user.avatar %>
+                                <div class="pt-3">
+                                    <div class="">
+                                        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch, class: "form" }) do |f| %>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <%= t('users.attributes.firstname') %></label>
+                                                            <input class="form-control" type="text" name="user[firstname]" placeholder="Princy" value="<%= current_user.firstname %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <%= t('users.attributes.lastname') %></label>
+                                                            <input class="form-control" type="text" name="user[lastname]" placeholder="A.N.Tsimanarson" value="<%= current_user.lastname %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="user_birthdate">
+                                                                <%= t('users.attributes.birthdate') %></label>
+                                                            <%= f.date_field :birthdate, class: "form-control", placeholder: "01 Novembre 1998", required: "" %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="user_email">
+                                                                <%= t('users.attributes.email') %></label>
+                                                            <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                        <div class="form-group">
+                                                            <label for="user_language_id">
+                                                                <%= t('tags.language') %></label>
+                                                            <select id="user_language_id" name="user[language_id]" class="form-control">
+                                                                <option value="<%= current_user.language.id %>">
+                                                                    <span>
+                                                                        <%= current_user.language.name %></span>
+                                                                </option>
+                                                                <% @languages.each do |language| %>
+                                                                <% next if language == current_user.language %>
+                                                                <option value="<%= language.id %>">
+                                                                    <span>
+                                                                        <%= language.name %></span>
+                                                                </option>
+                                                                <% end %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                        <div class="form-group">
+                                                            <%= f.label :activity, t('tags.activity'), class: "bmd-label-floating" %>
+                                                            <select name="user[activity_id]" id="user_activity_id" class="form-control" required="required">
+                                                                <% if current_user.activities.any? %>
+                                                                <% else %>
+                                                                <option label="<%= t('activities.labels.option') %>" selected disabled>
+                                                                    <%= t('activities.labels.option') %>
+                                                                </option>
+                                                                <% end %>
+                                                                <% Activity.all.each do |activity| %>
+                                                                <option value="<%= activity.id %>" <%=activity==current_user.main_activity ? 'checked selected' : '' %>>
+                                                                    <%= t("activities.#{activity.id}") %>
+                                                                </option>
+                                                                <% end %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <%= t('users.attributes.gender') %></label>
+                                                            <div class="form-inline">
+                                                                <label class="mr-1" for='user_gender_male'>
+                                                                    <%= t('users.attributes.male') %></label>
+                                                                <%= f.radio_button :gender, :male, class: "form-control mr-3" %>
+                                                                <label class="mr-1" for='user_gender_female'>
+                                                                    <%= t('users.attributes.female') %></label>
+                                                                <%= f.radio_button :gender, :female, class: "form-control mr-3" %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                        <label for="user_space">
+                                                            <%= t('spaces.my_space') %>
+                                                        </label>
+                                                        <select name="user[main_space_id]" class="form-control" disabled="">
+                                                            <option value="<%= current_user.main_space_id %>">
+                                                                <%= current_user.main_space.name %>
+                                                            </option>
+                                                            <% @spaces.each do |space| %>
+                                                            <% next if space == current_user.main_space %>
+                                                            <option value="<%= space.id %>">
+                                                                <%= space.name %>
+                                                            </option>
+                                                            <% end %>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="row">
+                                                        <div class="col mb-3">
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    <%= t('users.attributes.about_me') %></label>
+                                                                <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="alert alert-warning rounded">
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <i class="fa fa-warning fa-2x"></i>
+                                                        </div>
+                                                        <div class="col-sm-10 pt-1">
+                                                            <p class="m-0">
+                                                                Si vous vous êtes connectés via facebook, votre mote de passe par défaut est <strong>123456</strong>, veuillez le modifier pour plus de sécurité.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 mb-3">
+                                                <div class="mb-2"><b>
+                                                        <%= t('tags.buttons.change_password') %></b></div>
+                                                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                                                <div>Currently waiting confirmation for:
+                                                    <%= resource.unconfirmed_email %>
+                                                </div>
+                                                <% end %>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <%= f.label :current_password, t('users.attributes.current_password') %> <i>(
+                                                                <%= t('users.registrations.edit.we_need_your_current_password_to_confirm_your_changes') %>)</i>
+                                                            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", required: "" %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <%= f.label :password, t('users.attributes.new_password') %> <i>(
+                                                                <%= t('users.registrations.edit.leave_blank_if_you_don_t_want_to_change_it') %>)</i>
+                                                            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+                                                            <% if @minimum_password_length %>
+                                                            <em>
+                                                                <%= @minimum_password_length %> characters minimum</em>
+                                                            <% end %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <%= f.label :password_confirmation, t('users.attributes.password_confirmation') %>
+                                                            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <%= f.submit t('tags.buttons.save_changes'), class: "btn btn-primary" %>
+                                            </div>
+                                        </div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>
+        <% t('users.registrations.edit.cancel_my_account') %>
+    </h3>
+    <p>
+        <% t('users.registrations.edit.unhappy') %>
+        <% button_to t('users.registrations.edit.cancel_my_account'), registration_path(resource_name), data: { confirm: t('users.registrations.edit.are_you_sure') }, method: :delete, class: "btn btn-outline-danger" %>
+    </p>
+</div>

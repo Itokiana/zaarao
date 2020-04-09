@@ -1,0 +1,116 @@
+<div class="container">
+    <section id="search-bar">
+        <div class="row">
+            <%= form_with(url: search_path, method: :get, html: {id: 'search-form', class: "form-inline mr-auto w-100"}) do |f| %>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                <div class="row">
+                    <div class="col-10 col-sm-10 col-md-11 col-lg-11 col-xl-11 pr-0">
+                        <%= f.text_field :q, class: "form-control mr-sm-2 p-0 w-100", placeholder: t('spaces.search') %>
+                    </div>
+                    <div class="col-2 col-sm-2 col-md-1 col-lg-1 col-xl-1 pl-0 pr text-right">
+                        <button class="btn btn-outline-primary btn-rounded btn-sm h-p-100 my-0 px-3 b-solid-black-0 bg-transparent" style="box-shadow: none;" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1">
+                <div class="row">
+                    <% if action_name=="show" %>
+                    <% Type.all.each do |type| %>
+                    <div class="collapse hide fade hidden disabled remove">
+                        <div class="form-check m-1">
+                            <label for="type_id[<%= type.id %>]" class="form-check-label badge badge-warning">
+                                <%= f.radio_button "type_id[#{type.id}]", class: "form-check-input" %>
+                                <%= t("types.#{type.id}") %>
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <% end %>
+                    <% else %>
+                    <div class="col-6 col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="item" id="search_space" value="space">
+                                <%= t('tags.space') %>
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="item" id="search_idea" value="idea">
+                                <%= t('tags.idea') %>
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+                        <div class="form-check">
+                            <label for="search_survey" class="form-check-label">
+                                <input class="form-check-input" type="radio" name="item" id="search_survey" value="survey">
+                                <%= t('tags.survey') %>
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+                        <div class="form-check">
+                            <label for="search_project" class="form-check-label">
+                                <input class="form-check-input" type="radio" name="item" id="search_project" value="project">
+                                <%= t('tags.project') %>
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+                        <div class="form-check">
+                            <label for="search_actuality" class="form-check-label">
+                                <input class="form-check-input" type="radio" name="item" id="search_actuality" value="actuality">
+                                <%= t('tags.actuality') %>
+                                <span class="circle">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-auto col-md-auto col-lg-auto col-xl-auto">
+                        <div class="">
+                            <label class="form-check-label">
+                                <strong class="badge badge-default" id="searches-result-length">
+                                    <%= t('spaces.results', count: fullitems.length) %>        
+                                </strong>
+                            </label>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </section>
+</div>
+<style type="text/css">
+.bmd-form-group {
+    padding: 0;
+}
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $searchesResultLength = $(`#searches-result-length`);
+    $searchesResultDiv = $(`.searches-result:first`);
+    $searchForm = $(`#search-form`);
+    $searchMainDiv = $(`#search-main-div`);
+    checkBox(form = $searchForm, checkboxes = "[type='radio']");
+});
+</script>

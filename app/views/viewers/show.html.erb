@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @viewer.user_id %>
+</p>
+
+<p>
+  <strong>Idea:</strong>
+  <%= @viewer.idea_id %>
+</p>
+
+<p>
+  <strong>Survey:</strong>
+  <%= @viewer.survey_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @viewer.project_id %>
+</p>
+
+<p>
+  <strong>Actuality:</strong>
+  <%= @viewer.actuality_id %>
+</p>
+
+<%= link_to 'Edit', edit_viewer_path(@viewer) %> |
+<%= link_to 'Back', viewers_path %>

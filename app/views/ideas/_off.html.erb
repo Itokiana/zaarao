@@ -1,0 +1,48 @@
+<table class="ideas-table table">
+    <!--Table head-->
+    <thead class="">
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Name</th>
+            <th colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+    <!--Table body-->
+    <tbody class="table-dark" id="ideas-false">
+        <% ideas.each do |idea| %>
+        <tr id="idea-<%= idea.id %>">
+            <th scope="row">
+                <%= idea.id %>
+            </th>
+            <td>
+                <%= idea.admin.fullname %>
+            </td>
+            <td>
+                <%= idea.name %>
+            </td>
+            <td>
+                <a href="<%= idea_path(id: idea.id, idea: {on: true}) %>" data-remote="true" data-method="PATCH" class="text-warning">
+                    <i class="material-icons">restore</i>
+                </a>
+            </td>
+            <td>
+                <a href="<%= idea_path(id: idea.id) %>" data-method="DELETE" data-confirm="Sure ?" class="text-danger">
+                    <i class="material-icons">times</i>
+                </a>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+    <!--Table body-->
+</table>
+<div class="w-100">
+    <div class="mx-sm-0 mx-md-auto">
+        <%== pagy_bootstrap_nav(pagy) %>
+    </div>
+    <%#= pagy_bootstrap_nav_js(pagy) %>
+    <%#= pagy_bootstrap_combo_nav_js(pagy) %>
+    <%#= render partial: 'pagy/nav', locals: {pagy: pagy} %>
+</div>
+<!--Table-->

@@ -1,0 +1,66 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th class="">ID</th>
+            <th>
+                <%= t('activerecord.attributes.title') %>
+            </th>
+            <th>
+                <%= t('activerecord.attributes.created_at') %>
+            </th>
+            <th>
+                <%= t('activerecord.attributes.feedbacks') %>
+            </th>
+            <th>
+                <%= t('activerecord.attributes.action') %>
+            </th>
+        </tr>
+    </thead>
+    <% if items.any? %>
+    <tbody>
+        <% items.each do |item| %>
+        <tr>
+            <td>
+                <%= item.id %>
+            </td>
+            <td>
+                <%= item.name %>
+            </td>
+            <td>
+                <%= I18n.l(item.created_at, format: :short) %>
+            </td>
+            <td class="td-actions">
+                <button class="btn btn-danger btn-fab btn-round" data-toggle="tooltip" data-placement="top" title="<%= count(item.get_upvotes.length) %>" data-container="body">
+                    <i class="material-icons">favorite</i>
+                </button>
+                <button class="btn btn-info btn-fab btn-round" data-toggle="tooltip" data-placement="top" title="<%= count(item.comments.length) %>" data-container="body">
+                    <i class="material-icons">comment</i>
+                </button>
+            </td>
+            <td class="td-actions">
+                <% if item.ready? %>
+                    <%= link_to [item, locale: dl], type: "button", rel: "tooltip", class: "btn btn-info btn-just-icon btn-sm", style: "color: rgba(0, 0, 0, .8);" do %>
+                        <i class="material-icons">info</i>
+                    <% end %>
+                <% else %>
+                    <%= link_to [:edit, item, locale: dl], type: "button", rel: "tooltip", class: "btn btn-success btn-just-icon btn-sm" do %>
+                        <i class="material-icons">edit</i>
+                    <% end %>
+                <% end %>
+                <% if current_user == @user %>
+                     <%= link_to [item, locale: dl], method: :delete, data: {confirm: "Sure ?"}, type: "button", rel: "tooltip", class: "btn btn-danger btn-just-icon btn-sm", style: "color: rgba(0, 0, 0, .8);" do %>
+                        <i class="material-icons">close</i>
+                    <% end %>
+
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+    <% else %>
+    <div class="alert alert-warning rounded">
+        <i class="fa fa-warning"></i>
+        <%= t('spaces.no_created_idea') %>
+    </div>
+    <% end %>
+</table>

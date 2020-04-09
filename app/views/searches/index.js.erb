@@ -1,0 +1,8 @@
+$("#load-more").hide('fast', function() {
+    $(this).remove();
+});
+
+$searchesResultLength.html(`<%= t('spaces.results', count: @fullitems.length) %>`);
+$searchMainDiv.html(`
+	<%= @search.any? ? (render 'searches/index', pagy: @pagy, result: @result, items: @items, item_type: @item_type, divclasses: "") : (render 'shared/nothing-found', result: @result, item: @item, item_type: @item_type) %>
+`)

@@ -1,0 +1,21 @@
+<tr id="idea-<%= idea.id %>">
+    <th scope="row">
+        <%= idea.id %>
+    </th>
+    <td>
+        <%= idea.admin.fullname %>
+    </td>
+    <td>
+        <%= idea.name %>
+    </td>
+    <td>
+        <a href="<%= idea_path(id: idea.id) %>" class="text-info">
+            <i class="material-icons">info</i>
+        </a>
+    </td>
+    <td>
+        <a href="<%= idea_path(id: idea.id, idea: {on: false}) %>" data-remote="true" data-method="PATCH" class="text-danger">
+            <i class="material-icons">archive</i>
+        </a>
+    </td>
+</tr>

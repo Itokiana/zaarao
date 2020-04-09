@@ -1,0 +1,93 @@
+<%= form_with(model: project, url: project.persisted? ? project_path(id: project.id) : projects_path, data: { remote: false }, html: {id: "create-project-form"}) do |form| %>
+<% if action_name=="edit" %>
+<%= form.label :name, t('activerecord.attributes.title'), class: "label-floating" %>
+<div class="input-group control-group">
+    <%= form.text_field :name, class: "form-control", placeholder: "Give a title to your project", required: "" %>
+    <div class="input-group-btn collapse">
+        <div class="form-check">
+            <label class="form-check-label">
+                <%= form.check_box :ready, class: "form-check-input" %>
+                <%= t('tags.labels.ready') %>
+                <span class="form-check-sign">
+                    <span class="check"></span>
+                </span>
+            </label>
+        </div>
+    </div>
+</div>
+<% else %>
+<div class="form-group">
+    <%= form.label :name, t('activerecord.attributes.title'), class: "label-floating" %>
+    <%= form.text_field :name, class: "form-control", placeholder: t('projects.name') , required: "" %>
+</div>
+<% end %>
+<% if action_name=="edit" %>
+<div class="md-form form-group">
+    <%= form.label :deadline, t('activerecord.attributes.end_date') %>
+    <div class="row">
+        <div class="col">
+            <%= form.datetime_field :deadline, class: "form-control" %>
+        </div>
+        <div class="col">
+            <input type="text" value="<%= I18n.l(project.deadline, format: :long) %>" name="" autocomplete="" readonly="readonly" class="form-control">
+        </div>
+    </div>
+</div>
+<% else %>
+<div class="form-group">
+    <%= form.label :deadline, class: "label-control" %>
+    <%= form.text_field :deadline, class: "form-control datetimepicker", required: "" %>
+</div>
+<% end %>
+<div class="form-group">
+    <%= form.label :cover_picture, t('tags.labels.cover_picture') %>
+    <div class="file-upload">
+        <div class="file-upload-content">
+            <img class="file-upload-image w-100 img-thumbnail br-0" src="<%= project.cover_picture.attached? ? url_for(project.cover_picture) : " javascript:;" %>" alt="your image" />
+            <div class="image-title-wrap text-left">
+                <button type="button" onclick="removeUpload()" class="remove-image btn btn-danger pt-3 w-auto">Remove <span class="image-title">Uploaded Image</span></button>
+            </div>
+        </div>
+        <div class="image-upload-wrap">
+            <%= form.file_field :cover_picture, accept: ".png, .jpg, .jpeg", class: "file-upload-input", onchange: "readURL(this);" %>
+            <label class="drag-text" for="project_cover_picture" style="display: block; cursor: pointer;">
+                <h3>
+                    <%= t('tags.labels.drag_and_drop_a_file') %>
+                </h3>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <%= form.label :type, t('activerecord.attributes.type'), class: "bmd-label-floating" %>
+    <select name="project[type_id]" id="project_type_id" class="form-control">
+        <% if project.persisted? %>
+        <option value="<%= project.type.id %>">
+            <%= t("types.#{project.type.id}") %>
+        </option>
+        <% end %>
+        <% Type.all.each do |type| %>
+        <% next if type == project.type %>
+        <option value="<%= type.id %>">
+            <%= t("types.#{type.id}") %>
+        </option>
+        <% end %>
+    </select>
+
+</div>
+<div class="form-group">
+    <%= form.label :description, class: "label-control mb-0" %>
+    <%= form.text_area :description, class: "form-control", placeholder: "Okay guys this is certainly the best project that you've never heard so listen to me carefully ...\nyou can add some images, videos and files ...", required: "" %>
+</div>
+<div class="actions">
+    <%= form.submit "Save", class: "btn btn-md collapse", id: "save-project-btn" %>
+</div>
+<% end %>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $(`#fake-btn`).click(function(event) {
+        event.preventDefault();
+        $(`#save-project-btn`).click();
+    });
+});
+</script>

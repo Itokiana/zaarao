@@ -1,0 +1,122 @@
+<!--Section: Post-->
+<div class="mt-3">
+    <div class="card mb-4">
+        <!--Card content-->
+        <div class="ImgBoxes m-0 br-0 br-t-5" <% if @project.cover_picture.image? %> style="background: url(
+            <%= url_for(@project.cover_picture) %>) no-repeat black center"
+            <% end %>>
+            <% if @project.cover_picture.image? %>
+            <% elsif @project.cover_picture.video? %>
+            <video style="width: 100%; height: 100%;" controls="" autoplay="autoplay">
+                <source src="<%= url_for(@project.cover_picture) %>" type="">
+                Video not supported
+            </video>
+            <% else %>
+            File not supported
+            <% end %>
+        </div>
+        <% if current_user == @project.admin %>
+        <%= link_to [:edit, @project, locale: I18n.locale], data: {turbolinks: false}, class: "text-primary close zi-1 ml-auto" do %>
+        <i class="fa fa-edit fa-2x"></i>
+        <% end %>
+        <% end %>
+        <div class="card-body pt-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <%= t('tags.by') %> <a href="<%= user_path(id: @project.admin.id) %>" style="color: rgb(156, 39, 176);">
+                                <%= @project.admin.fullname %> </a>
+                            <%= t('tags.one') %>
+                            <%= I18n.l(@project.created_at, format: :short) %>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="text-right">
+                                <span class="badge badge-info"><i class="fa fa-eye"></i>
+                                    <%= count(@project.viewers.length) %></span> |
+                                <span class="badge badge-info"><i class="fa fa-lightbulb-o"></i>
+                                    <%= count(@project.ready_ideas.length) %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <p class="h2 my-4">
+                <%= @project.name %>
+            </p>
+            <p class="h5 my-4">
+                <%= @project.type.name   %>
+            </p>
+            <div class="row">
+                <div class="col-sm-11">
+                    <p>
+                        <%= @project.html_description %>
+                    </p>
+                </div>
+                <div class="col-sm-1">
+                    <section id="ratings-idea-<%= @project.id %>" class="ratings"></section>
+                    <dl>
+                        <dd id="project-<%= @project.id %>-positive_report">
+                            <%= render 'votes/report', vote_type: "positive_report", item: @project, item_type: "project", vote_weight: 1, color: "success" %>
+                        </dd>
+                        <dd id="project-<%= @project.id %>-negative_report">
+                            <%= render 'votes/report', vote_type: "negative_report", item: @project, item_type: "project", vote_weight: 1, color: "danger" %>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% if @call_for_ideas.any? %>
+<div class="">
+    <div class="card-header-pills" role="tab" id="call-for-ideas">
+        <h5 class="m-0 px-2">
+            <a class="" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" style="color: rgb(156, 39, 176);">
+                <%= t('call_for_idea.length', count: @call_for_ideas.length) %>
+                <i class="material-icons">keyboard_arrow_down</i>
+            </a>
+        </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="call-for-ideas" data-parent="#accordion" style="">
+        <div class="p-0 w-100">
+            <div class="card-header text-center">
+                <h4 class="card-title rounded">
+                    <%= t('call_for_idea.title') %>
+                </h4>
+            </div>
+            <div class="row">
+                <% @call_for_ideas.each do |call_for_idea| %>
+                <div class="col-md-4">
+                    <div class="card card-blog">
+                        <div class="card-header card-header-image">
+                            <a href="<%= call_for_idea_path(id: call_for_idea.id) %>" class="rounded" style="max-height: 300px; overflow-y: hidden;">
+                                <img src="<%= url_for(call_for_idea.cover_picture) %>" alt="">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-category text-warning">
+                                <%= call_for_idea.name %>
+                            </h6>
+                            <h4 class="card-title">
+                                <a href="#pablo">
+                                    <%= call_for_idea.description %></a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+<section class="my-5">
+    <div class="card-body p-0">
+        <%= render 'comments/new', comment: Comment.build_from( @project, current_user.id, '' ), item: @project, item_id: @project.id, item_type: 'project' %>
+        <section id="project-<%= @project.id %>-comments" class="comments">
+            <%= render 'comments/index', comments: @project.comments, defcon: 0 %>
+        </section>
+    </div>
+</section>

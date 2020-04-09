@@ -1,0 +1,37 @@
+<% if questions.any? %>
+<% questions.each do |question| %>
+<div id="question<%= question.id %>" class="panel-body b-solid-black-1 m-1 br-5 pb-2">
+    <div class="mt-2 pt-2 container">
+        <a data-method="DELETE" data-remote="true" href="<%= question_path(id: question.id) %>" for="#question<%= question.id %>" class="remove close text-danger"><i class="fa fa-times-circle-o"></i></a>
+        <div class="input-group control-group">
+            <input type="text" name="question[name]" data-editable="true" data-url="<%= question_path(id: question.id) %>" id="<%= question.id %>" value="<%= question.name %>" class="form-control old-question-input" placeholder="">
+            <div class="input-group-btn collapse">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" name="" value="" class="zi-1000 form-check-input" <% if question.mcq %>checked
+                        <% end %>><strong title="<%= t('questions.attr.mcq') %>">MCQ</strong>
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <% if question.options.any? %>
+        <ol id="question-<%= question.id %>-options">
+            <% question.options.sort_by{|option| option.created_at}.each do |option| %>
+            <%= render 'options/option', option: option %>
+            <% end %>
+        </ol>
+        <% end %>
+        <%= render 'options/new', option: Option.new, question: question %>
+    </div>
+</div>
+<% end %>
+<% else %>
+<div class="mx-auto">
+    <div class="jumbotron mt-3">
+        <%=  t('surveys.please') %>
+    </div>
+</div>
+<% end %>

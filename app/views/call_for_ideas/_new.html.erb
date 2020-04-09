@@ -1,0 +1,42 @@
+<%= form_with(model: call_for_idea, url: call_for_ideas_path, html: {id: 'create-call-for-idea-form'}) do |form| %>
+<div class="form-row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <%= form.label :cover_picture, t('tags.labels.cover_picture'), class: "" %><br>
+            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                <div class="fileinput-new thumbnail img-raised">
+                    <img src="/assets/mdb-pro-img/image_placeholder.jpg" alt="...">
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                <div>
+                    <label class="btn btn-raised btn-round btn-default btn-file">
+                        <span class="fileinput-new">Select image</span>
+                        <span class="fileinput-exists">Change</span>
+                        <%= form.file_field :cover_picture, class: "", accept: ".png, .jpg, .jpeg" %>
+                    </label>
+                    <a href="javascript:;" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="collapse">
+            <%= form.label :project_id %>
+            <%= form.text_field :project_id, value: project.id %>
+        </div>
+        <div class="field">
+            <%= form.label :name, t('activerecord.attributes.title'), class: "label-control" %>
+            <%= form.text_field :name, class: "form-control",  required: "" %>
+        </div>
+        <div class="form-group">
+            <label class="label-control mb-0">
+                <%= t('activerecord.attributes.description') %></label>
+            <%= form.text_area :description, class: "form-control", required: "" %>
+        </div>
+        <div class="form-group actions">
+            <%= form.submit t('tags.buttons.save'), class: "btn btn-md", id: "fake-create-call_for_idea-btn" %>
+            <%= form.submit t('tags.buttons.save'), class: "btn btn-md collapse", id: "create-call_for_idea-btn" %>
+        </div>
+    </div>
+</div>
+<% end %>

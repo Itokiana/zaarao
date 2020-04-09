@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+
+<head>
+    <title>Zarao</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= render 'zarao/css' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'zarao/js' %>
+</head>
+
+<body class="<%= controller_name %> <%= action_name %>">
+    <% loading_screen style: :double_bounce %>
+    <%= render "zarao/flash" %>
+    <%= render 'zarao/offline-nav' %>
+    <section class="">
+        <%= yield %>
+        <%= render 'shared/main_btn' %>
+        <% if user_signed_in? && current_user.has_unread_invitations? %>
+        <%= render template: 'invitations/new' %>
+        <% end %>
+    </section>
+    <%= render 'zarao/footer' %>
+    <script type="text/javascript" data-turbolinks-track="reload">
+    $(document).on('ready turbolinks:load', function() {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('.image-upload-wrap').hide();
+
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function() {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function() {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+
+        //change the logo on scroll
+        let nav = $('#sectionsNav');
+        $logo = $('.navbar a.navbar-brand>img');
+        let a = $('#sectionsNav li>a');
+        <% if (controller_name == 'users' && action_name == "show") || (controller_name == 'registrations' && action_name == "edit") %>
+        nav.removeClass('navbar-transparent');
+        nav.attr('style', 'background-color: rgba(0, 0, 0, .4) !important');
+        <% end %>
+        $(window).scroll(function() {
+            if (window.scrollY >= 100) {
+                $($logo).attr('src', "/assets/zarao-logo.png");
+                a.css('color', '#9c27b0');
+                nav.attr('style', 'background-color: white');
+            } else {
+                $($logo).attr('src', "/assets/zarao-logo-white.png");
+                a.css('color', 'white');
+                <% if (controller_name == 'users' && action_name == "show") || (controller_name == 'registrations' && action_name == "edit")%>
+                nav.removeClass('navbar-transparent');
+                nav.attr('style', 'background-color: rgba(0, 0, 0, .4) !important');
+                <% end %>
+            }
+        });
+    });
+    </script>
+    <% timeago_script_tag %>
+</body>
+<!-- make footer fixe if windows heigth is longer than body heigth -->
+<style type="text/css">
+.makeBottom {
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+}
+</style>
+<script type="text/javascript">
+if ($('body').innerHeight() < window.innerHeight) {
+    let make_fixed = document.querySelector('.footer');
+    make_fixed.classList.add('makeBottom');
+}
+</script>
+
+</html>

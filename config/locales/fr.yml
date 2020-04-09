@@ -1,0 +1,253 @@
+fr:
+  welcome: "Bienvenue"
+  types:
+    1: 'Affaires étrangères'
+    2: "Développement et construction"
+    3: 'Commerces et marchés'
+    4: "Culture, arts et patrimoine"
+    5: 'Education, jeunesse et petite enfance'
+    6: 'Emploi'
+    7: "Environnement et développement durable"
+    8: 'Logement'
+    9: 'Numérique'
+    10: 'Propreté'
+    11: "Réseaux, énergie et éclairage"
+    12: 'Sécurité'
+    13: 'Solidarité, social et santé'
+    14: 'Sports et loisirs'
+    15: 'Transport et déplacement'
+    16: "Travaux et routes"
+    17: 'Union européenne'
+    18: 'Vie institutionnelle et administrative'
+  activities:
+    1: 'Retraité'
+    2: "Étudiant"
+    3: 'Chômeur'
+    4: "Employé"
+    5: 'Autre'
+    labels:
+      option: Votre état civil
+  tags:
+    upload: "changer l'image"
+    first: "Soyez le premier à commenter"
+    title: "Donnez un titre à votre idée"
+    my_space: "Modifier mon espace"
+    waiting: "Idées en attente"
+    by: "par"
+    one: "le"
+    all: "Tout"
+    activity: "Activité principale"
+    idea: "Idée"
+    ideas: Idées
+    description: "Okay les gars vous allez entendre la meilleure idée que vous ayez jamais entendu alors écoutez moi attentivement ..."
+    project: "Projet"
+    space: "Espace"
+    spaces: "Mes éspaces"
+    survey: "Sondage"
+    surveys: Sondages
+    actuality: "Actualité"
+    language: "Langue"
+    or_classical: "Ou à l'ancienne"
+    contribution: "Contribution"
+    tr_under_project:
+      sous: "sous projet"
+    no_result: Aucun résultat trouvé
+    buttons:
+      edit_actuality: "modifier"
+      share_your_idea: "Partagez vos idées"
+      edit_your_idea: "Vérifiez votre idée"
+      edit_under_project: "modifier"
+      show: "Afficher"
+      change_picture: "Changer l'image"
+      change_password: "Changer de mot de passe"
+      save: "Valider"
+      save_changes: "Valider les changements"
+      join: "Rejoindre"
+      publish: Publier
+      load_more: Plus
+    labels:
+      ready: "Prêt"
+      cover_picture: "Photo de couverture"
+      profile_picture: "Photo de profil"
+      drag_and_drop_a_file: "Glisser-déposer un fichier"
+      discoverable: Visible
+      private: Privé
+      about: À propos
+      citizen: citoyen
+      citizens: citoyens
+      contributions: contributions
+      responses: réponses
+      accomplished: accomplit
+      is_administered_by: est sous la responsabilité de
+      last: dernier(ère)
+      administration_login: connexion de l'admin 
+      this: ce(cette)
+      message: message
+      send: envoyer
+      a: un(e)
+      or: ou
+      to: à(aux)
+      request: requette
+      remark: remarque
+      citizens_contributions: Contributions citoyens
+      commited: Inscrit(s)
+      commited_citizens: "%{citizens} %{commited}"
+      commited_surveys: "Les sondages enregistrés"
+  navbar:
+    home: "Accueil"
+    my_space: "Mon espace"
+    my_profile: "Mon profil"
+    edit_my_profile: "Editer mon profil"
+    settings: "Paramètres"
+    log_out: "Déconnexion"
+    sign_in: "Se connecter"
+    sign_up: "S'inscrire"
+    available_spaces: "Les éspaces disponibles"
+  footer:
+    copyright: "©2019, réalisé avec <i class='fa fa-heart text-danger'></i> par Sayna"
+  home:
+    header_title: "Zarao, être citoyen au quotidien"
+    header_content: "Zarao est une solution d’engagement citoyen, qui permet la prise de décision collective autour des sujets d’intérêt général."
+  user:
+    my_profile: "Mon profil"
+    all_my_contributions: "Toutes mes contributions"
+    user_contribution: "Les contributions de %{fullname}"
+    index: Membres
+  spaces:
+    title: espace
+    update: "L'espace a été mis à jour avec succès."
+    results: "%{count} résultat(s)"
+    search: Recherche
+    complete: "veuillez compléter votre profil avant de continuer"
+    no_available_idea: "Aucune idée disponible pour le moment"
+    no_available_survey: "Aucun sondage disponible pour le moment"
+    no_available_project: "Aucun projet disponible pour le moment"
+    no_created_idea: "Aucune idée créée"
+    no_created_survey: "Aucun sondage crée"
+    no_created_project: "Aucun projet crée"
+    join: "Vous avez rejoint le nouvel espace avec succès"
+    visit: Visiter
+    my_space: Mon espace
+  surveys:
+    labels:
+      result: Résultat du sondage
+      question: 
+        one: Question %{number}
+        other: Question %{number}
+      finished: Terminé
+      thanks: 
+        male: On te remercie beaucoup pour ta paritcipation, t'es vraiment le meilleur %{name}
+        female: On te remercie beaucoup pour ta paritcipation, t'es vraiment la meilleure %{name}
+    submit: "Envoyer"
+    editable: "Impossible de modifier le sondage"
+    warning: "compléter le sondage avant de continuer"
+    success: "Votre réponse a bien été envoyée"
+    destroy: "Supression reussir"
+    update: "mis à jour avec succès."
+    please: "Veuillez ajouter au moins une question à votre sondage."
+    entre: "Entrez votre question ici"
+    add_question: "Ajouter des questions"
+    edit: "Modifier le sondage"
+    add: "Veuillez ajouter quelques questions à votre enquête."
+    create_new_survey: "Nouveau sondage"
+    update_survey: "Mettre à jour le sondage"
+    check_your_survey: "Vérifiez votre sondage"
+    survey_submitted: Vous avez déjà soumis votre vote, le résultat sera bientôt disponible
+  actualities:
+    create_new_actuality: "Quelles sont les dernières nouvelles ?"
+    edit: "Rectifier cette actu"
+    update_actuality: "Mettre à jour une nouvelle"
+  projects:
+    create: 'Veuillez ajouter des APPELS À IDÉES à votre projet.'
+    editable: "Impossible de modifier le projet"
+    destroy: "Supression reussir"
+    update: "Le projet a été mis à jour avec succès."
+    warning: "Veuillez compléter ce projet avant de continuer"
+    add: "Ajouter un appel à idées"
+    new: "Nouveau projet"
+    check_your_project: "Verifiez votre projet"
+    name: "Donnez un titre à votre projet"
+    create_new_project: "Nouveau projet"
+  call_for_idea:
+    title: Les sous projets
+    need: "Nous avons besoin de vos idées"
+    ideas: Toutes les idées recueillies
+    new_idea: "Soumettez votre idée"
+    length: "%{count} sous projet(s)"
+    ideas:
+      length: "%{count} Idée(s)"
+  actualities:
+    destroy: "Supression reussir"
+    update: "Mise à jours reussir"
+    create: "L'actualité a été créée avec succès"
+    create_new_actuality: "Du nouveau ?"
+  idea:
+    placeholder: "Donnez un titre à votre idée"
+    description: "Une breve description de votre idée pour vos lecteurs"
+    comment: "commentaires"
+    opinion: "Partager votre opinion"
+    create: "L'idée a été créée avec succès. S'il vous plaît vérifier votre idée avant de publier."
+    update: "L'idée a été publiée avec succès."
+    destroy: "Idea was successfully destroyed."
+    sorry: "désolé cette idée a déjà été publiée"
+    waiting_for_validation: Votre idée sera publiée dans peu de temps
+    valide:
+      completed: "veuillez compléter votre profil avant de continuer"
+      public: "en attent de validation  avant de publier"
+      first: "Soyez le premier à commenter"
+    searches:
+      result: Résultat
+      results: Résultat(s)
+    admin:
+      new: Nouvelle(s) idée(s)
+      created: "Créé par"
+      waiting: "Aucune idée d'attente pour le moment"
+  questions:
+    attr:
+      mcq: Question à choix multiples
+  activerecord:
+    attributes:
+      title: "Titre"
+      type: "Sujet"
+      name: "Nom"
+      description: "Description"
+      content: "Contenu"
+      feedbacks: "Retour"
+      action: "Action"
+      created_at: "Fait le"
+      end_date: "Date de fin"
+      deadline: Deadline
+  comments:
+    zero: Soyez le premier à commenter
+    buttons:
+      reply: Répondre
+    placeholders:
+      new_comment: Laissez un commentaire...
+    length: "%{count} Commentaire(s)"
+  users:
+    participated: "  Vous n'avez pas encore participé à une enquête"
+    attributes:
+      firstname: "Prénom"
+      lastname: "Nom"
+      birthdate: "Date de naissance"
+      gender: "Genre"
+      male: "Masculin"
+      female: "Feminin"
+      undefined: "Non défini"
+      about_me: "À propos de moi"
+      email: "Adresse email"
+      password: "Mot de passe"
+      password_confirmation: "Confirmation du mot de passe"
+      current_password: "Mot de passe actuel"
+      new_password: "Nouveau mot de passe"
+  searches:
+    loading: Recherche en cours...
+  shared:
+    insctructions: 'Instructions'
+    supported_formats: 'Les formats supportés'
+    video_upload_not_allowed: "Vous <strong>ne pouvez pas</strong> uploader une vidéo en tant que photo de couverture"
+    insert_external_links: "Pour ajouter une vidéo veuillez l'insérer dans la description à l'aide d'un <strong>lien externe</strong> (provenant de youtube/facebook/...)"
+    royalty_free: 'libre de droit'
+    all_free_links_are_supported: "Tout lien externe %{royalty_free_link} est supporté"
+    all_external_links: "Tout lien externe"
+    are_supported: "est supporté"

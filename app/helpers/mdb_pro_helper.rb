@@ -1,0 +1,2 @@
+module MdbProHelper
+end

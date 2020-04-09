@@ -1,0 +1,81 @@
+<div class="container b-dashed-black-2 resizeable" id="questions-list" data-resizer='true' for="#questions-list">
+    <a href="javascript:;" class="close pr right-0 top-15" onclick="toggleFullscreen(document.getElementById('questions-list'));"><i class="fa fa-expand"></i></a>
+    <h2>
+        <%= t('surveys.labels.result') %>
+    </h2>
+    <%= form_with(url: survey_path) do |f| %>
+    <div class="row">
+        <div class="col">
+            <button class="badge badge-warning">
+                <%= survey.kids.length %></button> Enfants (moins de 15 ans)
+        </div>
+        <div class="col">
+            <button class="badge badge-info">
+                <%= survey.youngs.length %></button> Jeunes
+        </div>
+        <div class="col">
+            <button class="badge badge-secondary">
+                <%= survey.olds.length %></button> Les plus de 35ans
+        </div>
+    </div>
+    <% survey.questions.each do |question| %>
+    <div class="panel-body">
+        <div class="mt-2 pt-2 container">
+            <div class="input-group control-group">
+                <strong class="h6">
+                    <%= question.name %>
+                </strong>
+            </div>
+            <% if question.options.any? %>
+            <div class="options-list">
+                <div class="row">
+                    <% question.options.each do |option| %>
+                    <div class="option col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-0">
+                        <div class="input-group">
+                            <label class="form-check-label w-100">
+                                <%= option.name %>
+                                <%= option.users.length %> /
+                                <%= question.users.length %>
+                                <div class="w-100 progress progress-line-info br-5">
+                                    <% if option.kids.any? %>
+                                    <div class="progress-bar progress-bar-warning" style="width: <%= question.users.any? ? option.kids.length*100 / question.users.length : 0 %>%">
+                                        <span class="">
+                                            <%= question.users.any? ? option.kids.length*100 / question.users.length : 0 %>%</span>
+                                    </div>
+                                    <% end %>
+                                    <% if option.youngs.any? %>
+                                    <div class="progress-bar progress-bar-info" style="width: <%= question.users.any? ? option.youngs.length*100 / question.users.length : 0 %>%">
+                                        <span class="">
+                                            <%= question.users.any? ? option.youngs.length*100 / question.users.length : 0 %>%</span>
+                                    </div>
+                                    <% end %>
+                                    <% if option.olds.any? %>
+                                    <div class="progress-bar progress-bar-secondary" style="width: <%= question.users.any? ? option.females.length*100 / question.users.length : 0 %>%">
+                                        <span class="">
+                                            <%= question.users.any? ? option.olds.length*100 / question.users.length : 0 %>%</span>
+                                    </div>
+                                    <% end %>
+                                    <!-- <div class="progress-bar progress-bar-warning" style="width: 20%">
+                                        <span class="sr-only">20% Complete (warning)</span>
+                                    </div>
+                                    <div class="progress-bar progress-bar-success" style="width: 35%">
+                                        <span class="sr-only">35% Complete (success)</span>
+                                    </div> -->
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+    <% end %>
+    <% end %>
+</div>
+<style type="text/css">
+.progress {
+    height: 55px;
+}
+</style>

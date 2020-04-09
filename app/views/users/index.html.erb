@@ -1,0 +1,67 @@
+<section>
+    <div class="">
+        <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#invitation-modal">Send invitations</a>
+    </div>
+    <%= render 'invitations/form', invitation: Invitation.new, users: @available_users %>
+</section>
+<!--Table-->
+<table class="users-table table table-hover table-fixed">
+    <!--Table head-->
+    <thead class="">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Language</th>
+            <th>Position</th>
+            <th>Age</th>
+            <th class="text-center">Last seen</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+    <!--Table body-->
+    <tbody class="table table-striped">
+        <% @users.each do |user| %>
+        <tr>
+            <th scope="row">
+                <%= user.id %>
+            </th>
+            <td>
+                <%= user.fullname %>
+            </td>
+            <td>
+                <%= user.email %>
+            </td>
+            <td>
+                <%= user.language.name %>
+            </td>
+            <td>
+                <%= t("activities.#{user.main_activity.id}") %>
+            </td>
+            <td>
+                <%= user.age %>
+            </td>
+            <td class="text-center">
+                <%= user.last_sign_in_at ? l(user.last_sign_in_at, format: :short) : '-' %>
+            </td>
+            <% if user != current_user %>
+            <td>
+                <a href="/kick-out/<%= user.id %>" data-method="DELETE" class="text-danger" data-confirm="Are you sure ?">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+            <% end %>
+        </tr>
+        <% end %>
+    </tbody>
+    <!--Table body-->
+</table>
+<!--Table-->
+<style type="text/css">
+    @media(max-width: 767px){
+        .users-table {
+            overflow-x: auto;
+        }
+    }
+</style>

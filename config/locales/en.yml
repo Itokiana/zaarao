@@ -1,0 +1,281 @@
+en:
+  welcome: "Welcome"
+  types:
+    1: 'Foreign Affairs'
+    2: "Development and construction"
+    3: 'Shops and markets'
+    4: "Culture, arts and heritage"
+    5: 'Education, youth and early childhood'
+    6: 'Employment'
+    7: "Environment and sustainable development"
+    8: 'Housing'
+    9: 'Digital'
+    10: 'Cleanliness'
+    11: "Networks, energy and lighting"
+    12: 'Security'
+    13: 'Solidarity, social and health'
+    14: 'Sports and Recreation'
+    15: 'Transport and displacement'
+    16: "Works and roads"
+    17: 'European Union'
+    18: 'Institutional and administrative life'
+  activities:
+    1: 'Retired person'
+    2: "Student"
+    3: 'Jobless'
+    4: "Employee"
+    5: 'Other'
+    labels:
+      option: Choose your civil state
+  tags:
+    upload: change picture
+    first: "Be the first to comment"
+    title: "Idea title"
+    my_space: " Edit my space"
+    waiting: "Waiting ideas"
+    by: "by"
+    one: "on"
+    all: "All"
+    activity: "Main activity"
+    idea: "Idea"
+    ideas: Ideas
+    description: "Okay guys you'll hear the best idea you've ever heard so listen to me carefully ..."
+    project: "Project"
+    space: "Space"
+    spaces: "My spaces"
+    survey: "Survey"
+    surveys: "Surveys"
+    actuality: "Actuality"
+    language: "Language"
+    or_classical: "Or be classical"
+    contribution: "Contribution"
+    tr_under_project:
+      sous: "Under Project"
+    no_result: No result found
+    buttons:
+      edit_actuality:  "edit"
+      edit_under_project: "edit"
+      share_your_idea: "Share your idea"
+      edit_your_idea: "Edit your idea"
+      show: "Show"
+      change_picture: "Change picture"
+      change_password: "Change password"
+      save: "Save"
+      save_changes: "Save changes"
+      join: "Join"
+      publish: Publish
+      load_more: Load more
+    labels:
+      ready: "Ready"
+      cover_picture: "Cover picture"
+      profile_picture: "Profile picture"
+      drag_and_drop_a_file: "Drag and drop a file"
+      discoverable: Discoverable
+      private: Private
+      about: About
+      citizen: citizen
+      citizens: citizens
+      contributions: contributions
+      responses: responses
+      accomplished: accomplished
+      is_administered_by: is administered by
+      last: last
+      administration_login: administration login 
+      this: this
+      message: message
+      send: send
+      a: a(n)
+      or: or
+      to: to
+      request: request
+      remark: remark
+      citizens_contributions: Citizens' contributions
+      commited: Commited
+      commited_citizens: "%{citizens} %{commited}"
+      commited_surveys: "Commited surveys"
+  navbar:
+    home: "Home"
+    my_space: "My space"
+    my_profile: "My profile"
+    edit_my_profile: "Edit my profile"
+    settings: "Settings"
+    log_out: "Log out"
+    sign_in: "Sign in"
+    sign_up: "Register"
+    available_spaces: "Available spaces"
+  footer:
+    copyright: "©2019, made with <i class='fa fa-heart text-danger'></i> by Sayna"
+  home:
+    header_title: "Zarao, be a citizen everyday"
+    header_content: "Zarao is a citizen engagement solution, which allows collective decision making around topics of general interest."
+  user:
+    my_profile: "My profile"
+    all_my_contributions: "All my contributions"
+    user_contribution: "%{fullname}'s contributions"
+    index: Team
+  spaces:
+    title: space
+    update: "Space was successfully updated."
+    results:  "%{count} result(s)"
+    search: Search
+    complete: "please complete your account before continuing"
+    no_available_idea: "No available idea for the moment"
+    no_available_survey: "No available survey for the moment"
+    no_available_project: "No available project for the moment"
+    no_created_idea: "You have not yet create any idea"
+    no_created_survey: "You have not yet create any survey"
+    no_created_project: "You have not yet create any project"
+    join: "You successfully joined the new space"
+    visit: Try
+    my_space: My space
+  surveys:
+    labels:
+      result: Survey result
+      question: 
+        one: Question %{number}
+        other: Question %{number}
+      finished: Finished
+      thanks: 
+        male: Thank you very much for your participation, you're the best %{name}
+        female: ""
+    submit:  send
+    editable: This survey is neiver editable
+    warning: "Please complete this survey before continuing"
+    success: 'Your answers have been successfully submited'
+    destroy: 'Survey was successfully destroyed.'
+    update: 'Survey was successfully updated.'
+    please: "Please add at least one question to your survey"
+    entre: "Enter your question here"
+    add_question: "Add questions"
+    edit: "Edit survey"
+    add: "Please add some questions to your survey"
+    create_new_survey: "Create a new survey"
+    update_survey: "Update survey"
+    check_your_survey: "Check Your Survey"
+    survey_submitted: You've already submited your vote, the result will be available soon
+  actualities:
+    destroy: 'Actuality was successfully destroyed.'
+    update: 'Actuality was successfully updated.'
+    create: 'Actuality was successfully created.'
+    create_new_actuality: "What's news ?"
+    edit: "Edit new"
+    update_actuality: "Update actuality"
+  projects:
+    editable: "This project is neiver editable"
+    destroy: 'Project was successfully destroyed.'
+    update: "Project was successfully updated."
+    warning: "Please complete this project before continue"
+    add: "Add call for ideas"
+    edit: "Edit project"
+    create: "Please add some CALL FOR IDEAS to your project"
+    name: "Give a title to your project"
+    new: "New project"
+    check_your_project: "Check your project"
+    create_new_project: "Create a new project"
+  call_for_idea:
+    title: Call for ideas
+    need: "We need your ideas"
+    ideas: All submited ideas
+    new_idea: "Submit your idea"
+    length: "%{count} Call for ideas"
+    ideas:
+      length: "%{count} Ideas"
+  actualities:
+    create_new_actuality: "Share news"
+  idea:
+    placeholder: "Give a title to your idea"
+    description: "Okay guys you'll hear the best idea you've ever heard so listen to me carefully"
+    comment: "comments"
+    opinion: "Share your opinion"
+    create: "Idea was successfully created. Please check your idea before publish."
+    update: "Idea was successfully published."
+    destroy: "L'idée a été détruite avec succès."
+    sorry: "sorry this idea was already published"
+    waiting_for_validation: Your idea will be published soon
+    valide:
+      completed: "please complete your profile before continuing"
+      public: "waiting for validation before publishing"
+    admin:
+      new: "New ideas"
+      created: "Created by"
+      waiting: "No waiting ideas at the moment"
+  questions:
+    attr:
+      mcq: Multiple choice question
+  activerecord:
+    attributes:
+      title: "Title"
+      type: "Subject"
+      name: "Name"
+      description: "Description"
+      content: "Content"
+      feedbacks: "Feedbacks"
+      action: "Action"
+      created_at: "Created at"
+      end_date: "End date"
+      deadline: Deadline
+  comments:
+    zero: Be the first to comment
+    buttons:
+      reply: Reply
+    placeholders:
+      new_comment: Write a nice reply or go home...
+    length: "%{count} Comment(s)"
+  users:
+    participated: "  You have not participated in any survey yet"
+    attributes:
+      firstname: "Firstname"
+      lastname: "Lastname"
+      birthdate: "Birthdate"
+      gender: "Gender"
+      male: "Male"
+      female: "Female"
+      undefined: "Undefinded"
+      about_me: "About me"
+      email: "Email"
+      password: "Password"
+      password_confirmation: "Password confirmation"
+      current_password: "Current password"
+      new_password: "New password"
+  searches:
+    loading: Searching...
+  shared:
+    insctructions: Instructions
+    supported_formats: Supported format
+    video_upload_not_allowed: "You <strong>can't</strong> upload a video as cover picture"
+    insert_external_links: "To add a video, go to description and copy a <strong>link from external website</strong> like (youtube/facebook/...)"
+    royalty_free: royalty free
+    all_free_links_are_supported: "All %{royalty_free_link} are supported"
+    all_external_links: "All external links"
+    are_supported: "are supported"
+
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.

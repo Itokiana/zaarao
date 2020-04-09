@@ -1,0 +1,14 @@
+<%= render 'shared/nota-bene' %>
+<div class="row makeTop scroll-here" scroll-to="50">
+    <div class="col-12 offset-0">
+        <div class="card">
+            <!-- Card header -->
+            <div class="card-header text-center"><%= t('tags.buttons.share_your_idea') %></div>
+            <!--Card content-->
+            <div class="card-body pt-5">
+                <%= render 'ideas/form', idea: @idea %>
+            </div>
+        </div>
+    </div>
+</div>
+<%= render 'shared/tinymce-editor', textarea: "textarea#idea_description", menubar: "file insert" %>

@@ -1,0 +1,101 @@
+<section class="mt-3">
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+        <div class="col-md-12 mb-4">
+            <!-- Featured image -->
+            <!--Card-->
+            <div class="card mb-4">
+                <!--Card content-->
+                <div class="ImgBoxes m-0 br-0 br-t-5" style="background: url(<%= url_for(@call_for_idea.cover_picture) %>) no-repeat black center;">
+                    <!-- <img src="<%= url_for(@call_for_idea.cover_picture) %>" class="img-fluid z-depth-1-half mb-4 w-100" alt=""> -->
+                </div>
+                <div class="card-body pt-5">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <%= t('tags.by') %> <a href="<%= user_path(id: @call_for_idea.admin.id) %>" style="color: rgb(156, 39, 176);">
+                                <%= @call_for_idea.admin.fullname %> </a>
+                            <%= t('tags.one') %>
+                            <%= I18n.l(@call_for_idea.created_at, format: :short) %>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="text-right">
+                                <span class="badge badge-info"><i class="fa fa-eye"></i>
+                                    <%= count(@call_for_idea.viewers.length) %></span> |
+                                <span class="badge badge-info"><i class="fa fa-lightbulb-o"></i>
+                                    <%= count(@call_for_idea.ideas.length) %></span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="h2 my-4">
+                        <%= @call_for_idea.name %>
+                    </p>
+                    <p class="h5 my-4">
+                        <%= @call_for_idea.type.name   %>
+                    </p>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <p>
+                                <%= @call_for_idea.html_description %>
+                            </p>
+                        </div>
+                        <div class="col-sm-1">
+                            <section id="ratings-idea-<%= @call_for_idea.id %>" class="ratings"></section>
+                            <dl>
+                                <dd id="call_for_idea-<%= @call_for_idea.id %>-positive_report">
+                                    <%= render 'votes/report', vote_type: "positive_report", item: @call_for_idea, item_type: "call_for_idea", vote_weight: 1, color: "success" %>
+                                </dd>
+                                <dd id="call_for_idea-<%= @call_for_idea.id %>-negative_report">
+                                    <%= render 'votes/report', vote_type: "negative_report", item: @call_for_idea, item_type: "call_for_idea", vote_weight: 1, color: "danger" %>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Section: Author Box-->
+            <!--/.Card-->
+            <div class="row">
+                <div class="col-md-8">
+                    <% if @ideas.any? %>
+                    <div class="card-header-pills" role="tab" id="ideas">
+                        <h5 class="m-0 px-2">
+                            <a class="" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" style="color: rgb(156, 39, 176);">
+                                <%= t('call_for_idea.ideas.length', count: @ideas.length) %>
+                                <i class="material-icons">keyboard_arrow_down</i>
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="ideas" data-parent="#accordion" style="">
+                        <div class="row">
+                            <% @ideas.each do |idea| %>
+                            <div class="col-sm-6">
+                                <div class="card card-blog card-plain">
+                                    <div class="card-header card-header-image">
+                                        <a href="<%= idea_path(id: idea.id) %>">
+                                            <img src="<%= url_for(idea.cover_picture) %>" alt="">
+                                            <div class="card-title">
+                                                <%= idea.name %>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="card-category text-info"><%= idea.type.name %></h6>
+                                        <div class="card-description custom-text">
+                                            <%= idea.html_description %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+                <div class="col-md-4">
+                    <%= render 'ideas/new', idea: Idea.new(ready: true, call_for_idea_id: @call_for_idea.id, type_id: @call_for_idea.type.id), call_for_idea: @call_for_idea %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

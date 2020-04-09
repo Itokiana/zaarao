@@ -1,0 +1,76 @@
+<%= form_with(model: idea, url: idea.persisted? ? idea_path(id: idea.id) : ideas_path, local: true) do |f| %>
+<%= render 'shared/error_messages', item: idea %>
+<div class="form-row">
+    <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12">
+            <label for="idea_cover_picture" class="form-group w-100">
+                <div class="fileinput text-center w-100" data-provides="fileinput">
+                    <label for="idea_cover_picture" class="fileinput-preview fileinput-exists thumbnail">
+                        <img src="<%= idea.cover_picture.attached? ? url_for(idea.cover_picture) : default_cover_picture_url %>" alt="">
+                    </label>
+                    <span class="btn btn-raised fileinput-exist btn-round btn-default btn-file collapse">
+                        <%= f.file_field :cover_picture, value: idea.cover_picture, class: "w-100", accept: ".png, .jpg, .jpeg" %>
+                    </span>
+                </div>
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <%= f.label :name, t('activerecord.attributes.title'), class: "label-floating" %>
+            <%= f.text_field :name, class: "form-control w-100", placeholder: t('tags.title'), required: "" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :type, t('activerecord.attributes.type'), class: "bmd-label-floating" %>
+            <select name="idea[type_id]" id="idea_type_id" class="form-control">
+                <% Type.all.each do |type| %>
+                <option value="<%= type.id %>" <%=idea.type==type ? "checked selected" : "" %> >
+                    <%= t("types.#{type.id}") %>
+                </option>
+                <% end %>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <%= f.label :description, t('activerecord.attributes.description'), class: "label-control" %>
+            <%= f.text_area :description, class: "form-control", placeholder: t('tags.description'), required: "", style: "min-height: 75px;" %>
+        </div>
+    </div>
+</div>
+<div class="actions">
+    <% if action_name=="edit" %>
+    <div class="form-check">
+        <label class="form-check-label">
+            <%= f.check_box :ready, class: "form-check-input", required: "" %>
+            <%= t('tags.labels.ready') %>
+            <span class="form-check-sign">
+                <span class="check"></span>
+            </span>
+        </label>
+    </div>
+    <% end %>
+    <%= f.submit t('tags.buttons.publish'), class: "btn btn-md w-auto w-xs-100" %>
+</div>
+<% end %>
+<style type="text/css">
+.fileinput-preview img {
+    width: 100%;
+}
+
+.fileinput .btn-raised {
+    position: absolute;
+    top: 50%;
+    background: rgba(0, 0, 0, 0);
+}
+
+.fileinput .btn-raised.fileinput-exist {
+    left: 35%;
+}
+
+.fileinput .btn-raised.fileinput-new {
+    left: 40%;
+}
+</style>

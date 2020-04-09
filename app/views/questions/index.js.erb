@@ -1,0 +1,6 @@
+$questionsDiv = $(`#questions-list`);
+$questionsDiv.html(`<%= render 'questions/index', questions: @questions %>`);
+removeCard();
+$(document).on('ready turbolinks:load', function() {
+    editInput();
+});

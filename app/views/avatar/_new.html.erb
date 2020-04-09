@@ -1,0 +1,69 @@
+<style type="text/css">
+label[for=user_avatar] span {
+    cursor: pointer;
+}
+</style>
+<div class="row">
+    <div class="col-12 col-sm-auto mb-3">
+        <div class="mx-auto" style="width: 140px;">
+            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239); overflow: hidden;">
+                <%= image_tag current_user.avatar, alt: "avatar goes here", class: "h-100 avatar" %>
+            </div>
+        </div>
+    </div>
+    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+        <div class="text-center text-sm-left mb-2 mb-sm-0">
+            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                <%= current_user.fullname %>
+            </h4>
+            <p class="mb-0">
+                <%= current_user.email %>
+            </p>
+            <div class="mt-2">
+                <label for="user_avatar" class="btn btn-primary" type="button">
+                    <i class="fa fa-fw fa-camera"></i>
+                    <span><%= t('tags.buttons.change_picture') %></span>
+                </label>
+            </div>
+        </div>
+        <div class="text-center text-sm-right">
+            <span class="badge badge-secondary">
+                <%= current_user.role %></span>
+            <div class="text-muted"><small>Joined
+                    <%= I18n.l(current_user.created_at, format: :short) %></small></div>
+        </div>
+    </div>
+</div>
+<%= form_with(model: current_user, url: avatar_index_path, method: :post, html: {id: "createavatar"}) do |form| %>
+<div class="user-photo collapse">
+    <a href="javascript:;">
+        <label for="user_avatar">
+            <%= form.file_field :avatar, class: "collapse" %>
+            <%= form.submit "Re-upload", disable_with: 'Re-uploading...', id: "re-upload-btn", class: "collapse" %>
+        </label>
+    </a>
+</div><!-- /.user-photo -->
+<% end %>
+<script type="text/javascript">
+$fileInput = $(`input[type="file"]`);
+$fileInput.change(function(event) {
+    /* Act on the event */
+    $preview = $(`img.avatar:first`);
+    $input = $(event.currentTarget);
+    $file = $input[0].files[0];
+    $reader = new FileReader();
+    $reader.onload = function(e) {
+        image_base_64 = e.target.result;
+        $preview.attr('src', image_base_64);
+    }
+    $reader.readAsDataURL($file);
+
+    $body = $(`body`);
+
+    if ($body.hasClass('new')) {
+
+    } else {
+        $(`#re-upload-btn`).click();
+    }
+});
+</script>

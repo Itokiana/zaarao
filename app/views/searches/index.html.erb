@@ -1,0 +1,8 @@
+<section class="scroll-here" scroll-to="80">
+    <%= render 'searches/form', items: @items, fullitems: @fullitems, item: @item %>
+    <div id="search-main-div">
+        <div id="search-result">
+            <%= @search.any? ? (render 'searches/index', result: @result, items: @items, item_type: @item_type, pagy: @pagy, divclasses: "") : (render 'shared/nothing-found', result: @result, item: @item) %>
+        </div>
+    </div>
+</section>

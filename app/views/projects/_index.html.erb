@@ -1,0 +1,7 @@
+<% if projects.any?  %>
+<% projects.each do |project|  %>
+<%= render 'shared/show_item', item: project, classes: "col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 p-xs-0" %>
+<% end %>
+<% else %>
+<%= t('spaces.no_available_project') %>
+<% end %>

@@ -1,0 +1,72 @@
+<div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('/assets/tana.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="brand">
+                    <h1>
+                        <%= t 'home.header_title' %>
+                    </h1>
+                    <h3>
+                        <%= t 'home.header_content' %>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main main-raised">
+    <div class="section section-basic">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="<%= visit_space_path(id: default_space.id) %>" class="card card-login">
+                        <div class="card-header card-header-primary text-center">
+                            <h4 class="card-title">
+                                <%= t 'tags.idea' %>
+                            </h4>
+                            <div class="social-line">
+                                <img src="/assets/idea.png" alt="" class="w-25">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="<%= visit_space_path(id: default_space.id) %>" class="card card-login">
+                        <div class="card-header card-header-primary text-center">
+                            <h4 class="card-title">
+                                <%= t 'tags.project' %>
+                            </h4>
+                            <div class="social-line">
+                                <img src="/assets/project.png" alt="" class="w-25">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="<%= visit_space_path(id: default_space.id) %>" class="card card-login">
+                        <div class="card-header card-header-primary text-center">
+                            <h4 class="card-title">
+                                <%= t 'tags.survey' %>
+                            </h4>
+                            <div class="social-line">
+                                <img src="/assets/sondage.png" alt="" class="w-25">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="<%= visit_space_path(id: default_space.id) %>" class="card card-login">
+                        <div class="card-header card-header-primary text-center">
+                            <h4 class="card-title">
+                                <%= t 'tags.actuality' %>
+                            </h4>
+                            <div class="social-line">
+                                <img src="/assets/actu.png" alt="" class="w-25">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

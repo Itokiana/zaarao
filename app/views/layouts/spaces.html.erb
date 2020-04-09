@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+
+<head>
+    <title>Zarao</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= render 'zarao/css' %>
+    <style type="text/css">
+    @media (max-width: 2559px) {
+        .logo {
+            min-width: 16vh;
+            max-width: 16vh;
+            min-height: 16vh;
+            max-height: 16vh;
+        }
+    }
+
+    @media (min-width: 2560px) {
+        .logo {
+            width: 150px;
+            height: 150px;
+        }
+    }
+    </style>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'zarao/js' %>
+</head>
+
+<body class="<%= controller_name %> <%= action_name %> profile-page sidebar-collapse">
+    <%= render "zarao/flash" %>
+    <%= render 'zarao/offline-nav' %>
+    <div class="container my-7">
+        <header class="banner br-5" style="overflow: hidden;">
+            <div class="page-header header-filter br-top-50" data-parallax="false" style="background: url('<%= url_for(@space.cover_picture) %>') no-repeat center; background-size: cover;">
+                <section class="banner-legends zi-1 bg-white pa bottom-0 w-100">
+                    <div class="row">
+                        <div class="col-3 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+                        <a href="<%= my_space_path %>" class="col-6 col-xl-10 text-white" style="display: block;">
+                            <div class="avatar pr bottom-75 bottom-xxl-100 br-100 h-100 text-center text-md-left">
+                                <img src="<%= url_for(@space.logo) %>" alt="Circle Image" class="logo rounded-circle img-fluid h-100 bg-white-o-75 b-solid-white-5" style="">
+                            </div>
+                            <span class="h5 text-white pa right-sm-60 top-n-sm-50 right-md-60 top-n-md-50 left-lg-35 top-n-lg-50 left-xl-35 top-n-xl-50 right-xxl-0 top-n-xxl-50 bottom-xs-100 left-xs-0 ty-n-xs-75 w-xs-100 m-xs-0 text-center">
+                                <%= @space.name %>
+                            </span>
+                        </a>
+                    </div>
+                    <section class="row pa bottom-12 w-100 pl-4">
+                        <div class="mdc-chip-set" role="grid">
+                            <div class="mdc-chip" role="row" title="<%= t('tags.labels.commited_citizens', citizens: t('tags.labels.citizens'), commited: t('tags.labels.commited')) %>">
+                                <div class="mdc-chip__ripple"></div>
+                                <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">people</i>
+                                <span role="gridcell">
+                                    <span role="button" tabindex="0" class="mdc-chip__text">
+                                        <%= count(@space.members.length) %></span>
+                                </span>
+                            </div>
+                            <div class="mdc-chip" role="row" title="<%= t('tags.labels.contributions') %>">
+                                <div class="mdc-chip__ripple"></div>
+                                <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">forum</i>
+                                <span role="gridcell" tabindex="0" class="mdc-chip__text"><span class="text-capitalize">
+                                        <%= count(@space.contributions.length) %></span></span>
+                            </div>
+                            <div class="mdc-chip" role="row" title="<%= t('tags.ideas') %>">
+                                <div class="mdc-chip__ripple"></div>
+                                <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">emoji_objects</i>
+                                <span role="gridcell">
+                                    <span role="button" tabindex="0" class="mdc-chip__text">
+                                        <%= count(@space.ideas.length) %></span>
+                                </span>
+                            </div>
+                        </div>
+                        <% if user_signed_in? && current_user.is_admin? %>
+                        <div class="mdc-chip-set mx-auto admin-actions-btn" role="grid">
+                            <a href="/share-an-actuality" data-turbolinks="false" class="mdc-chip" role="row">
+                                <div class="mdc-chip__ripple"></div>
+                                <span role="gridcell">
+                                    <span role="button" tabindex="0" class="mdc-chip__text">
+                                        <%= t('actualities.create_new_actuality') %></span>
+                                </span>
+                            </a>
+                            <a href="/create-a-project" data-turbolinks="false" class="mdc-chip" role="row">
+                                <div class="mdc-chip__ripple"></div>
+                                <span role="gridcell">
+                                    <span role="button" tabindex="0" class="mdc-chip__text">
+                                        <%= t('projects.create_new_project') %></span>
+                                </span>
+                            </a>
+                            <a href="/create-a-survey" data-turbolinks="false" class="mdc-chip" role="row">
+                                <div class="mdc-chip__ripple"></div>
+                                <span role="gridcell">
+                                    <span role="button" tabindex="0" class="mdc-chip__text">
+                                        <%= t('surveys.create_new_survey') %></span>
+                                </span>
+                            </a>
+                        </div>
+                        <% end %>
+                        <div class="mdc-chip-set ml-auto info-btn" role="grid">
+                            <a href="<%= about_path(name: @space.safe_link) %>" class="mdc-chip bg-info ml-auto" role="row">
+                                <i class="material-icons mdc-chip__icon mdc-chip__icon--leading text-white">info</i>
+                                <span role="gridcell">
+                                    <span role="button" tabindex="0" class="mdc-chip__text text-white hide-xs hide-sm">
+                                        <%= t('tags.labels.about') %></span>
+                                </span>
+                            </a>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </header>
+        <div class="main main-raised hide">
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <a href="<%= my_space_path %>">
+                            <div class="profile h-100">
+                                <div class="avatar text-left my-26">
+                                    <img src="<%= url_for(@space.logo) %>" alt="Circle Image" class="br-100 b-solid-black-1 ty-0 pr left-40 img-fluid bg-white">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-8 col-xs-8 col-sm-8 col-md-4 col-lg-4 col-xl-4">
+                        <div class="description text-center">
+                            <div class="name">
+                                <h3 class="title">
+                                    <%= @space.name %>
+                                </h3>
+                                <h4>
+                                    <i class="fa fa-users">
+                                        <%= @space.members.length %></i>
+                                </h4>
+                            </div>
+                            <p>
+                                <%= @space.description %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-0 col-xs-0 col-sm-0 col-md-4 col-lg-4 col-xl-4">
+                        <div class="btn-group w-100 px-3">
+                            <a href="<%= about_path(name: @space.safe_link) %>" class="btn btn-info btn-fab btn-round ml-auto"><i class="fa fa-info"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="mt-3">
+            <%= yield %>
+            <%= render 'shared/main_btn' %>
+            <% if user_signed_in? && current_user.has_unread_invitations? %>
+            <%= render template: 'invitations/new' %>
+            <% end %>
+        </section>
+    </div>
+    <%= render 'zarao/footer' %>
+    <script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+    }
+    $('.image-upload-wrap').bind('dragover', function() {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function() {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+
+    //change the logo on scroll
+    let logo = $('.navbar a.navbar-brand>img');
+    let a = $('#sectionsNav li>a');
+    $(window).scroll(function() {
+        if (window.scrollY >= 100) {
+            $(logo).attr('src', "/assets/zarao-logo.png");
+            a.css('color', '#9c27b0');
+        } else {
+            $(logo).attr('src', "/assets/zarao-logo-white.png");
+            a.css('color', 'white');
+        }
+    });
+    </script>
+    <% timeago_script_tag %>
+    <%# loading_screen style: :double_bounce %>
+</body>
+<!-- make footer fixe if windows heigth is longer than body heigth -->
+<style type="text/css">
+.makeBottom {
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+}
+</style>
+<script type="text/javascript">
+if ($('body').innerHeight() < window.innerHeight) {
+    let make_fixed = document.querySelector('.footer');
+    make_fixed.classList.add('makeBottom');
+}
+</script>
+
+</html>

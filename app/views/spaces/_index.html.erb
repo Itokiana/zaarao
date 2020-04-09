@@ -1,0 +1,8 @@
+<section class="searches-result w-100">
+    <% all = (ideas.to_a + surveys.to_a + projects.to_a + actualities.to_a ) %>
+    <div class="row">
+    <% all.each do |item|  %>
+    <%= render 'shared/show_item', item: item, classes: "col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 p-xs-0" %>
+    <% end %>
+    </div>
+</section>

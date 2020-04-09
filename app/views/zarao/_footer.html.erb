@@ -1,0 +1,16 @@
+<footer class="footer" data-background-color="black">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 col-xs-12">
+                <nav class="text-left">
+                    <h3 class="mt-2"><a href="<%= user_signed_in? ? '/my-space' : '/' %>" style="color: #9c27b0;">Zarao</a></h3>
+                </nav>
+            </div>
+            <div class="col-9 col-xs-12 text-right">
+                <div class="copyright text-right">
+                    <%= (t 'footer.copyright').html_safe %>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,30 @@
+<div class="container-fluid my-5">
+    <blockquote class="alert alert-info rounded">
+        <div class="blockquote-header">
+            <u>
+                <%= t('shared.instructions') %> :</u>
+        </div>
+        <p>
+            <ul>
+                <li>
+                    <%= t('shared.supported_formats') %> : image/(.jpg/.jpeg/.png)</li>
+                <li>
+                    <%= t('shared.video_upload_not_allowed').html_safe %>
+                </li>
+                <li>
+                    <%= t('shared.insert_external_links').html_safe %>
+                </li>
+                <%# page = Wikipedia.find(t('shared.royalty_free')) %>
+                <li>
+                    <%= t('shared.all_external_links') %>
+                    <a href='javascript:;<%# page.fullurl %>' type='button' class='btn-link' data-toggle='tooltip' data-placement='bottom' title='<%# page.summary %>' data-container='body'>
+                        <%= t('shared.royalty_free') %></a>
+                    <%= t("shared.are_supported") %>
+                </li>
+            </ul>
+        </p>
+        <div class="blockquote-footer">
+            <span>Enjoy!</span>
+        </div>
+    </blockquote>
+</div>

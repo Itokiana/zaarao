@@ -1,0 +1,124 @@
+<div class="main main-raised " style="margin-top: 10%">
+    <div class="b-solid-transparent-1 makeResponse">
+        <div class="container-fluid mt-2 pt-xs-15">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                    <div class="">
+                        <!--Section: Basic Info-->
+                        <section class="card card-cascade card-avatar mb-4 text-center">
+                            <div class="card-header d-flex justify-content-center mx-auto" style="border-radius: 50%; width: 130px; height: 130px; overflow: hidden; display: flex !important; padding: 1%;">
+                                <%= image_tag @user.avatar, class: "avatar avatar-160 avatar-wordpress-social-login rounded-circle photo", style: "height: 100% !important;" %>
+                            </div>
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title">
+                                    <strong>
+                                        <% if @user.fullname %>
+                                        <%= @user.fullname %>
+                                        <% end %>
+                                    </strong>
+                                </h4>
+                                <p class="grey-text"></p>
+                                <!-- Social -->
+                                <!--Text-->
+                                <p class="card-text mt-3"></p>
+                                <% if current_user==@user %>
+                                <a class="btn btn-primary btn-md waves-effect waves-light" href="<%= edit_user_registration_path %>" role="button" data-toggle="">
+                                    <%= t('navbar.edit_my_profile') %>
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a class="btn btn-mdb-color btn-md waves-effect waves-light" href="/users/sign_out" data-method="DELETE" role="button">
+                                    <%= t('navbar.log_out') %>
+                                    <i class="fa fa-sign-out"></i>
+                                </a>
+                                <% end %>
+                            </div>
+                        </section>
+                        <!--Section: Basic Info-->
+                        <!--Section: Experience-->
+                        <section class="card mb-4">
+                            <div class="card-body">
+                                <h5 class=" text-center">
+                                    <strong>
+                                        <%= t('user.user_contribution', fullname: @user.fullname) %></strong>
+                                </h5>
+                                <hr class="my-3">
+                                <ul class="list-unstyled pt-4 nav " role="tablist">
+                                    <li>
+                                        <a class="text-darkshow active" href="#ideas" data-toggle="tab" aria-selected="true">
+                                            <p>
+                                                <span class="badge badge-primary float-right">
+                                                    <%= t('tags.idea') %>
+                                                    <%= @user.ideas.length %></span>
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <hr>
+                                    <% if @user.is_admin? %>
+                                    <li>
+                                        <a class="text-dark" href="#projects" role="tab" data-toggle="tab" aria-selected="false">
+                                            <p>
+                                                <span class="badge badge-primary float-right">
+                                                    <%= t('tags.project') %>
+                                                    <%= @user.projects.length %></span>
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <hr>
+                                    <li>
+                                        <a class="text-dark" href="#surveys" role="tab" data-toggle="tab" aria-selected="false">
+                                            <p>
+                                                <span class="badge badge-primary float-right">
+                                                    <%= t('tags.survey') %>
+                                                    <%= @user.surveys.length %></span>
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                        </section>
+                        <!--Section: Experience-->
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                    <div id="navigation-pills">
+                        <div class="title">
+                            <h3>
+                                <%= t('user.my_profile') %>
+                            </h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="tab-content tab-space">
+                                    <div class="tab-pane active show" id="ideas">
+                                        <div class="table-responsive">
+                                            <%= render 'shared/items', items: @ideas, pagy: @ipagy %>
+                                        </div>
+                                    </div>
+                                    <% if @user.is_admin? %>
+                                    <div class="tab-pane" id="projects">
+                                        <% if @projects.any? %>
+                                        <%= render 'shared/items', items: @projects, pagy: @spagy %>
+                                        <% else %>
+                                        <%= t('spaces.no_created_project') %>
+                                        <% end %>
+                                    </div>
+                                    <div class="tab-pane" id="surveys">
+                                        <% if @surveys.any? %>
+                                        <%= render 'shared/items', items: @surveys, pagy: @ppagy %>
+                                        <% else %>
+                                        <%= t('spaces.no_created_survey') %>
+                                        <% end %>
+                                    </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

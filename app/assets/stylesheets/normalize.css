@@ -1,0 +1,129 @@
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(60deg, #ab47bc, #7b1fa2);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::-moz-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+/* Track */
+::-moz-scrollbar-track {
+    background: #FFFFFF;
+}
+
+/* Handle */
+::-moz-scrollbar-thumb {
+    background: linear-gradient(60deg, #ab47bc, #7b1fa2);
+}
+
+/* Handle on hover */
+::-moz-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+/* Track */
+::-scrollbar-track {
+    background: #FFFFFF;
+}
+
+/* Handle */
+::-scrollbar-thumb {
+    background: linear-gradient(60deg, #ab47bc, #7b1fa2);
+}
+
+/* Handle on hover */
+::-scrollbar-thumb:hover {
+    background: #555;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.w-auto {
+    width: auto;
+}
+
+.h-auto {
+    height: auto;
+}
+
+.avatar img {
+    min-height: 100%;
+}
+
+/* Navbar */
+.navbar .navbar-brand {
+    padding-top: 3px !important;
+}
+
+*[href] {
+    cursor: pointer;
+}
+
+.card-img-top {
+    min-height: 235px;
+    max-height: 235px;
+}
+
+button,
+label,
+.button {
+    cursor: pointer;
+}
+
+button:hover,
+.button:hover,
+button:focus,
+.button:focus {
+    outline-style: auto;
+}
+
+.div {
+    display: block;
+}
+
+.custom-text {
+    max-height: 70px;
+    overflow: hidden;
+    width: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -moz-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+@media (max-width: 767px) {
+
+    .users-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+}

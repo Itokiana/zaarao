@@ -1,0 +1,149 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        reset: "Reset password"
+        placeholder: "Please enter your email address"
+        forgot_your_password: " Forgot your password ?"
+        confirmation_sent_at: Date sent confirmation
+        confirmation_token: Password confirmation key
+        Confirmed at: Confirmed at
+        created_at: Registered at
+        current_password: Current password
+        current_sign_in_at: Date of the current connection
+        current_sign_in_ip: IP of the current connection
+        email: Email
+        encrypted password: Encrypted password
+        failed_attempts: failed attempts
+        last_sign_in_at: Date of the last connection
+        last_sign_in_ip: IP of the last connection
+        locked_at: Locked to
+        password: Password
+        password_confirmation: Confirmation of password
+        remember_created_at: Memorized to
+        remember_me: Remember me?
+        reset_password_sent_at: Reset key created at
+        reset_password_token: Password reset key
+        sign_in_count: Number of connections
+        unconfirmed_email: Unconfirmed email
+        unlock_token: Unlock key
+        updated_at: Update date
+    models:
+      User: User
+  users:
+    confirmations:
+      confirmed: Your account has been confirmed.
+      new:
+        resend_confirmation_instructions: Resend confirmation instructions
+      send_instructions: You will receive an email within a few minutes with instructions to confirm your account.
+      send_paranoid_instructions: If your email exists on our database, you will receive within a few minutes a message with instructions to confirm your account.
+    failure:
+      already_authenticated: You are already logged in.
+      inactive: Your account is not activated yet.
+      invalid: " %{authentication_keys} or incorrect password."
+      last_attempt: You still have a chance before your account is blocked.
+      locked: Your account is locked.
+      not_found_in_database: " %{authentication_keys} or incorrect password."
+      timeout: Your session has expired, please log back in to continue.
+      unauthenticated: You must login or register to continue.
+      unconfirmed: You must confirm your account by email.
+
+    mailer:
+      confirmation_instructions:
+        action: Confirm my email
+        greeting: Welcome %{recipient}!
+        instruction: 'You can confirm your email with the link below:'
+        subject: Confirmation instructions
+      email_changed:
+        greeting: Hello %{recipient}!
+        message: We will contact you to notify you that your email address has been changed to %{email}.
+        subject: Modified email
+      password_change:
+        greeting: Hello %{recipient}!
+        message: We will contact you to notify you that your password has been changed.
+        subject: Password changed
+      reset_password_instructions:
+        action: Change my password
+        greeting: Hello %{recipient}!
+        instruction: 'Someone asked for a link to change your password, here it is:'
+        instruction_2: If you have not made this request, please ignore this email.
+        instruction_3: Your password will not change until you click on this link and enter a new password.
+        subject: Instructions to change the password
+      unlock_instructions:
+        action: Unlock my account
+        greeting: Hello %{recipient}!
+        instruction: 'Follow this link to unlock your account:'
+        message: Your account has been blocked due to too many failed login attempts.
+        subject: Instructions to unlock the account
+    omniauth_callbacks:
+      failure: We can not authenticate from %{kind} for the following reason':' %{reason}.
+      success: Allowed by your %{kind} account.
+
+    passwords:
+      edit:
+        change_my_password: Change my password
+        change_your_password: Change your password
+        confirm_new_password: Confirm your new password
+        new_password: New password
+      new:
+        forgot_your_password: Forgot your password?
+        send_me_reset_password_instructions: Send me instructions to reset my password
+      no_token: You can not access this page if you do not access it from a password reset email. If you are indeed coming from such an email, check that you have copied the entire URL.
+      send_instructions: You will receive an email within a few minutes telling you how to reset your password.
+      send_paranoid_instructions: If your email exists in our database, you will receive a link allowing you to recover your password.
+      updated: Your password has been changed. You are now connected.
+      updated_not_active: Your password has been changed.
+    registrations:
+      destroyed: Bye! Your account has been deleted We hope to see you soon.
+      edit:
+        are_you_sure: Are you sure?
+        cancel_my_account: Delete my account
+        currently_waiting_confirmation_for_email: 'Confirmation pending for: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: 'leave this field blank to leave it unchanged'
+        title: Edit %{resource}
+        unhappy: Not happy?
+        update: Edit
+        we_need_your_current_password_to_confirm_your_changes: 'we need your current password to validate these changes'
+      new:
+        sign_up: Registration
+      signed_up: Welcome! You have registered successfully.
+      signed_up_but_inactive: You have registered successfully. However, we were unable to sign in because your account has not been activated yet.
+      signed_up_but_locked: You have registered successfully. However, we were unable to log in because your account is locked.
+      signed_up_but_unconfirmed: A message with a confirmation link has been sent to you by email. Please follow this link to activate your account.
+      update_needs_confirmation: You have changed your account, but we need to check your new email address. Please check your emails and click on the confirmation link to confirm your new address.
+      updated: Your account has been modified.
+      updated_but_not_signed_in: Your account has been updated successfully. You must log back in because your password has been changed.
+    sessions:
+      already_signed_out: Offline.
+      new:
+        sign_in: Sign in
+      signed_in: Connected.
+      signed_out: Offline.
+    shared:
+      links:
+        back: Back
+        didn_t_receive_confirmation_instructions: You did not receive the confirmation email?
+        didn_t_receive_unlock_instructions: You have not received the unlock email?
+        forgot_your_password: Forgot your password ?
+        sign_in: Sign in
+        sign_in_with_provider: 'Sign in with %{provider}'
+        sign_up: Registration
+      minimum_password_length:
+        one: "( %{count} character at least)"
+        other: "( %{count} characters at least)"
+    unlocks:
+      new:
+        resend_unlock_instructions: Resend unblocking instructions
+      send_instructions: In just a few minutes, you will receive an email with instructions to unlock your account.
+      send_paranoid_instructions: If your email exists on our database, you will receive in a few minutes a message with instructions to unlock your account.
+      unlocked: Your account has been unlocked. Please log in.
+    errors:
+      posts:
+        already_confirmed: has already been confirmed
+        confirmation_period_expired: must be confirmed in %{period}, please request another
+        expired: has expired, please request another
+        not_found: was not found
+        not_locked: was not locked
+        not_saved:
+          one: 'An error prevented this (this or this) %{resource} from being recorded:'
+          other: " %{count} errors prevented this (this or this) %{resource} from being recorded:"

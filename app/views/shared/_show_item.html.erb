@@ -1,0 +1,133 @@
+<div class="<%= classes %>">
+    <div class="card card-cascade wider mt-xs-0 mb-xs-6 mt-sm-0 mb-sm-6">
+        <!-- Card image -->
+        <a href='<%= item.space? ? "javascript:;" : "/#{item.to_safe_items}/#{item.id}" %>' class="div imgbox img-clickable">
+            <% if !item.actuality? && item.cover_picture.image? %>
+            <img class="card-img-top w-100" src="<%= (item.actuality?) ? '/assets/actu-default.png' : url_for(item.cover_picture) %>" alt="Card image cap">
+            <% elsif !item.actuality? && item.cover_picture.video? %>
+            <video class="card-img-top" style="height: 100%;">
+                <source src="<%= url_for(item.cover_picture) %>" type="">
+            </video>
+            <% else %>
+            <img class="card-img-top w-100" src="/assets/actu-default.png" alt="Card image cap">
+            <% end %>
+            <a href="javascript:;">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+            <% if item.idea? %>
+            <a href="javascript:;" class="badge badge-primary pa left-0 br-l-0 br-r-10 top-15">
+                <%= t('tags.idea') %></a>
+            <% elsif item.survey? %>
+            <a href="javascript:;" class="badge badge-warning pa left-0 br-l-0 br-r-10 top-15">
+                <%= t('tags.survey') %></a>
+            <% elsif item.project? %>
+            <a href="javascript:;" class="badge badge-success pa left-0 br-l-0 br-r-10 top-15">
+                <%= t('tags.project') %></a>
+            <% elsif item.actuality? %>
+            <a href="javascript:;" class="badge badge-info pa left-0 br-l-0 br-r-10 top-15">
+                <%= t('tags.actuality') %></a>
+            <% elsif item.space? %>
+            <a href="javascript:;" class="badge badge-light text-dark pa left-0 br-l-0 br-r-10 top-15">
+                <%= t('tags.space') %></a>
+            <% end %>
+        </a>
+        <div class="pdpCenter">
+            <a href="<%= user_path(id: item.admin.id) %>" class="imbBoxes img-clickable">
+                <%= image_tag item.admin.avatar, class: "rounded-circle ", alt: "Circle Image", width: "60",height: "60" %>
+            </a>
+        </div>
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center pb-0">
+            <!-- Title -->
+            <h4 class="card-title" title="<%= item.name  %>" style="overflow: hidden;white-space: nowrap;text-overflow:ellipsis;"><strong>
+                    <%= item.name  %></strong></h4>
+            <!-- Subtitle -->
+            <!-- <h5 class="blue-text pb-2"><strong><%= item.admin.fullname  %></strong></h5> -->
+            <!-- Text -->
+            <div class="card-text custom-text" style="">
+                <%# item.html_description %>
+            </div>
+            <em>
+                <%= I18n.l(item.created_at, format: :short) %></em>
+            <!-- Card footer -->
+            <% if item.space? %>
+            <% space = item %>
+            <div class="text-muted text-center mt-4">
+                <% link_to "/join_space/#{space.id}", data: {remote: true, method: :post}, class: "private join-space-btn btn btn-outline-primary w-xs-100 w-sm-100", for: "##{space.id}" do %>
+                <i class="material-icons">lock_outline</i>
+                <%= t('tags.buttons.join') %>
+                <% end %>
+                <% if space.private? %>
+                <div class="private btn btn-outline-primary w-xs-100 w-sm-100">
+                    <i class="material-icons">lock_outline</i>
+                </div>
+                <% else %>
+                    <%= form_with(model: space, url: join_space_path(id: space.id, user_id: current_user.id, local: true)) do |f| %>
+                        <button type="submit" id="space-link-<%= space.id %>" class="public btn btn-outline-primary w-xs-100 w-sm-100">
+                            <%= t('tags.buttons.join') %>
+                        </button>
+                    <% end %>
+                      
+                <% end %>
+            </div>
+            <% else %>
+            <div class="text-muted text-center mt-4">
+                <%= link_to t('tags.buttons.show'), "/#{item.to_safe_items}/#{item.id}", class: "btn btn-outline-primary w-xs-100 w-sm-100" %>
+            </div>
+            <% end %>
+        </div>
+        <div class="card-footer text-center">
+            <div class="row">
+                <% if item.space? %>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-users"></i>
+                    <%= count(item.members.length) %>
+                </div>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-lightbulb-o text-gold"></i>
+                    <%= count(item.ready_ideas.length) %>
+                </div>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-search"></i>
+                    <%= count(item.surveys.length) %>
+                </div>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-line-chart"></i>
+                    <%= count(item.projects.length) %>
+                </div>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-newspaper-o"></i>
+                    <%= count(item.actualities.length) %>
+                </div>
+                <% else %>
+                <% if item.has_ratings? %>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-thumbs-up text-success"></i>
+                    <%= count(item.positive_ratings.length) %>
+                </div>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-thumbs-down text-danger"></i>
+                    <%= count(item.negative_ratings.length) %>
+                </div>
+                <% end %>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-eye"></i>
+                    <%= count(item.viewers.length) %>
+                </div>
+                <% unless item.idea? || item.survey? || item.actuality? %>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-lightbulb-o text-gold"></i>
+                    <%= count(item.ready_ideas.length) %>
+                </div>
+                <% end %>
+                <% if item.actuality? %>
+                <div class="col-auto pl-0 pr-2 mx-auto">
+                    <i class="fa fa-heart text-danger"></i>
+                    <%= count(item.likes.length) %>
+                </div>
+                <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

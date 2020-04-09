@@ -1,0 +1,42 @@
+<%= form_with(model: viewer, local: true) do |form| %>
+  <% if viewer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(viewer.errors.count, "error") %> prohibited this viewer from being saved:</h2>
+
+      <ul>
+        <% viewer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :idea_id %>
+    <%= form.text_field :idea_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :survey_id %>
+    <%= form.text_field :survey_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.text_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :actuality_id %>
+    <%= form.text_field :actuality_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

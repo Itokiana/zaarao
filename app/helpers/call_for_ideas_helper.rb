@@ -1,0 +1,2 @@
+module CallForIdeasHelper
+end

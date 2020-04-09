@@ -1,0 +1,96 @@
+<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="collapse">
+        <%= form_with(url: "/") do |f| %>
+        <% end %>
+    </div>
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="<%= user_signed_in? ? '/my-space' : '/' %>">
+                <img src="/assets/zarao-logo-white.png" width="100"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" style="color: black">
+            <ul class="navbar-nav ml-auto">
+                <% if user_signed_in? %>
+                <li class="nav-item">
+                    <a href="<%= search_path(item: 'space', q: '*') %>" class="nav-link text-dark">
+                        <i class="material-icons fa fa-wpexplorer"></i>
+                        <%= t('navbar.available_spaces') %>
+                    </a>
+                </li>
+                <% else %>
+                <li class="nav-item">
+                    <a href="<%= visit_space_path %>" class="nav-link text-dark">
+                        <i class="material-icons fa fa-wpexplorer"></i>
+                        <%= t('spaces.visit') %>
+                    </a>
+                </li>
+                <% end %>
+                <li class="dropdown nav-item">
+                    <a href="javascript:;" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown">
+                        <i class="material-icons">apps</i>
+                        <% if user_signed_in? %>
+                        <%= @space.name %>
+                        <% else %>
+                        Menu
+                        <% end %>
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <% if user_signed_in? %>
+                        <a href="<%= my_space_path %>" class="dropdown-item">
+                            <i class="material-icons fa fa-group"></i>
+                            <%= t 'navbar.my_space' %></a>
+                        <a href="/my-profile" class="dropdown-item">
+                            <i class="material-icons fa fa-user-o"></i>
+                            <%= t 'navbar.my_profile' %></a>
+                        <a href="<%= edit_user_registration_path %>" class="dropdown-item">
+                            <i class="material-icons fa fa-cog"></i>
+                            <%= t 'navbar.settings' %></a>
+                        <% if current_user.super_admin? %>
+                        <a href="/admin" class="dropdown-item">
+                            <i class="material-icons fa fa-cogs"></i>
+                            Admin space</a>
+                        <% end %>
+                        <a href="/users/sign_out" data-method="DELETE" class="dropdown-item">
+                            <i class="material-icons fa fa-sign-out"></i>
+                            <%= t 'navbar.log_out' %></a>
+                        <% if current_user.is_admin? %>
+                        <hr class="mb-1">
+                        <a href="/edit-my-space" class="dropdown-item">
+                            <i class="material-icons fa fa-edit"></i>
+                            <%= t('tags.my_space') %> </a>
+                        <% end %>
+                        <% else %>
+                        <a href="/users/sign_in" class="dropdown-item">
+                            <span class="mdc-fab__icon material-icons text-primary">person</span>
+                            <%= t 'navbar.sign_in' %></a>
+                        <a href="/users/sign_up" class="dropdown-item">
+                            <span class="mdc-fab__icon material-icons text-primary">person_add</span>
+                            <%= t 'navbar.sign_up' %></a>
+                        <% end %>
+                    </div>
+                </li>
+                <% if user_signed_in? %>
+                <li class="dropdown nav-item 12">
+                    <a href="javascript:;" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown">
+                        <i class="fa fa-globe"></i> <span class="pl-1">
+                            <%= current_user.language.code.upcase %></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <% Language.all.each do |language| %>
+                        <a data-language-id="<%= language.id %>" for="<%= language.code %>" href="<%= root_path(locale: language.code) %>" class="language dropdown-item">
+                            <img src="/assets/flags/<%= language.code %>.png" width="25"> <span class="pl-2">
+                                <%= language.name %></span></a>
+                        <% end %>
+                    </div>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</nav>

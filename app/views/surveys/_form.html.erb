@@ -1,0 +1,128 @@
+<div class="container mt-6">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 offset-md-1 offset-lg-1 offset-xl-1">
+            <h1>
+                <%= t('surveys.update_survey') %>
+            </h1>
+            <%= form_with(model: survey, url: survey_path(id: survey.id), local: true, html: {id: "update-survey-form", class: "scroll-here", 'scroll-to': '50'}) do |form| %>
+            <%= render 'shared/error_messages', item: survey %>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="form-group">
+                        <%= form.label :name, t('activerecord.attributes.title'), class: "bmd-label-floating", required: "" %>
+                        <%= form.text_field :name, class: "form-control", required: "", required: "" %>
+                        <div class="input-group-btn collapse">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <%= form.check_box :ready, class: "form-check-input" %>
+                                    <%= t('tags.labels.ready') %>
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% if action_name=="edit" %>
+            <div class="md-form form-group">
+                <%= form.label :end_date, t('activerecord.attributes.end_date'), required: "" %>
+                <div class="row">
+                    <div class="col">
+                        <%= form.datetime_field :end_date, class: "form-control", required: "" %>
+                    </div>
+                    <div class="col">
+                        <input type="text" value="<%= I18n.l(survey.end_date, format: :long) %>" name="" autocomplete="" readonly="readonly" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <% else %>
+            <div class="form-group">
+                <%= form.label :end_date, t('activerecord.attributes.end_date'), class: "label-control", required: "" %>
+                <%= form.text_field :end_date, class: "form-control datetimepicker", required: "", required: "" %>
+            </div>
+            <% end %>
+            <div class="form-group">
+                <%= form.label :type, t('activerecord.attributes.type'), class: "bmd-label-floating", required: "" %>
+                <select name="survey[type_id]" id="survey_type_id" class="form-control">
+                    <option value="<%= survey.type.id %>">
+                        <%= t("types.#{survey.type.id}") %>
+                    </option>
+                    <% Type.all.each do |type| %>
+                    <% next if type == survey.type %>
+                    <option value="<%= type.id %>">
+                        <%= t("types.#{type.id}") %>
+                    </option>
+                    <% end %>
+                </select>
+            </div>
+            <div class="form-group">
+                <%= form.label :cover_picture, t('tags.labels.cover_picture'), required: "" %>
+                <div class="file-upload">
+                    <div class="file-upload-content">
+                        <img class="file-upload-image w-100 img-thumbnail br-0" src="<%= survey.cover_picture.attached? ? url_for(survey.cover_picture) : " javascript:;" %>" alt="your image" />
+                        <div class="image-title-wrap text-left">
+                            <button type="button" onclick="removeUpload()" class="remove-image btn btn-danger pt-3">Remove <span class="image-title">Uploaded Image</span></button>
+                        </div>
+                    </div>
+                    <div class="image-upload-wrap">
+                        <%= form.file_field :cover_picture, class: "file-upload-input", onchange: "readURL(this);", required: "" %>
+                        <label class="drag-text" for="survey_cover_picture" style="display: block; cursor: pointer;">
+                            <h3>
+                                <%= t('tags.labels.drag_and_drop_a_file') %>
+                            </h3>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="label-control mb-0">
+                    <%= t('activerecord.attributes.description') %></label>
+                <div class="summernote">
+                    <p>
+                        <%= survey.html_description %>
+                    </p>
+                </div>
+                <div class="collapse">
+                    <%= form.text_area :description, class: "form-control", required: "", required: "" %>
+                </div>
+            </div>
+            <div class="form-check collapse">
+                <label class="form-check-label">
+                    <%= form.check_box :confirmed, class: "form-check-input" %>
+                    <%= t('tags.labels.ready') %>
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+            <div class="actions">
+                <button type="button" class="btn" data-toggle="popover" data-placement="left" title="Need help ?" data-content="When you have successfully add at least one question and some options to your survey, you can check the 'Ready checkbox' then you submit changes and your survey is published." data-container="body"><i class="fa fa-question-circle-o"></i></button>
+            </div>
+            <button class="btn btn-block" id="">
+                <%= t('tags.buttons.save_changes') %></button>
+            <% end %>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+.note-editor.note-frame.card {
+    margin-top: 0;
+}
+</style>
+<% if action_name=="edit" %>
+<script type="text/javascript">
+$('.file-upload-content').show();
+$('.image-upload-wrap').hide();
+</script>
+<% end %>
+<script type="text/javascript">
+$(document).on('ready turbolinks:load', function() {
+    $(`#fake-update-btn`).click(function(event) {
+        event.preventDefault();
+        $(`#update-survey-form`).submit();
+    });
+});
+</script>
+<%= render 'shared/tinymce-editor', textarea: "textarea#survey_description", menubar: "file insert" %>

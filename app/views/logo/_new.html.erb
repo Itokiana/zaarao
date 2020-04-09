@@ -1,0 +1,24 @@
+<style type="text/css">
+label[for=space_logo] span {
+    cursor: pointer;
+}
+</style>
+
+<script type="text/javascript">
+$fileInput = $(`input[type="file"]`);
+$fileInput.change(function(event) {
+    /* Act on the event */
+    $preview = $(`img.logo:first`);
+    $input = $(event.currentTarget);
+    $file = $input[0].files[0];
+    $reader = new FileReader();
+    $reader.onload = function(e) {
+        image_base_64 = e.target.result;
+        $preview.attr('src', image_base_64);
+    }
+    $reader.readAsDataURL($file);
+
+    $body = $(`body`);
+
+});
+</script>

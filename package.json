@@ -1,0 +1,21 @@
+{
+  "name": "zarao",
+  "private": true,
+  "dependencies": {
+    "@material/card": "^4.0.0",
+    "@material/chips": "^4.0.0",
+    "@material/fab": "^4.0.0",
+    "@material/menu": "^4.0.0",
+    "@rails/actioncable": "^6.0.0-alpha",
+    "@rails/activestorage": "^6.0.0-alpha",
+    "@rails/ujs": "^6.0.0-alpha",
+    "@rails/webpacker": "^4.0.7",
+    "jquery": "^3.4.1",
+    "tail.select": "^0.5.15",
+    "turbolinks": "^5.2.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-dev-server": "^3.8.2"
+  }
+}

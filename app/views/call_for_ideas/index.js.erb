@@ -1,0 +1,37 @@
+$callForIdeasDiv = $(`#call_for_ideas`);
+$callForIdeasDiv.html(`
+<script type="text/javascript">removeCard();</script>
+<div class="row">
+<% @call_for_ideas.each do |call_for_idea| %>
+<div class="col-lg-4 col-md-4" id="call_for_idea-<%= call_for_idea.id %>">
+	<div class="card card-cascade wider">
+		<!-- Card image -->
+		<div class="imgbox">
+			<a for="#call_for_idea<%= call_for_idea.id %>" href="<%= call_for_idea_path(id: call_for_idea.id) %>" data-method="DELETE" data-remote="true" class="remove close text-danger zi-100 pa top-0 right-2"><i class="fa fa-times-circle"></i></a>
+			<img class="card-img-top w-100" src="<%= url_for(call_for_idea.cover_picture) %>" alt="Card image cap">
+			<a href="javascript:;">
+				<div class="mask rgba-white-slight"></div>
+			</a>
+		</div>
+		<!-- Card content -->
+		<div class="card-body card-body-cascade text-center pb-0">
+			<!-- Title -->
+			<h4 class="card-title" style="overflow: hidden;white-space: nowrap;text-overflow:ellipsis;"><strong>
+				<%= call_for_idea.name  %></strong></h4>
+				<!-- Subtitle -->
+				<h6 class="card-title" style="overflow: hidden;white-space: nowrap;text-overflow:ellipsis;"><strong>
+					<%= call_for_idea.type.name  %></strong></h6>
+				<!-- Text -->
+				<div class="card-text" style="max-height: 100px; overflow: hidden; width: auto; display: -webkit-box; -webkit-line-clamp: 3; -moz-line-clamp: 3; -webkit-box-orient: vertical;">
+					<%= call_for_idea.html_description  %>
+				</div>
+				<em>
+					<%= I18n.l(call_for_idea.created_at, format: :short) %></em>
+					<!-- Card footer -->
+
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>
+`);

@@ -1,0 +1,2 @@
+class MdbProController < ApplicationController
+end

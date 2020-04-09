@@ -1,0 +1,12 @@
+<p>
+    <% if user_signed_in? && current_user.likes?(Actuality.find(actuality_id)) %>
+      <%= link_to actuality_like_path(actuality_id: actuality_id), method: :delete, remote: true do %>
+      <%= fa_icon 'heart', class: "text-danger" %>
+      <% end %>
+    <% else %>
+      <%= link_to actuality_like_path(actuality_id: actuality_id), method: :post, remote: true do  %>
+      <%= fa_icon 'heart' %>
+      <% end %>
+    <% end %>
+    <%= count(Actuality.find(actuality_id).likes.count) %>
+</p>

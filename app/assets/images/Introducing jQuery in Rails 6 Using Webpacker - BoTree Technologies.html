@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker -->
+<html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-site-verification" content="TYQCEuOOmW1PXo4Sn4Cx8jRkT2ObrDKJNNoVPR7-U4s">
+	<meta name="msvalidate.01" content="885BF271D1E14544F847CD078735AC4A">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://www.botreetechnologies.com/blog/xmlrpc.php">
+	<title>Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies</title>
+<script async="" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/analytics.js"></script><script async="" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/default" charset="UTF-8" crossorigin="*"></script><script type="text/javascript">function heateorSssLoadEvent(e) {var t=window.onload;if (typeof window.onload!="function") {window.onload=e}else{window.onload=function() {t();e()}}};	var heateorSssSharingAjaxUrl = 'https://www.botreetechnologies.com/blog/wp-admin/admin-ajax.php', heateorSssCloseIconPath = 'https://www.botreetechnologies.com/blog/wp-content/plugins/sassy-social-share/public/../images/close.png', heateorSssPluginIconPath = 'https://www.botreetechnologies.com/blog/wp-content/plugins/sassy-social-share/public/../images/logo.png', heateorSssHorizontalSharingCountEnable = 0, heateorSssVerticalSharingCountEnable = 0, heateorSssSharingOffset = -10; var heateorSssMobileStickySharingEnabled = 0;var heateorSssCopyLinkMessage = "Link copied.";var heateorSssUrlCountFetched = [], heateorSssSharesText = 'Shares', heateorSssShareText = 'Share';function heateorSssPopup(e) {window.open(e,"popUpWindow","height=400,width=600,left=400,top=100,resizable,scrollbars,toolbar=0,personalbar=0,menubar=no,location=no,directories=no,status")};var heateorSssWhatsappShareAPI = "web";</script>			<style type="text/css">
+					.heateor_sss_horizontal_sharing .heateorSssSharing{
+							color: #fff;
+						border-width: 0px;
+			border-style: solid;
+			border-color: transparent;
+		}
+				.heateor_sss_horizontal_sharing .heateorSssTCBackground{
+			color:#666;
+		}
+				.heateor_sss_horizontal_sharing .heateorSssSharing:hover{
+						border-color: transparent;
+		}
+		.heateor_sss_vertical_sharing .heateorSssSharing{
+							color: #fff;
+						border-width: 0px;
+			border-style: solid;
+			border-color: transparent;
+		}
+				.heateor_sss_vertical_sharing .heateorSssTCBackground{
+			color:#666;
+		}
+				.heateor_sss_vertical_sharing .heateorSssSharing:hover{
+						border-color: transparent;
+		}
+					</style>
+			
+<!-- This site is optimized with the Yoast SEO plugin v9.0.2 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="First release candidate of Rails 6 is out with exciting features and refinements in existing features. Today we will look into one of those features, which is webpacker. It is now by default in Rails 6 as a Javascript Compiler.">
+<link rel="canonical" href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies">
+<meta property="og:description" content="First release candidate of Rails 6 is out with exciting features and refinements in existing features. Today we will look into one of those features, which is webpacker. It is now by default in Rails 6 as a Javascript Compiler.">
+<meta property="og:url" content="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker">
+<meta property="og:site_name" content="BoTree Technologies">
+<meta property="article:tag" content="Rails 6">
+<meta property="article:section" content="Rails 6">
+<meta property="article:published_time" content="2019-04-30T14:14:47+00:00">
+<meta property="article:modified_time" content="2019-08-09T08:55:43+00:00">
+<meta property="og:updated_time" content="2019-08-09T08:55:43+00:00">
+<meta property="og:image" content="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Rails-6.png">
+<meta property="og:image:secure_url" content="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Rails-6.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rails 6">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="First release candidate of Rails 6 is out with exciting features and refinements in existing features. Today we will look into one of those features, which is webpacker. It is now by default in Rails 6 as a Javascript Compiler.">
+<meta name="twitter:title" content="Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies">
+<meta name="twitter:image" content="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Rails-6.png">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Organization","url":"https:\/\/www.botreetechnologies.com\/blog","sameAs":[],"@id":"https:\/\/www.botreetechnologies.com\/blog#organization","name":"BoTree Technologies","logo":""}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="BoTree Technologies » Feed" href="https://www.botreetechnologies.com/blog/feed">
+<link rel="alternate" type="application/rss+xml" title="BoTree Technologies » Comments Feed" href="https://www.botreetechnologies.com/blog/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="BoTree Technologies » Introducing jQuery in Rails 6 Using Webpacker Comments Feed" href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker/feed">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.botreetechnologies.com\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.11"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="contact-form-7-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="gdlr-core-google-font-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="gdlr-core-plugin-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="gdlr-core-page-builder-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/page-builder.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-styles-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="a3-pvc-style-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="rs-plugin-settings-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/settings.css" type="text/css" media="all">
+<style id="rs-plugin-settings-inline-css" type="text/css">
+#rs-demo-id {}
+</style>
+<link rel="stylesheet" id="infinite-style-core-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/style-core.css" type="text/css" media="all">
+<link rel="stylesheet" id="infinite-custom-style-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/gdlr-style-custom.css" type="text/css" media="all">
+<link rel="stylesheet" id="heateor_sss_frontend_css-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/sassy-social-share-public.css" type="text/css" media="all">
+<link rel="stylesheet" id="heateor_sss_sharing_default_svg-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/sassy-social-share-svg.css" type="text/css" media="all">
+<link rel="stylesheet" id="a3pvc-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/pvc.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/jquery.js"></script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/jquery.themepunch.revolution.min.js"></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.botreetechnologies.com/blog/wp-content/themes/customth/js/html5.js?ver=4.8.11'></script>
+<![endif]-->
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/f98ddfab4dd48d4cf4b248788f9719a8847ef9b3.js"></script>
+<link rel="https://api.w.org/" href="https://www.botreetechnologies.com/blog/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.botreetechnologies.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.botreetechnologies.com/blog/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.8.11">
+<link rel="shortlink" href="https://www.botreetechnologies.com/blog/?p=6508">
+<link rel="alternate" type="application/json+oembed" href="https://www.botreetechnologies.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.botreetechnologies.com%2Fblog%2Fintroducing-jquery-in-rails-6-using-webpacker">
+<link rel="alternate" type="text/xml+oembed" href="https://www.botreetechnologies.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.botreetechnologies.com%2Fblog%2Fintroducing-jquery-in-rails-6-using-webpacker&amp;format=xml">
+<style type="text/css">.rp4wp-related-posts ul{width:100%;padding:0;margin:0}
+.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;clear:both;display:inline-table;width:100%;}
+.rp4wp-related-posts ul>li:last-child{padding-bottom:0}
+.rp4wp-related-posts ul>li>p{margin:0;padding:0;}
+.rp4wp-related-post-image{width:35%;padding-right:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;}</style>
+<meta name="generator" content="Powered by Slider Revolution 5.4.1 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface.">
+<link rel="icon" href="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/05/favicon-1.png" sizes="32x32">
+<link rel="icon" href="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/05/favicon-1.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/05/favicon-1.png">
+<meta name="msapplication-TileImage" content="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/05/favicon-1.png">
+		<style type="text/css" id="wp-custom-css">
+			/*
+You can add your own CSS here.
+
+Click the help icon above to learn more.
+*/
+
+.infinite-blog-title-wrap.infinite-feature-image{
+background-image: url(https://www.botreetechnologies.com/blog/wp-content/uploads/2016/05/shutterstock_187602776.jpg) !important;
+background-image: -ms-linear-gradient(top left,#23305e 0,#1c9ad6 100%) !important;
+background-image: -moz-linear-gradient(top left,#23305e 0,#1c9ad6 100%) !important;
+background-image: -o-linear-gradient(top left,#23305e 0,#1c9ad6 100%) !important;
+background-image: -webkit-linear-gradient(top left,#23305e 0,#1c9ad6 100%) !important;
+background-image: linear-gradient(to bottom right,#23305e 0,#1c9ad6 100%) !important;
+color: #fff !important;
+}
+.infinite-single-article-title{
+color: #fff !important;
+}
+		</style>
+	<style type="text/css">@keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-moz-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-webkit-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}#I4f6Wm4-1571255112442{outline:none!important;visibility:visible!important;resize:none!important;box-shadow:none!important;overflow:visible!important;background:none!important;opacity:1!important;filter:alpha(opacity=100)!important;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity1)!important;-moz-opacity:1!important;-khtml-opacity:1!important;top:auto!important;right:10px!important;bottom:90px!important;left:auto!important;position:fixed!important;border:0!important;min-height:0!important;min-width:0!important;max-height:none!important;max-width:none!important;padding:0!important;margin:0!important;-moz-transition-property:none!important;-webkit-transition-property:none!important;-o-transition-property:none!important;transition-property:none!important;transform:none!important;-webkit-transform:none!important;-ms-transform:none!important;width:auto!important;height:auto!important;display:none!important;z-index:2000000000!important;background-color:transparent!important;cursor:auto!important;float:none!important;border-radius:unset!important;pointer-events:auto!important}#tZcaKWd-1571255112444.open{animation : tawkMaxOpen .25s ease!important;}</style></head>
+
+<body class="post-template-default single single-post postid-6508 single-format-standard gdlr-core-body infinite-body infinite-body-front infinite-full  infinite-with-sticky-navigation gdlr-core-link-to-lightbox">
+<div class="infinite-mobile-header-wrap"><div class="infinite-mobile-header infinite-header-background infinite-style-slide" id="infinite-mobile-header"><div class="infinite-mobile-header-container infinite-container"><div class="infinite-logo  infinite-item-pdlr"><div class="infinite-logo-inner"><a href="https://www.botreetechnologies.com/"><img src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/logo.png" alt="" width="165" height="53"></a></div></div><div class="infinite-mobile-menu-right"><div class="infinite-overlay-menu infinite-mobile-menu" id="infinite-mobile-menu"><a class="infinite-overlay-menu-icon infinite-mobile-menu-button infinite-mobile-button-hamburger-with-border" href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#"><i class="fa fa-bars"></i></a></div></div></div></div></div><div class="infinite-body-outer-wrapper ">
+		<div class="infinite-body-wrapper clearfix  infinite-with-transparent-header infinite-with-frame">
+	<div class="infinite-header-background-transparent"><div class="infinite-top-bar"><div class="infinite-top-bar-background"></div><div class="infinite-top-bar-container clearfix infinite-container "></div></div>	
+<div class="infinite-sticky-menu-placeholder" style="height: 73px;"></div><!-- header --></div>	<div class="infinite-page-wrapper" id="infinite-page-wrapper">
+	<div class="gdlr-core-container clearfix">
+			<form role="search" method="get" class="search-form" action="https://www.botreetechnologies.com/blog/">
+    <input type="search" class="search-field" placeholder="Search..." value="" name="s">
+    <input type="submit" class="search-submit" value="Search">
+</form>	
+	</div><div class="infinite-blog-title-wrap  infinite-style-small " style="background-image: url(https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Rails-6.png);"><div class="infinite-header-transparent-substitute" style="height: 73px;"></div><div class="infinite-blog-title-overlay"></div><div class="infinite-blog-title-container infinite-container"><div class="infinite-blog-title-content infinite-item-pdlr"><header class="infinite-single-article-head clearfix"><div class="infinite-single-article-head-right"><h1 class="infinite-single-article-title">Introducing jQuery in Rails 6 Using Webpacker</h1><div class="infinite-blog-info-wrapper"><div class="infinite-blog-info infinite-blog-info-font infinite-blog-info-date"><span class="infinite-head"><i class="icon_clock_alt"></i></span><a href="https://www.botreetechnologies.com/blog/2019/04/30">April 30, 2019</a></div><div class="infinite-blog-info infinite-blog-info-font infinite-blog-info-author"><span class="infinite-head"><i class="icon_documents_alt"></i></span><a href="https://www.botreetechnologies.com/blog/author/naiya-shah" title="Posts by Naiya Shah" rel="author">Naiya Shah</a></div><div class="infinite-blog-info infinite-blog-info-font infinite-blog-info-category"><span class="infinite-head"><i class="icon_folder-alt"></i></span><a href="https://www.botreetechnologies.com/blog/category/ruby-on-rails/rails-6" rel="tag">Rails 6</a></div></div></div></header></div></div></div><div class=" bdm">
+	<div class="breadcrumb"><a href="https://www.botreetechnologies.com/">Home</a>  <a href="https://www.botreetechnologies.com/blog/">Blog</a>  <a href="https://www.botreetechnologies.com/blog/category/ruby-on-rails/rails-6" rel="category tag">Rails 6</a>  Introducing jQuery in Rails 6 Using Webpacker</div></div><div class=" bdm">
+							<div class="breadcrumb"><a href="https://www.botreetechnologies.com/">Home</a>  <a href="https://www.botreetechnologies.com/blog/">Blog</a>  <a href="https://www.botreetechnologies.com/blog/category/ruby-on-rails/rails-6" rel="category tag">Rails 6</a>  Introducing jQuery in Rails 6 Using Webpacker</div></div><div class="infinite-content-container infinite-container"><div class=" infinite-sidebar-wrap clearfix infinite-line-height-0 infinite-sidebar-style-none"><div class=" infinite-sidebar-center infinite-column-60 infinite-line-height"><div class="infinite-content-wrap infinite-item-pdlr clearfix"><div class="infinite-content-area"><article id="post-6508" class="post-6508 post type-post status-publish format-standard has-post-thumbnail hentry category-rails-6 tag-rails-6">
+	<div class="infinite-single-article">
+		<div class="infinite-single-article-content"><p>As we all know that first release candidate of Rails 6 is out with exciting features and refinements in existing features. Today we will look into one of those features, which is webpacker. It is now by default in Rails 6 as a Javascript Compiler.</p>
+<h2>What is Webpacker?</h2>
+<p><a href="https://github.com/rails/webpacker" target="_blank" rel="noopener">Webpacker</a> is a gem that allows packing assets using modern tools like yarn and writing the latest flavor of JavaScript via Babel.</p>
+<p>It makes it easy to use the JavaScript preprocessor and bundler Webpack to manage application-like JavaScript in Rails.</p>
+<h2>What is Webpack?</h2>
+<p>Webpack is a module bundler.</p>
+<p><img class="aligncenter wp-image-6509" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/Webpack-1024x613.jpg" alt="Webpack" width="900" height="538" srcset="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Webpack-1024x613.jpg 1024w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Webpack-300x179.jpg 300w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Webpack-768x459.jpg 768w" sizes="(max-width: 900px) 100vw, 900px"></p>
+<p>When we bundle webpack in a project, it traverses the imports, constructing a dependency graph of the project and then generates the output based on the configuration.</p>
+<h3>What’s Babel then?</h3>
+<p>Babel functions same as SASS compiler works for .sass and .scss files. It is a JavaScript transpiler that converts edge JavaScript into plain old ES5 JavaScript that can run in any browser (even the old ones).</p>
+<h3>For Rails 6 – Webpacker is the Default Javascript Compiler</h3>
+<p>In the previous version of rails, we have to generate an application with <strong>–webpacker</strong> option for the integration of webpack. But now webpacker is the default and a good replacement of sprockets.</p>
+<p><img class="size-full wp-image-6510 aligncenter" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/Webpacker-gem.png" alt="Webpacker gem" width="833" height="379" srcset="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Webpacker-gem.png 833w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Webpacker-gem-300x136.png 300w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Webpacker-gem-768x349.png 768w" sizes="(max-width: 833px) 100vw, 833px"></p>
+<ul>
+<li>Rails application generator installs Webpacker gem by default and also runs webpacker:install on its own.</li>
+<li>For Action Cable, its generators will create ES6 stubs rather than use CoffeeScript</li>
+<li>Active Storage, Action Cable, Turbolinks, and Rails-UJS is loaded by a new application.js pack in app/javascript by default and listed as dependencies in the default package.json</li>
+</ul>
+<p><img class="aligncenter wp-image-6511" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/output-1-2.png" alt="output 1" width="900" height="349" srcset="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/output-1-2.png 674w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/output-1-2-300x116.png 300w" sizes="(max-width: 900px) 100vw, 900px"></p>
+<ul>
+<li>No JavaScript stubs will be created by default when using the scaffold generators any more.</li>
+</ul>
+<h3><em>Read Also: <a href="https://medium.com/@sanjaywrites/action-mailbox-explained-why-how-when-af92d8708662" target="_blank" rel="noopener">Rails 6: Action Mailbox — Explained. Why?How? When?</a></em></h3>
+<h3>Some new Defaults of Rails 6</h3>
+<ol>
+<li>Javascript has been removed from app/assets directory!</li>
+<li>Javascript moved to app/javascript/packs</li>
+</ol>
+<p><img class="size-full wp-image-6512 aligncenter" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/Defaults-of-Rails-6.png" alt="Defaults of Rails 6" width="373" height="623" srcset="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Defaults-of-Rails-6.png 373w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/Defaults-of-Rails-6-180x300.png 180w" sizes="(max-width: 373px) 100vw, 373px"></p>
+<ol start="3">
+<li>javascript_include_tag is replaced by javascript_pack_tag</li>
+</ol>
+<p><img class="size-full wp-image-6514 aligncenter" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/output-2-3.png" alt="output 2" width="1137" height="445" srcset="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/output-2-3.png 1137w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/output-2-3-300x117.png 300w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/output-2-3-768x301.png 768w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/output-2-3-1024x401.png 1024w" sizes="(max-width: 1137px) 100vw, 1137px"></p>
+<ol start="4">
+<li>No more using jquery-rails gem!!!</li>
+</ol>
+<h3>Now, How we will use Jquery in Rails 6??</h3>
+<ol>
+<li>
+In our Rails application run below command to add jQuery.</li>
+<p><code>$ yarn add jquery</code></p>
+<p>It will save the dependency of jquery to our application.</p>
+<li>Now to verify jquery is installed or not, check below files</li>
+<ul>
+<li>package.json =&gt; <code>"jquery": "^3.3.1",</code></li>
+<li>yarn.lock =&gt; <code>jquery@^3.3.1:</code></li>
+</ul>
+<li>Add below code in environment.js</li>
+<p><script src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/719aec0772e809cf571398765dbd06d3.js"></script><link rel="stylesheet" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/gist-embed-b86eff715aaa43281eb90766bcb89608.css"></p><div id="gist95637160" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-code_in_environment-js" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-javascript ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-code_in_environment-js-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-code_in_environment-js-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">const</span> <span class="pl-c1">webpack</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>webpack<span class="pl-pds">'</span></span>)</td>
+      </tr>
+      <tr>
+        <td id="file-code_in_environment-js-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-code_in_environment-js-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-smi">environment</span>.<span class="pl-c1">plugins</span>.<span class="pl-c1">prepend</span>(<span class="pl-s"><span class="pl-pds">'</span>Provide<span class="pl-pds">'</span></span>,</td>
+      </tr>
+      <tr>
+        <td id="file-code_in_environment-js-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-code_in_environment-js-LC3" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">new</span> <span class="pl-en">webpack.ProvidePlugin</span>({</td>
+      </tr>
+      <tr>
+        <td id="file-code_in_environment-js-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-code_in_environment-js-LC4" class="blob-code blob-code-inner js-file-line">    $<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>jquery/src/jquery<span class="pl-pds">'</span></span>,</td>
+      </tr>
+      <tr>
+        <td id="file-code_in_environment-js-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-code_in_environment-js-LC5" class="blob-code blob-code-inner js-file-line">    jQuery<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>jquery/src/jquery<span class="pl-pds">'</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-code_in_environment-js-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-code_in_environment-js-LC6" class="blob-code blob-code-inner js-file-line">  })</td>
+      </tr>
+      <tr>
+        <td id="file-code_in_environment-js-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-code_in_environment-js-LC7" class="blob-code blob-code-inner js-file-line">)</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/NaiyaShah-BTC/719aec0772e809cf571398765dbd06d3/raw/505ecedd320ff91aca66bab9b21428dcbc7e812e/code_in_environment.js" style="float:right">view raw</a>
+        <a href="https://gist.github.com/NaiyaShah-BTC/719aec0772e809cf571398765dbd06d3#file-code_in_environment-js">code_in_environment.js</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+<p>Now, our file looks like,</p>
+<p><img class="size-full wp-image-6513 aligncenter" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/output-3-2.png" alt="output 3" width="990" height="382" srcset="https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/output-3-2.png 990w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/output-3-2-300x116.png 300w, https://www.botreetechnologies.com/blog/wp-content/uploads/2019/04/output-3-2-768x296.png 768w" sizes="(max-width: 990px) 100vw, 990px"></p>
+<p>The path ‘jquery/src/jquery’ indicates the jquery installed in node_modules directory having sub directory ‘jquery/src’ and which contains jquery.js file there.</p>
+<li>Require jquery in application.js file.</li>
+</ol>
+<p><code>require('jquery')</code></p>
+<p><script src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/a85739dc899d560b3e64f9fb466e90e9.js"></script><link rel="stylesheet" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/gist-embed-b86eff715aaa43281eb90766bcb89608.css"></p><div id="gist95637593" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-application-js" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-javascript ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-application-js-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-application-js-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>@rails/ujs<span class="pl-pds">"</span></span>).<span class="pl-c1">start</span>()</td>
+      </tr>
+      <tr>
+        <td id="file-application-js-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-application-js-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>turbolinks<span class="pl-pds">"</span></span>).<span class="pl-c1">start</span>()</td>
+      </tr>
+      <tr>
+        <td id="file-application-js-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-application-js-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>@rails/activestorage<span class="pl-pds">"</span></span>).<span class="pl-c1">start</span>()</td>
+      </tr>
+      <tr>
+        <td id="file-application-js-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-application-js-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>channels<span class="pl-pds">"</span></span>)</td>
+      </tr>
+      <tr>
+        <td id="file-application-js-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-application-js-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>jquery<span class="pl-pds">"</span></span>)</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/NaiyaShah-BTC/a85739dc899d560b3e64f9fb466e90e9/raw/7f82a86f76a3b79a1bbe8537703cb45a9a66a958/application.js" style="float:right">view raw</a>
+        <a href="https://gist.github.com/NaiyaShah-BTC/a85739dc899d560b3e64f9fb466e90e9#file-application-js">application.js</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+<p><strong>Voila!</strong> Now you should be able to use jquery in your Rails 6 application.</p>
+<hr>
+<p><i>At&nbsp;<a href="https://www.botreetechnologies.com/" target="_blank" rel="noopener"><b>BoTree Technologies</b></a>, we build web and&nbsp;mobile applications&nbsp;to add value to our client’s business. We align ourselves to ensure that our client benefits the most out of our engagement.</i></p>
+<p><i>We work in&nbsp;<a href="https://www.botreetechnologies.com/ruby-on-rails" target="_blank" rel="noopener">Ruby on Rails</a>,&nbsp;<a href="https://www.botreetechnologies.com/python" target="_blank" rel="noopener">Python</a>, Java,&nbsp;<a href="https://www.botreetechnologies.com/react-native-development" target="_blank" rel="noopener">React</a>, Android, iOS and&nbsp;<a href="https://www.botreetechnologies.com/robotic-process-automation" target="_blank" rel="noopener">RPA</a>&nbsp;as well.</i></p>
+<p><i><a href="https://www.botreetechnologies.com/contact" target="_blank" rel="noopener">Drop us a line</a>&nbsp;to discuss how can we help take your business to the next level.</i></p>
+<div class="pvc_clear"></div>
+<p class="pvc_stats " data-element-id="6508" style=""><i class="fa fa-bar-chart pvc-stats-icon medium" aria-hidden="true"></i> 9,701&nbsp;total views, 131&nbsp;views today</p>
+<div class="pvc_clear"></div>
+<div class="heateorSssClear"></div><div class="heateor_sss_sharing_container heateor_sss_horizontal_sharing" heateor-sss-data-href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker"><div class="heateor_sss_sharing_title" style="font-weight:bold">Let's Socialize</div><ul class="heateor_sss_sharing_ul"><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" alt="Facebook" title="Facebook" class="heateorSssSharing heateorSssFacebookBackground" onclick="heateorSssPopup(&quot;https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.botreetechnologies.com%2Fblog%2Fintroducing-jquery-in-rails-6-using-webpacker&quot;)"><ss style="display:block;border-radius:999px;" class="heateorSssSharingSvg heateorSssFacebookSvg"></ss></i></li><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" alt="Twitter" title="Twitter" class="heateorSssSharing heateorSssTwitterBackground" onclick="heateorSssPopup(&quot;http://twitter.com/intent/tweet?text=Introducing%20jQuery%20in%20Rails%206%20Using%20Webpacker&amp;url=https%3A%2F%2Fwww.botreetechnologies.com%2Fblog%2Fintroducing-jquery-in-rails-6-using-webpacker&quot;)"><ss style="display:block;border-radius:999px;" class="heateorSssSharingSvg heateorSssTwitterSvg"></ss></i></li><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" alt="Linkedin" title="Linkedin" class="heateorSssSharing heateorSssLinkedinBackground" onclick="heateorSssPopup(&quot;http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.botreetechnologies.com%2Fblog%2Fintroducing-jquery-in-rails-6-using-webpacker&amp;title=Introducing%20jQuery%20in%20Rails%206%20Using%20Webpacker&quot;)"><ss style="display:block;border-radius:999px;" class="heateorSssSharingSvg heateorSssLinkedinSvg"></ss></i></li><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" alt="Pinterest" title="Pinterest" class="heateorSssSharing heateorSssPinterestBackground" onclick="javascript:void( (function() {var e=document.createElement(&#39;script&#39; );e.setAttribute(&#39;type&#39;,&#39;text/javascript&#39; );e.setAttribute(&#39;charset&#39;,&#39;UTF-8&#39; );e.setAttribute(&#39;src&#39;,&#39;//assets.pinterest.com/js/pinmarklet.js?r=&#39;+Math.random()*99999999);document.body.appendChild(e)})());"><ss style="display:block;border-radius:999px;" class="heateorSssSharingSvg heateorSssPinterestSvg"></ss></i></li><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" title="More" alt="More" class="heateorSssSharing heateorSssMoreBackground" onclick="heateorSssMoreSharingPopup(this, &#39;https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker&#39;, &#39;Introducing%20jQuery%20in%20Rails%206%20Using%20Webpacker&#39;, &#39;&#39; )"><ss style="display:block" class="heateorSssSharingSvg heateorSssMoreSvg"></ss></i></li></ul><div class="heateorSssClear"></div></div><div class="heateorSssClear"></div><div class="heateor_sss_sharing_container heateor_sss_vertical_sharing" style="width:28px;left: -10px;top: 100px;-webkit-box-shadow:none;box-shadow:none;" heateor-sss-data-href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker"><ul class="heateor_sss_sharing_ul"><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" alt="Facebook" title="Facebook" class="heateorSssSharing heateorSssFacebookBackground" onclick="heateorSssPopup(&quot;https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.botreetechnologies.com%2Fblog%2Fintroducing-jquery-in-rails-6-using-webpacker&quot;)"><ss style="display:block;border-radius:999px;" class="heateorSssSharingSvg heateorSssFacebookSvg"></ss></i></li><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" alt="Twitter" title="Twitter" class="heateorSssSharing heateorSssTwitterBackground" onclick="heateorSssPopup(&quot;http://twitter.com/intent/tweet?text=Introducing%20jQuery%20in%20Rails%206%20Using%20Webpacker&amp;url=https%3A%2F%2Fwww.botreetechnologies.com%2Fblog%2Fintroducing-jquery-in-rails-6-using-webpacker&quot;)"><ss style="display:block;border-radius:999px;" class="heateorSssSharingSvg heateorSssTwitterSvg"></ss></i></li><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" alt="Linkedin" title="Linkedin" class="heateorSssSharing heateorSssLinkedinBackground" onclick="heateorSssPopup(&quot;http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.botreetechnologies.com%2Fblog%2Fintroducing-jquery-in-rails-6-using-webpacker&amp;title=Introducing%20jQuery%20in%20Rails%206%20Using%20Webpacker&quot;)"><ss style="display:block;border-radius:999px;" class="heateorSssSharingSvg heateorSssLinkedinSvg"></ss></i></li><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" alt="Pinterest" title="Pinterest" class="heateorSssSharing heateorSssPinterestBackground" onclick="javascript:void( (function() {var e=document.createElement(&#39;script&#39; );e.setAttribute(&#39;type&#39;,&#39;text/javascript&#39; );e.setAttribute(&#39;charset&#39;,&#39;UTF-8&#39; );e.setAttribute(&#39;src&#39;,&#39;//assets.pinterest.com/js/pinmarklet.js?r=&#39;+Math.random()*99999999);document.body.appendChild(e)})());"><ss style="display:block;border-radius:999px;" class="heateorSssSharingSvg heateorSssPinterestSvg"></ss></i></li><li class="heateorSssSharingRound"><i style="width:24px;height:24px;border-radius:999px;" title="More" alt="More" class="heateorSssSharing heateorSssMoreBackground" onclick="heateorSssMoreSharingPopup(this, &#39;https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker&#39;, &#39;Introducing%20jQuery%20in%20Rails%206%20Using%20Webpacker&#39;, &#39;&#39; )"><ss style="display:block" class="heateorSssSharingSvg heateorSssMoreSvg"></ss></i></li></ul><div class="heateorSssClear"></div><div title="Hide" style="float:left" onclick="heateorSssHideSharing(this, &#39;heateorSssPullOut&#39;, &#39;heateorSssPushIn&#39;,&#39;Left&#39;, &#39;left&#39;)" class="heateorSssSharingArrow heateorSssPullOut"></div></div><div id="botree-author-bio-box" style="background: #fff; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; color: #333333"><div class="bio-gravatar"><img src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/naiya-shah-150x150.png" width="125" height="125" alt="Naiya Shah" class="avatar avatar-125 wp-user-avatar wp-user-avatar-125 alignnone photo"></div><div class="bio-details"><h3>Naiya Shah</h3><p class="bio-description">Naiya is a Ruby on Rails Developer. She developes applications with optimization and clean code with full Rspec coverage. She works in Javascript as well and she digs into anything new really quickly and comes up with a solution. Her leisure activities include travelling and watching movies.</p><a style="color: #333333;" href="https://www.botreetechnologies.com/blog/author/naiya-shah" title="All posts by Naiya Shah" rel="author" class="gdlr-core-button gdlr-core-button-solid gdlr-core-button-no-border"><span class="gdlr-core-content">View all posts</span></a></div></div><div class="rp4wp-related-posts">
+<h3>Related Posts</h3>
+<ul>
+<li><div class="rp4wp-related-post-image">
+<a href="https://www.botreetechnologies.com/blog/ruby-refinements"><img width="150" height="150" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/ruby-refinement-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="ruby refinement"></a></div>
+<div class="rp4wp-related-post-content">
+<a href="https://www.botreetechnologies.com/blog/ruby-refinements">Ruby Refinements</a><p>Ruby ecosystem allows us to modify or redefine existing class definitions. This is known as&nbsp;Monkey patching. These changes are scoped globally and once loaded,…</p></div>
+</li>
+<li><div class="rp4wp-related-post-image">
+<a href="https://www.botreetechnologies.com/blog/how-to-add-react-js-to-your-ruby-on-rails-app-with-webpacker"><img width="150" height="150" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/React-Rails-Webpacker-150x150.jpeg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Webpacker"></a></div>
+<div class="rp4wp-related-post-content">
+<a href="https://www.botreetechnologies.com/blog/how-to-add-react-js-to-your-ruby-on-rails-app-with-webpacker">How to add React JS to your Ruby on Rails App with Webpacker</a><p>This tutorial will guide you on how to create a Ruby on Rails application and add the power of webpacker and React JS to…</p></div>
+</li>
+<li><div class="rp4wp-related-post-image">
+<a href="https://www.botreetechnologies.com/blog/rails-development-guidelines-part-3-fundamentals-of-oops-sql-web-and-rails"><img width="150" height="150" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/Rails-Development-Guidelines-150x150.jpeg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Rails Development Guidelines "></a></div>
+<div class="rp4wp-related-post-content">
+<a href="https://www.botreetechnologies.com/blog/rails-development-guidelines-part-3-fundamentals-of-oops-sql-web-and-rails">Rails Development Guidelines - Part-3 - Fundamentals of OOPs, SQL, Web and Rails</a><p>Adding third part in the series of "Rails Development Guidelines" now, you can refer to previous article here. In the previous article, we talked…</p></div>
+</li>
+</ul>
+</div>
+</div>				</div><!-- infinite-single-article -->
+</article><!-- post-id -->
+</div></div></div></div></div><div class="gdlr-core-page-builder-body"></div><div class="infinite-bottom-page-builder-container infinite-container"><div class="infinite-bottom-page-builder-sidebar-wrap infinite-sidebar-style-none"><div class="infinite-bottom-page-builder-sidebar-class"><div class="infinite-bottom-page-builder-content infinite-item-pdlr"><div class="infinite-single-nav-area clearfix"><span class="infinite-single-nav infinite-single-nav-left"><a href="https://www.botreetechnologies.com/blog/notable-activerecord-changes-in-rails-6-part-1" rel="prev"><i class="arrow_left"></i><span class="infinite-text">Prev</span></a></span><span class="infinite-single-nav infinite-single-nav-right"><a href="https://www.botreetechnologies.com/blog/implementing-advanced-search-in-ruby-on-rails-with-ransack" rel="next"><span class="infinite-text">Next</span><i class="arrow_right"></i></a></span></div></div></div></div><div class="gdlr-core-pbf-section"></div></div><div class="gdlr-core-page-builder-body bggrey"><div class="gdlr-core-pbf-section"><div class="gdlr-core-pbf-section-container gdlr-core-container clearfix"><div class="gdlr-core-pbf-element"><div class="gdlr-core-call-to-action-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-style-left-align-right-button"><div class="gdlr-core-call-to-action-item-inner"><div class="gdlr-core-call-to-action-item-content-wrap"><h3 class="gdlr-core-call-to-action-item-title">Ready to get started?</h3><div class="gdlr-core-call-to-action-item-caption gdlr-core-title-font gdlr-core-skin-caption">Get in touch, or contact sales</div></div><div class="gdlr-core-call-to-action-item-button"><a class="gdlr-core-button gdlr-core-button-solid gdlr-core-button-no-border" href="https://www.botreetechnologies.com/contact" target="_blank"><span class="gdlr-core-content">Get in Touch</span></a></div></div></div></div></div></div></div></div><footer><div class="infinite-footer-wrapper"><div class="infinite-footer-container infinite-container clearfix"><div class="infinite-footer-column infinite-item-pdlr infinite-column-60"><div id="text-2" class="widget widget_text infinite-widget">			<div class="textwidget"><div class="container first-row">
+<address class="wow fadeInUpShort animated" style="visibility: visible;">
+<ul>
+<li><a href="https://www.botreetechnologies.com/"><img class="img-responsive" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/logo(1).png" alt="BoTree Technologies Pvt Ltd" width="165" height="53"></a></li>
+<li><a class="fa fa-envelope" href="mailto:sales@botreetechnologies.com">sales@botreetechnologies.com</a></li>
+<li class="mar-top-30">
+<div class="clutch-widget" data-url="https://clutch.co" data-widget-type="2" data-height="50" data-clutchcompany-id="87184"><iframe id="iframe-0.8213999996990105" style="display: block;" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/2.html" width="100%" height="50px" frameborder="0" scrolling="no"></iframe></div>
+</li>
+<li class="mar-top-30"><a href="https://www.designrush.com/agency/profile/botree-technologies" target="_blank" rel="noopener"><img src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/designrush.png" alt="designrush"></a> &nbsp;&nbsp;<a href="https://www.goodfirms.co/companies/view/1930/botree-technologies-pvt-ltd" target="_blank" rel="noopener"><img src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/goodfirms.png" alt="goodfirms"></a></li>
+</ul>
+</address>
+<ul class="list-unstyled first wow fadeInUpShort animated" style="visibility: visible; -webkit-animation-delay: .15s; -moz-animation-delay: .15s; animation-delay: .15s;" data-wow-delay=".15s">
+<li>
+<h4>Services</h4>
+</li>
+<li><a href="https://www.botreetechnologies.com/product-development"> Product Development</a></li>
+<li><a href="https://www.botreetechnologies.com/bi-and-data-analytics">Business Intelligence &amp; Data Analytics</a></li>
+<li><a href="https://www.botreetechnologies.com/artificial-intelligence">Artificial Intelligence</a></li>
+<li><a href="https://www.botreetechnologies.com/robotic-process-automation">Robotic Process Automation</a></li>
+<li><a href="https://www.botreetechnologies.com/ecommerce-solutions" target="_blank" rel="noopener">Ecommerce Solutions</a></li>
+</ul>
+<ul class="list-unstyled second wow fadeInUpShort animated" style="visibility: visible; -webkit-animation-delay: .3s; -moz-animation-delay: .3s; animation-delay: .3s;" data-wow-delay=".3s">
+<li>
+<h4>Technology</h4>
+</li>
+<li><a href="https://www.botreetechnologies.com/ruby-on-rails">Ruby on Rails</a></li>
+<li><a href="https://www.botreetechnologies.com/python">Python</a></li>
+<li><a href="https://www.botreetechnologies.com/android-native-development">Android Native</a></li>
+<li><a href="https://www.botreetechnologies.com/react-native-development">React Native</a></li>
+<li><a href="https://www.botreetechnologies.com/nodejs-development">Node JS</a></li>
+</ul>
+<ul class="list-unstyled footer-domain-list second wow fadeInUpShort animated" style="visibility: visible; -webkit-animation-delay: .3s; -moz-animation-delay: .3s; animation-delay: .3s;" data-wow-delay=".3s">
+<li>
+<h4>Domains</h4>
+</li>
+<li><a href="https://www.botreetechnologies.com/ecommerce">e-Commerce</a></li>
+<li><a href="https://www.botreetechnologies.com/healthcare">Healthcare</a></li>
+<li><a href="https://www.botreetechnologies.com/insurance">Insurance</a></li>
+<li><a href="https://www.botreetechnologies.com/social-media-marketing">Social Media Marketing</a></li>
+<li><a href="https://www.botreetechnologies.com/banking">Banking</a></li>
+<li><a href="https://www.botreetechnologies.com/information-sharing-system">Information Sharing System</a></li>
+</ul>
+<ul class="list-unstyled last wow fadeInUpShort animated" style="visibility: visible; -webkit-animation-delay: .45s; -moz-animation-delay: .45s; animation-delay: .45s;" data-wow-delay=".45s">
+<li>
+<h4>Company</h4>
+</li>
+<li><a href="https://www.botreetechnologies.com/about-us">About</a></li>
+<li><a href="https://www.botreetechnologies.com/leadership">Leadership</a></li>
+<li><a href="https://www.botreetechnologies.com/team">Team</a></li>
+<li><a href="https://www.botreetechnologies.com/events">Events</a></li>
+<li><a href="https://www.botreetechnologies.com/case-studies">Case Studies</a></li>
+<li><a href="https://www.botreetechnologies.com/booster-team">Booster Team</a></li>
+<li><a href="https://www.botreetechnologies.com/careers">Careers</a></li>
+<li><a href="https://www.botreetechnologies.com/contact">Contact</a></li>
+<li><a href="http://www.botreetechnologies.com/blog" target="_blank" rel="noopener">Blog</a></li>
+<li><a href="http://www.botreetechnologies.com/guest-post">Guest Post</a></li>
+<li><a href="https://www.botreetechnologies.com/sitemap">Sitemap</a></li>
+</ul>
+</div>
+</div>
+		</div></div></div></div><div class="infinite-copyright-wrapper"><div class="infinite-copyright-container infinite-container clearfix"><div class="infinite-copyright-left infinite-item-pdlr">© 2013 - 2019 <a href="https://www.botreetechnologies.com/">BoTree Technologies</a></div><div class="infinite-copyright-right infinite-item-pdlr"><a href="https://www.facebook.com/BoTreeTechnologies/" target="_blank" class="fa fa-facebook wow fadeInUpShort animated" data-wow-delay=".3s" style="visibility:visible;-webkit-animation-delay:.3s;-moz-animation-delay:.3s;animation-delay:.3s;"><span class="sr-only">Facebook</span></a><a href="https://twitter.com/BoTreeTech" target="_blank" class="fa fa-twitter wow fadeInUpShort animated" data-wow-delay=".45s" style="visibility:visible;-webkit-animation-delay:.45s;-moz-animation-delay:.45s;animation-delay:.45s;"><span class="sr-only">Twitter</span></a><a href="https://www.linkedin.com/company/botreetechnologies" target="_blank" class="fa fa-linkedin wow fadeInUpShort animated" data-wow-delay=".6s" style="visibility:visible;-webkit-animation-delay:.6s;-moz-animation-delay:.6s;animation-delay:.6s;"><span class="sr-only">Linkedin</span></a>
+<a href="https://www.pinterest.com/botreetech/" target="_blank" class="fa fa-pinterest wow fadeInUpShort" data-wow-delay=".6s">
+								<span class="sr-only">Pinterest</span>
+							</a>
+							<a href="https://www.youtube.com/channel/UCiDNZOSA_xP0JHoFPkbCQ4A" target="_blank" class="fa fa-youtube wow fadeInUpShort" data-wow-delay=".6s">
+								<span class="sr-only">Youtube</span>
+							</a>
+							<a href="https://www.instagram.com/botreetechnologies/" target="_blank" class="fa fa-instagram wow fadeInUpShort" data-wow-delay=".6s">
+								<span class="sr-only">Instagram</span>
+							</a></div></div></div></footer></div></div><a href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#infinite-top-anchor" class="infinite-footer-back-to-top-button infinite-scrolled" id="infinite-footer-back-to-top-button"><i class="fa fa-angle-up"></i></a>
+<link rel="stylesheet" id="botree-author-bio-box-styles-css" href="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/botree-author-bio-box.css" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.botreetechnologies.com\/blog\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/scripts.js"></script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/script.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var gdlr_core_pbf = {"admin":"","video":{"width":"640","height":"360"},"ajax_url":"https:\/\/www.botreetechnologies.com\/blog\/wp-admin\/admin-ajax.php","ilightbox_skin":"dark"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/page-builder.js"></script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/effect.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var infinite_script_core = {"home_url":"https:\/\/www.botreetechnologies.com\/blog\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/script-core.js"></script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/sassy-social-share-public.js"></script>
+<script type="text/javascript" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/wp-embed.min.js"></script>
+<script type="text/javascript">jQuery(document).ready(function(){jQuery(".bdm").insertAfter(jQuery(".infinite-blog-title-wrap.infinite-style-small"));});</script>
+<script>var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();(function(){var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];s1.async=true;s1.src='https://embed.tawk.to/59faec41bb0c3f433d4c68f0/default';s1.charset='UTF-8';s1.setAttribute('crossorigin','*');s0.parentNode.insertBefore(s1,s0);})();</script>
+<script async="" defer="" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/widget.js"></script>
+<script>!function(e,t,a,n,c,s,o){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,s=t.createElement(a),o=t.getElementsByTagName(a)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-73558431-1","auto"),ga("send","pageview");</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","url":"https://www.botreetechnologies.com/blog/","sameAs":[],"@id":"https://www.botreetechnologies.com/blog/#organization","name":"Botreetechnologies.com","logo":"https://www.botreetechnologies.com/blog/wp-content/uploads/2019/03/logo.png"}</script>
+
+<div class="infinite-overlay-menu-content infinite-navigation-font"><div class="infinite-overlay-menu-close"></div><div class="infinite-overlay-menu-row"><div class="infinite-overlay-menu-cell"><ul id="menu-main-navigation" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1329" style="transition-delay: 0ms;"><a target="_blank" href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#">Services</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1410"><a href="https://www.botreetechnologies.com/product-development">Product Development</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2709"><a href="https://www.botreetechnologies.com/bi-and-data-analytics">Business Intelligence &amp; Data Analytics</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2710"><a href="https://www.botreetechnologies.com/artificial-intelligence">Artificial Intelligence</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2715"><a href="https://www.botreetechnologies.com/robotic-process-automation">Robotic Process Automation</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1330" style="transition-delay: 150ms;"><a target="_blank" href="https://www.botreetechnologies.com/technology">Technology</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3869" style="transition-delay: 300ms;"><a href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#">Domains</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3874"><a href="https://www.botreetechnologies.com/ecommerce">e-Commerce</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3878"><a href="https://www.botreetechnologies.com/healthcare">Healthcare</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3879"><a href="https://www.botreetechnologies.com/insurance">Insurance</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3881"><a href="https://www.botreetechnologies.com/social-media-app-development">Social Media Marketing</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3882"><a href="https://www.botreetechnologies.com/banking">Banking</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3883"><a href="https://www.botreetechnologies.com/information-sharing-system">Information Sharing System</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3885" style="transition-delay: 450ms;"><a href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#">Resources</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1449"><a href="https://www.botreetechnologies.com/case-studies">Case Studies</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1453"><a href="https://www.botreetechnologies.com/blog">Blog</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7488"><a href="https://www.botreetechnologies.com/guest-post">Guest Post</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3886"><a href="https://www.botreetechnologies.com/chatbot-for-your-business">Whitepaper</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1447" style="transition-delay: 600ms;"><a href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#">Company</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1448"><a href="https://www.botreetechnologies.com/about-us">About Us</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2728"><a href="https://www.botreetechnologies.com/leadership">Leadership</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2729"><a href="https://www.botreetechnologies.com/team">Team</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3884"><a href="https://www.botreetechnologies.com/events">Events</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1451" style="transition-delay: 750ms;"><a href="https://www.botreetechnologies.com/careers">Careers</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2973" style="transition-delay: 900ms;"><a href="https://www.botreetechnologies.com/contact">Contact</a></li>
+</ul></div></div></div><header class="infinite-header-wrap infinite-header-style-plain  infinite-style-menu-right infinite-sticky-navigation infinite-style-slide infinite-fixed-navigation infinite-animate-fixed-navigation" style="">
+	<div class="infinite-header-background"></div>
+	<div class="infinite-header-container  infinite-header-custom-container">
+			
+		<div class="infinite-header-container-inner clearfix">
+			<div class="infinite-logo  infinite-item-pdlr"><div class="infinite-logo-inner"><a href="https://www.botreetechnologies.com/"><img src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/logo.png" alt="" width="165" height="53"></a></div></div>			<div class="infinite-navigation infinite-item-pdlr clearfix infinite-navigation-submenu-indicator ">
+			<div class="infinite-main-menu sf-js-enabled sf-arrows" id="infinite-main-menu" style="touch-action: pan-y;"><ul id="menu-main-navigation-1" class="sf-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1329 infinite-normal-menu"><a target="_blank" href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#" class="sf-with-ul-pre sf-with-ul">Services</a>
+<ul class="sub-menu" style="display: none;">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1410" data-size="60"><a href="https://www.botreetechnologies.com/product-development">Product Development</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2709" data-size="60"><a href="https://www.botreetechnologies.com/bi-and-data-analytics">Business Intelligence &amp; Data Analytics</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2710" data-size="60"><a href="https://www.botreetechnologies.com/artificial-intelligence">Artificial Intelligence</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2715" data-size="60"><a href="https://www.botreetechnologies.com/robotic-process-automation">Robotic Process Automation</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1330 infinite-normal-menu"><a target="_blank" href="https://www.botreetechnologies.com/technology">Technology</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3869 infinite-normal-menu"><a href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#" class="sf-with-ul-pre sf-with-ul">Domains</a>
+<ul class="sub-menu" style="display: none;">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3874" data-size="60"><a href="https://www.botreetechnologies.com/ecommerce">e-Commerce</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3878" data-size="60"><a href="https://www.botreetechnologies.com/healthcare">Healthcare</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3879" data-size="60"><a href="https://www.botreetechnologies.com/insurance">Insurance</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3881" data-size="60"><a href="https://www.botreetechnologies.com/social-media-app-development">Social Media Marketing</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3882" data-size="60"><a href="https://www.botreetechnologies.com/banking">Banking</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3883" data-size="60"><a href="https://www.botreetechnologies.com/information-sharing-system">Information Sharing System</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3885 infinite-normal-menu"><a href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#" class="sf-with-ul-pre sf-with-ul">Resources</a>
+<ul class="sub-menu" style="display: none;">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1449" data-size="60"><a href="https://www.botreetechnologies.com/case-studies">Case Studies</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1453" data-size="60"><a href="https://www.botreetechnologies.com/blog">Blog</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7488" data-size="60"><a href="https://www.botreetechnologies.com/guest-post">Guest Post</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3886" data-size="60"><a href="https://www.botreetechnologies.com/chatbot-for-your-business">Whitepaper</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1447 infinite-normal-menu"><a href="https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker#" class="sf-with-ul-pre sf-with-ul">Company</a>
+<ul class="sub-menu" style="display: none;">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1448" data-size="60"><a href="https://www.botreetechnologies.com/about-us">About Us</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2728" data-size="60"><a href="https://www.botreetechnologies.com/leadership">Leadership</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2729" data-size="60"><a href="https://www.botreetechnologies.com/team">Team</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3884" data-size="60"><a href="https://www.botreetechnologies.com/events">Events</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1451 infinite-normal-menu"><a href="https://www.botreetechnologies.com/careers">Careers</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2973 infinite-normal-menu"><a href="https://www.botreetechnologies.com/contact">Contact</a></li>
+</ul></div>			</div><!-- infinite-navigation -->
+
+		</div><!-- infinite-header-inner -->
+	</div><!-- infinite-header-container -->
+</header><div id="I4f6Wm4-1571255112442" class="" style="display: block !important;"><iframe id="tZcaKWd-1571255112444" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/saved_resource.html" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: auto !important; bottom: auto !important; left: auto !important; position: static !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 350px !important; z-index: 999999 !important; cursor: auto !important; float: none !important; border-radius: unset !important; pointer-events: auto !important; display: none !important; height: 120px !important;"></iframe><iframe id="SIBnE4y-1571255112446" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/saved_resource(1).html" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; padding: 0px !important; transition-property: none !important; z-index: 1000001 !important; cursor: auto !important; float: none !important; pointer-events: auto !important; box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 10px 0px !important; height: 60px !important; min-height: 60px !important; max-height: 60px !important; width: 60px !important; min-width: 60px !important; max-width: 60px !important; border-radius: 50% !important; transform: rotate(0deg) translateZ(0px) !important; transform-origin: 0px center !important; margin: 0px !important; top: auto !important; bottom: 20px !important; right: 20px !important; left: auto !important; display: block !important;"></iframe><iframe id="RjkNL6q-1571255112446" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/saved_resource(2).html" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; display: none !important; z-index: 1000003 !important; cursor: auto !important; float: none !important; border-radius: unset !important; pointer-events: auto !important; top: auto !important; bottom: 60px !important; right: 15px !important; left: auto !important; width: 21px !important; max-width: 21px !important; min-width: 21px !important; height: 21px !important; max-height: 21px !important; min-height: 21px !important;"></iframe><div class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 100% !important; display: none !important; z-index: 1000001 !important; cursor: move !important; float: left !important; border-radius: unset !important; pointer-events: auto !important;"></div><div id="ecZE9Yd-1571255112442" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 6px !important; height: 100% !important; display: block !important; z-index: 999998 !important; cursor: w-resize !important; float: none !important; border-radius: unset !important; pointer-events: auto !important;"></div><div id="bmDoBpG-1571255112443" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 0px !important; bottom: auto !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 6px !important; display: block !important; z-index: 999998 !important; cursor: n-resize !important; float: none !important; border-radius: unset !important; pointer-events: auto !important;"></div><div id="MPHFQVG-1571255112443" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999998 !important; cursor: nw-resize !important; float: none !important; border-radius: unset !important; pointer-events: auto !important;"></div><iframe id="yC3gWyx-1571255112541" src="./Introducing jQuery in Rails 6 Using Webpacker - BoTree Technologies_files/saved_resource(3).html" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 378px !important; height: 531px !important; display: none !important; z-index: 999999 !important; cursor: auto !important; float: none !important; border-radius: unset !important; pointer-events: auto !important; bottom: 100px !important; top: auto !important; right: 20px !important; left: auto !important;"></iframe></div></body></html>

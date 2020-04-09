@@ -1,0 +1,14 @@
+$commentsDiv = $(`.comments:first`);
+$commentsDiv.html(`
+<% if @comments.any? %>
+<%= render 'comments/index', comments: @comments %>
+<% else %>
+<div class="jumbotron text-center w-100 pt-3 pb-1">
+    <p>
+        <%= t('comments.zero') %>
+    </p>
+</div>
+<% end %>
+`);
+// loadMaterialKitJs();
+removeCard();

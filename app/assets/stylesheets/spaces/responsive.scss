@@ -1,0 +1,162 @@
+header.banner {
+    @media (max-width: 320px) {
+
+        .page-header {
+            height: 75vh;
+        }
+
+        .banner-legends {
+            height: 35vh;
+
+        }
+
+        .banner-legends section {
+            margin: 0 auto;
+            padding: 0 20px !important;
+        }
+
+        .info-btn {
+            position: absolute;
+            right: 7%;
+        }
+
+        .admin-actions-btn a {
+            margin: 4px auto;
+        }
+    }
+
+    @media (min-width: 321px) and (max-width: 375px) {
+
+        .page-header {
+            height: 75vh;
+        }
+
+        .banner-legends {
+            height: 35vh;
+
+        }
+
+        .banner-legends section {
+            margin: 0 auto;
+            padding: 0 20px !important;
+        }
+
+        .info-btn {
+            position: absolute;
+            right: 7%;
+        }
+
+        .admin-actions-btn a {
+            margin: 4px auto;
+        }
+    }
+
+    @media (min-width: 376px) and (max-width: 425px) {
+
+        .page-header {
+            height: 75vh;
+        }
+
+        .banner-legends {
+            height: 35vh;
+
+        }
+
+        .banner-legends section {
+            margin: 0 auto;
+            padding: 0 20px !important;
+        }
+
+        .info-btn {
+            position: absolute;
+            right: 7%;
+        }
+
+        .admin-actions-btn a {
+            margin: 4px auto;
+        }
+    }
+
+    @media (min-width: 426px) and (max-width: 768px) {
+
+        .page-header {
+            height: 75vh;
+        }
+
+        .banner-legends {
+            height: 21vh;
+
+        }
+
+        .banner-legends section {
+            margin: 0 auto;
+            padding: 0 20px !important;
+        }
+
+        .info-btn {
+            position: absolute;
+            right: 3%;
+        }
+
+        .admin-actions-btn {
+            margin-left: 0 !important;
+        }
+
+        .admin-actions-btn a {
+            margin: 4px 5px;
+        }
+    }
+
+    @media (min-width: 769px) and (max-width: 1023px) {}
+
+    @media (min-width: 1024px) and (max-width: 1439px) {
+
+        .page-header {}
+
+        .banner-legends {
+            height: 14vh;
+        }
+
+        .banner-legends section {}
+
+        .info-btn {}
+
+        .admin-actions-btn {}
+
+        .admin-actions-btn a {}
+    }
+
+    @media (min-width: 1440px) and (max-width: 2499px) {
+
+        .page-header {}
+
+        .banner-legends {
+            height: 12vh;
+        }
+
+        .banner-legends section {}
+
+        .info-btn {}
+
+        .admin-actions-btn {}
+
+        .admin-actions-btn a {}
+    }
+
+    @media (min-width: 2500px) {
+
+        .page-header {}
+
+        .banner-legends {
+            height: 5.5vh;
+        }
+
+        .banner-legends section {}
+
+        .info-btn {}
+
+        .admin-actions-btn {}
+
+        .admin-actions-btn a {}
+    }
+}

@@ -1,0 +1,175 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require loading_screen
+ */
+
+@import "font-awesome";
+
+/* Material design */
+@import "@material/fab/mdc-fab";
+@import "@material/list/mdc-list";
+@import "@material/menu-surface/mdc-menu-surface";
+@import "@material/menu/mdc-menu";
+@import "@material/chips/mdc-chips";
+@import "@material/card/mdc-card";
+
+/* .mdc-card-content {
+  padding: 16px;
+}
+
+.mdc-card {
+  height: 350px;
+  width: 350px;
+} */
+
+.pdpCenter{
+	position: relative;
+	border-radius: 50%;
+	width: 100%;
+	height: 60px;
+	top: -35px;
+	left: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.theA>a{
+	font-weight: 600;
+	color: #111111!important;
+	font-size: 14px;
+}
+
+.theA>a:hover{
+	color: #b35146!important;
+}
+
+#space_name{
+	width: 100%;
+	font-size: 18px;
+}
+
+.profile>.change>img{
+	position: relative;
+	top: 80px;
+}
+
+.imgBox{
+	width: 96%!important;
+}
+
+/* img.rounded-circle{
+	height: 60px!important;
+	width: auto!important;
+} */
+
+.imbBoxes{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 999;
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	border: 2px solid white;
+	overflow: hidden;
+}
+
+@media screen and (min-width: 994px){
+	.makeLeft{
+		padding-left: 5rem!important;
+	}
+
+	.ImgBoxes{
+		width: 100%;
+		height: 500px;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		border-radius: 20px;
+	}
+}
+
+@media screen and (max-width: 992px){
+	.changeWidth{
+		width: 96%!important;
+	}
+
+	.imgBox{
+		height: auto;
+		margin: 10px auto;
+	}
+
+	.profile>.change>img{
+		top: 56px!important;
+	}
+
+	a.btn{
+		padding: 12px 10px;
+	}
+
+	.changeBlock{
+		display: block;
+		width: 100%;
+	}
+
+	.lol li.nav-item{
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 820px) and (min-width: 766px){
+	.nav-tabs li.nav-item{
+		padding: 0px!important;
+	}
+}
+
+@media screen and (max-width: 764px) and (min-width: 522px){
+	ul.nav-tabs{
+		display: block!important;
+	}
+
+	.nav-tabs li.nav-item{
+		padding: 0px 40px;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 520px){
+	ul.nav-tabs{
+		display: block!important;
+	}
+
+	.nav-tabs li.nav-item{
+		display: block;
+		width: 100%;
+		padding: 0 20px;
+		text-align: center;
+	}
+
+	.makeResponse{
+		margin-top: 10%!important;	
+	}
+
+	.makeTop{
+		margin-top: 5rem!important;	
+	}
+}
+
+@media screen and (max-width: 472px){
+	footer nav.float-left,
+	footer div.float-right{
+		float: inherit!important;
+	}
+}

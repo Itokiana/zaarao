@@ -1,0 +1,2 @@
+$(`#ideas-<%= !@idea.on %>`).find(`#idea-<%= @idea.id %>`).remove();
+$(`#ideas-<%= @idea.on %>`).prepend(`<%= render 'ideas/idea', idea: @idea %>`);

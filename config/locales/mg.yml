@@ -1,0 +1,254 @@
+mg:
+  welcome: "Tongasoa"
+  types:
+    1: 'Raharaham-bahiny'
+    2: "Fivoarana sy fananganana"
+    3: 'Toerana sy tsena'
+    4: "Kolontsaina, kanto ary lova"
+    5: 'Fanabeazana, fahatanorana ary mbola kely'
+    6: 'Asa'
+    7: "Tontolo iainana sy fampandrosoana maharitra"
+    8: 'Fonenana'
+    9: 'Digital'
+    10: 'Fahadiovana'
+    11: "Tambajotra, angovo sy jiro"
+    12: 'fiarovana'
+    13: 'Firaisankina, sosialy ary fahasalamana'
+    14: 'Fanatanjahantena sy fialam-boly'
+    15: 'Fitaterana sy fifindra-monina'
+    16: "Asa sy lalana"
+    17: 'Vondrona Eropeana'
+    18: 'fiainana institiota sy fitantanana'
+  activities:
+    1: 'Mpisotro ronono'
+    2: "Mpianatra"
+    3: "Tsy an'asa"
+    4: "Mpiasa"
+    5: 'Hafa'
+    labels:
+      option: Ny anjara toeranao
+  tags:
+    upload: "Ovaina ilay sary"
+    first: "Aoka ianao no ho voalohany"
+    title: "lohateny ny hevitra"
+    my_space: "Hanova ny momba ny toerako "
+    waiting: "Hevitra mbola miandry"
+    by: "hoy"
+    one: "tamin'ny"
+    all: "Izy rehetra"
+    activity: "Anjara asa"
+    idea: "Hevitra"
+    ideas: Hevitra
+    description: 'Oay ry zalahy dia handre ny hevitra tsara indrindra efa henonao dia henoy kely aho ...'
+    project: "Tetikasa"
+    space: "Fikambanana"
+    spaces: "Ireo fikambanana misy ahy"
+    survey: "Fanadihadiana"
+    surveys: Ireo fanadihadiana
+    actuality: "Vaovao"
+    language: "Fiteny"
+    or_classical: "Tsotra kokoa"
+    contribution: "fandraisana anjara"
+    tr_under_project:
+        sous: "eo ambany tetikasa"
+    no_result: Tsy misy valiny hita
+    buttons:
+      edit_actuality: "Ovaina"
+      edit_under_project: "Ovay"
+      share_your_idea: "Zarao ny hevitrao"
+      edit_your_idea: "Hamarino ny hevitrao"
+      show: "Asehoy"
+      change_picture: "Hanova sary"
+      change_password: "Hanova tenimiafina"
+      save: "Tehirizina"
+      save_changes: "Ovaina"
+      join: "Handray anjara"
+      publish: Zarao
+      load_more: Bebe kokoa
+    labels:
+      ready: "Vonona"
+      cover_picture: "Sary fanehoana"
+      profile_picture: "Profile picture in malagasy"
+      drag_and_drop_a_file: "Misafidiana na ampetrao ny sary"
+      discoverable: Hita ny rehetra
+      private: Toerana manokana
+      about: Mombamomba
+      citizen: olom-pirenena
+      citizens: Ireo olom-pirenena
+      contributions: contributions
+      responses: valiny
+      accomplished: nahomby
+      is_administered_by: dia tantanan'i
+      last: farany
+      administration_login: nahitana ny tomponandraikitra
+      this: ity
+      message: hafatra
+      send: andefa
+      a: ''
+      or: na
+      to: ho an'
+      request: fangatahana
+      remark: Fanamarihana
+      citizens_contributions: Ireo valiny avy amin'ny tsirairay
+      commited: voaray
+      commited_citizens: "%{citizens} %{commited}"
+      commited_surveys: "Ireo fanadihadiana voaray"
+  navbar:
+    home: "Tongasoa"
+    my_space: "Ny toerako"
+    my_profile: "Ny momba ahy"
+    edit_my_profile: "Hanova ny momba ahy"
+    settings: "Fikirana"
+    log_out: "Iala"
+    sign_in: "Mifandray"
+    sign_up: "Hisoratra anarana"
+    available_spaces: "Toerana iombonana"
+  footer:
+    copyright: "©2019, namboarina niaraka tamin'ny <i class='fa fa-heart text-danger'></i>nay manontolo avy aty @Sayna"
+  home:
+    header_title: "Zarao, olom-pirenena isan'andro"
+    header_content: "Zarao dia vahaolana ifandraisan'ny olompirenena izay ahafahana mandray fanapahan-kevitra miaraka amin'ny lohahevitra mahaliana amin'ny ankapobeny."
+  user:
+    my_profile: "Ny momba ahy"
+    all_my_contributions: "Ireo fandraisana anjara nataoko"
+    user_contribution: "Ireo anjaran'i %{fullname}"
+    index: Mpikambana
+  spaces:
+    title: toerana
+    update: "Nohavaozina soa aman-tsara ny habaka."
+    results: "Valiny %{count}"
+    search: Fidiadiavana
+    complete: "Azafady mba fenoy ny mombamombanao alohany anoizanao"
+    no_available_idea: "Tsy mbola misy hevitra"
+    no_available_survey: "Mbola tsy misy fifidianana"
+    no_available_project: "Tsy misy tetikasa vaovao"
+    no_created_idea: "Tsy misy hevitra noforonina"
+    no_created_survey: "Mbola tsy misy fifidianana noforonina"
+    no_created_project: "Mbola tsy misy tetikasa noforonina"
+    join: "Tafiditra soamatsara amin'ity toerana vaovao ity ianao"
+    visit: Hitsidika
+    my_space: Ny Toerana misy ahy
+  surveys:
+    labels:
+      result: Valin'ny fanadihadiana
+      question: 
+        one: Fanontaniana voalohany
+        other: Fanontaniana faha-%{number}
+      finished: Vita
+      thanks: 
+        male: Misaotra anao indrindra %{name} tamin'ny fandraisanao anjara
+        female: ""
+    submit: "Alefa"
+    editable: "io fanadihadiana io dia tsy afaky ovaina"
+    warning: "Mba fenoy azafady ilay fanadihadiana alohany hanohizanao"
+    success: "Voray soamatsara ny valiny nofenonao"
+    destroy: "voafafa soamatsara"
+    update: "vita soamatsara ny fanovana"
+    please: "Azafady manampy azafady farafahakeliny iray amin'ny fanadihadiana nataonao"
+    entre: "Ampidiro eto ny fanontanianao"
+    add_question: "Manampy fanontaniana"
+    edit: "Hanova ny fanadihadiana"
+    add: "Azafady ampio fanontaniana ny fanadihadianao"
+    create_new_survey: "Fanadihadiana vaovao"
+    check_your_survey: "Hamarino ny fanadihadiana nataonao"
+    update_survey: "Hanavao ny fanadihadiana"
+    survey_submitted: Efa nandefa ny vatonao ianao, hoavy tsy ho ela ny valiny
+  actualities:
+    destroy: "voafafa soamatsara"
+    update: "vita soamatsara ny fanovana"
+    create: "Nety ny famoronana vaovao"
+    create_new_actuality: "Inona ny vaovao ?"
+    edit: "Anova ity vaovao ity"
+    update_actuality: "Hanavao ilay vaovao"
+  call_for_idea:
+    title: Ireo tetikasa madinidinika
+    need: "Mila ny hevitrao izahay"
+    ideas: Ireo hevitra voaangona
+    new_idea: "Arosoy ny hevitrao"
+    length: "%{count} tetikasa zanany"
+    ideas:
+      length: "Hevitra %{count} voaangona"
+  projects:
+    editable: "io tetikasa io dia tsy afaky ovaina"
+    destroy: "voafafa soamatsara"
+    update: "Nahomby ny fanavaozana ny tetikasa."
+    warning: "Mba fenoy ity tetikasa ity alohan'ny hanohizana"
+    add: "Manampia fiantsoana hevitra"
+    edit: "Tetikasa fanitsiana"
+    create: "Azafady ampio ny miantso hevitra amin'ny tetikasananao"
+    name: "Omeo lohateny ny tetik'asanao"
+    new: "Tetikasa vaovao"
+    check_your_project: "Hamarino ny tetikasanao"
+    create_new_project: "Hanangana tetikasa"
+  actualities:
+    create_new_actuality: "Inona ny vaovao ?"
+  idea:
+    placeholder: "Omeo lohateny ny hevitrao"
+    description: "Famaritana tsotsotra ny hevitra tianao aroso mba hahazoan'ny rehetra mahazo azy..."
+    comment: "fanehoan-kevitra"
+    opinion: "Zarao ny hevitrao"
+    create: "nahomby ny famoronana hevitra . Azafady zahao ilay hevitrao alohan'ny hamoahana azy."
+    update: "Nivoaka tamim-pahombiazana ny hevitra niasa."
+    destroy: "Rava tanteraka ny hevitra niasa."
+    sorry: "azafady fa efa navoaka io hevitra io"
+    waiting_for_validation: Fotoana vitsivitsy sisa de hivoaka ny hevitrao
+    valide:
+      completed: "fenoy tanteraka ny mombamomba anao alohan'ny hanohizana"
+      public: "Miandry fanamarinana ianao alohan'ny hamoahana azy"
+      first: "Aoka ianao no ho voalohany"
+    searches:
+      result: Valiny
+      results: Valiny
+    admin:
+      new: hevitra vaovao
+      created: "Noforonin'i"
+      waiting: Tsy misy hevitra miandry amin'izao fotoana izao
+  questions:
+    attr:
+      mcq: Fanontaniana miandry valiny maromaro
+  activerecord:
+    attributes:
+      title: "Lohateny"
+      type: "Foto-kevitra"
+      name: "Anarana"
+      description: "Famaritana"
+      content: "Hevitra ato Anatiny"
+      feedbacks: "Hevitra"
+      action: "Asa"
+      created_at: "Vita ny"
+      end_date: "Daty fiafarana"
+      deadline: Fe-potoana
+  comments:
+    zero: Arosoy ny hevitrao 
+    buttons:
+      reply: Valiko
+    placeholders:
+      new_comment: Soraty eto izay tianao avaly...
+    length: Valiny %{count}
+  users:
+    participated: "Tsy mbola nandray anjara tamin'ny fanadihadiana ianao"
+    attributes:
+      firstname: "Fanampinanarana"
+      lastname: "Anarana"
+      birthdate: "Teraka tamin'ny"
+      gender: "Lahy sa vavy ?"
+      male: "Lehilahy"
+      female: "Vehivavy"
+      undefined: "Tsy voasokajy"
+      about_me: "Mombamomba ahy"
+      email: "Mailaka"
+      password: "Tenimiafina"
+      password_confirmation: "Fanamafisana ny tenimiafina"
+      current_password: "Tenimiafina ankehitriny"
+      new_password: "Tenimiafina vaovao"
+  searches:
+    loading: Eo ampikarohana...
+  shared:
+    insctructions: 'Instructions'
+    supported_formats: 'Les formats supportés'
+    video_upload_not_allowed: "Vous <strong>ne pouvez pas</strong> uploader une vidéo en tant que photo de couverture"
+    insert_external_links: "Pour ajouter une vidéo veuillez l'insérer dans la description à l'aide d'un <strong>lien éxterne</strong> (provenant de youtube/facebook/...)"
+    royalty_free: 'libre de droit'
+    all_free_links_are_supported: "Tout lien externe %{royalty_free_link} est supporté"
+    all_external_links: "Tout lien externe"
+    are_supported: "est supporté"

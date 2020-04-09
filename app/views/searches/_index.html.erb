@@ -1,0 +1,44 @@
+<div id="search-main-div">
+    <div class="text-left mb-2 br-5" style="height: 33px; width: 100%;overflow-x: auto; overflow-y: hidden;">
+        <div style="width: max-content; overflow-x: scroll; overflow-y: hidden;">
+            <a href="<%= search_path(item: item_type, q: '*') %>" data-remote="true" class="mdc-chip" role="row">
+                <div class="mdc-chip__ripple"></div>
+                <span role="gridcell">
+                    <span role="button" tabindex="0" class="mdc-chip__text">
+                        <%= '*' %>(<%= count(result.length) %>)</span>
+                </span>
+            </a>
+            <% previous_items = [] %>
+            <% result.each do |item| %>
+                <% next if item.actuality? || item.space? || previous_items.select{|i| i.type == item.type}.any? %>
+                <% previous_items.push item %>
+                <a href="<%= search_path(item: item_type, q: item.type.id) %>" data-remote="true" class="mdc-chip <%= item.survey? ? 'bg-warning' : (item.project? ? 'bg-success' : (item.actuality? ? 'bg_info' : '')) %>" role="row">
+                    <div class="mdc-chip__ripple"></div>
+                    <span role="gridcell">
+                        <span role="button" tabindex="0" class="mdc-chip__text">
+                            <%= item.type.name %>(<%= count(result.select{|i| !i.actuality? && !i.space? && i.type == item.type}.length) %>)</span>
+                    </span>
+                </a>
+            <% end %>
+        </div>
+        <style type="text/css">
+        .text-left.mb-2.br-5::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+        </style>
+    </div>
+    <div class="row">
+        <% items.each do |item| %>
+        <%= render 'shared/show_item', item: item, classes: "col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3" %>
+        <% end %>
+    </div>
+</div>
+<% if item_type != "all" && !pagy.nil? || (item_type == 'all' && controller_name=='searches')%>
+    <%#= pagy_bootstrap_nav(pagy) %>
+    <%#= pagy_bootstrap_nav_js(pagy) %>
+    <%== pagy_bootstrap_combo_nav_js(pagy) %>
+    <%#= render partial: 'pagy/nav', locals: {pagy: pagy} %>
+<% elsif (item_type == 'all' && controller_name=='spaces') || pagy.nil? && !items.last_page? %>
+    <%= link_to_next_page items, t('tags.buttons.load_more'), id: "load-more", remote: true, class: "btn btn-info" %>
+<% end %>

@@ -1,0 +1,20 @@
+<%= render 'shared/nota-bene' %>
+<div class="row makeTop scroll-here" scroll-to="50">
+    <div class="col-12 offset-0">
+        <div class="card pb-2 pt-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 offset-0">
+                        <h4>
+                            <%= t('projects.new') %>
+                        </h4>
+                        <%= render 'projects/form', project: @project %>
+                        <button id="fake-btn" class="btn btn-md float-right">
+                            <%= t('tags.buttons.save') %> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%= render 'shared/tinymce-editor', textarea: "textarea#project_description", menubar: "file insert" %>

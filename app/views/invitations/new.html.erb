@@ -1,0 +1,74 @@
+<div class="modal modal-primary fade" id="new-invitation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">New invitation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body table-responsive">
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="container">
+                            <div class="content">
+                                <!-- START CENTERED WHITE CONTAINER -->
+                                <table role="presentation" class="main">
+                                    <!-- START MAIN CONTENT AREA -->
+                                    <tr>
+                                        <td class="wrapper">
+                                            <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <p>Hi there,</p>
+                                                        <p>
+                                                            <%= @invitation.sender.fullname %> invited you to join the space
+                                                            <%= @invitation.sender.space.name %>
+                                                        </p>
+                                                        <a href="/accept-invitation/<%= @invitation.id %>/<%= @invitation.password_token %>" class="btn btn-success w-auto">Accept</a>
+                                                        <a href="/decline-invitation/<%= @invitation.id %>/<%= @invitation.password_token %>" class="btn btn-danger w-auto">Decline</a>
+                                                        <p>This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.</p>
+                                                        <p>Good luck! Hope it works.</p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- END MAIN CONTENT AREA -->
+                                </table>
+                                <!-- END CENTERED WHITE CONTAINER -->
+                                <!-- START FOOTER -->
+                                <div class="footer">
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td class="content-block">
+                                                <span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
+                                                <br> Don't like these emails? <a href="http://i.imgur.com/CScmqnj.gif">Unsubscribe</a>.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="content-block powered-by">
+                                                Powered by <a href="http://htmlemail.io">HTMLemail</a>.
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!-- END FOOTER -->
+                            </div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    setTimeout(function() {
+        $(`#new-invitation-modal`).modal('show');
+    }, 3000);
+});
+</script>

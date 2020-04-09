@@ -1,0 +1,4 @@
+form.disabled::before {
+	color: white;
+	opacity: 0.5;
+}

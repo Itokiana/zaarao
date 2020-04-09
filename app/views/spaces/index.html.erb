@@ -1,0 +1,82 @@
+<div class="row scroll-here" scroll-to="50">
+    <div class="col-md-12 mt-3 ml-auto mr-auto">
+        <div class="section-tabs bg-transparent">
+            <div id="nav-tabs">
+                <div class="card card-nav-tabs">
+                    <div class="card-header-primary py-1 px-1 br-t-5">
+                        <div class="nav-tabs-navigation lol">
+                            <div class="nav-tabs-wrapper">
+                                <%= form_with(url: search_path, method: :get, id: "search-form") do |f| %>
+                                <%= f.submit "Submit", :disable_with => 'Submiting...', class: "collapse hidden hide fade" %>
+                                <ul class="nav nav-tabs row px-0 mx-xs-0 mx-sm-0 mx-md-0 list-inline" style="display: flex !important; overflow-x: auto;" data-tabs="tabs">
+                                    <li class="list-inline-item text-center nav-item col-2 px-0 m-0" style="display: inline-block;">
+                                        <a href="<%= search_path(item: 'all', q: '*') %>" data-remote="true" class="nav-link px-xs-5 py-xs-15 p-sm-2 p-md-0" href="#actualities">
+                                            <i alt="" class="fa fa-home fa-2x w-xs-50 w-sm-50 w-md-15 w-lg-15 w-xl-15 w-xxl-15"></i>
+                                            <figcaption class="changeBlock hide-xs hide-sm hide-md fs-lg-11">
+                                                <%= t('tags.all') %>
+                                            </figcaption>
+                                            <%= f.radio_button :item, "all", id: "search_all", class: "collapse" %>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item text-center nav-item col-2 px-0 m-0" style="display: inline-block;">
+                                        <a href="<%= search_path(item: 'actuality', q: '*') %>" data-remote="true" class="nav-link px-xs-5 py-xs-15 p-sm-2 p-md-0" href="#actualities">
+                                            <img src="/assets/actu.png" alt="" class="w-xs-50 w-sm-50 w-md-15 w-lg-15 w-xl-15 w-xxl-15">
+                                            <figcaption class="changeBlock hide-xs hide-sm hide-md fs-lg-11">
+                                                <%= t('tags.actuality') %>
+                                            </figcaption>
+                                            <%= f.radio_button :item, "actuality", id: "search_actualities", class: "collapse" %>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item text-center nav-item col-2 px-0 m-0" style="display: inline-block;">
+                                        <a href="<%= search_path(item: 'idea', q: '*') %>" data-remote="true" class="nav-link px-xs-0 py-xs-15 p-sm-2 p-md-0" href="#ideas">
+                                            <img src="/assets/idea.png" alt="" class="w-xs-50 w-sm-50 w-md-15 w-lg-15 w-xl-15 w-xxl-15">
+                                            <figcaption class="changeBlock hide-xs hide-sm hide-md fs-lg-11">
+                                                <%= t('tags.idea') %>
+                                            </figcaption>
+                                            <%= f.radio_button :item, "idea", id: "search_ideas", class: "collapse" %>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item text-center nav-item col-2 px-0 m-0" style="display: inline-block;">
+                                        <a href="<%= search_path(item: 'survey', q: '*') %>" data-remote="true" class="nav-link px-xs-5 py-xs-15 p-sm-2 p-md-0" href="#surveys">
+                                            <img src="/assets/sondage.png" alt="" class="w-xs-50 w-sm-50 w-md-15 w-lg-15 w-xl-15 w-xxl-15">
+                                            <figcaption class="changeBlock hide-xs hide-sm hide-md fs-lg-11">
+                                                <%= t('tags.survey') %>
+                                            </figcaption>
+                                            <%= f.radio_button :item, "survey", id: "search_surveys", class: "collapse" %>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item text-center nav-item col-2 px-0 m-0" style="display: inline-block;">
+                                        <a href="<%= search_path(item: 'project', q: '*') %>" data-remote="true" class="nav-link px-xs-5 py-xs-15 p-sm-2 p-md-0" href="#projects">
+                                            <img src="/assets/project.png" alt="" class="w-xs-50 w-sm-50 w-md-15 w-lg-15 w-xl-15 w-xxl-15">
+                                            <figcaption class="changeBlock hide-xs hide-sm hide-md fs-lg-11">
+                                                <%= t('tags.project') %>
+                                            </figcaption>
+                                            <%= f.radio_button :item, "project", id: "search_projects", class: "collapse" %>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item w-p-0 hide-xs"></li>
+                                </ul>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body px-xs-3">
+                        <div class="tab-content text-center" id="tabs-content">
+                            <div class="tab-pane active" id="all">
+                                <%= @fullall.any? ? (render 'searches/index', pagy: @pagy, result: @fullall, items: @items, item_type: @item_type, divclasses: "") : (render 'shared/nothing-found', result: @fullall, item: "all") %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$searchesResultLength = $(`#searches-result-length`);
+$searchesResultDiv = $(`#tabs-content tab-pane:first row:first`);
+$searchForm = $(`.search-form`);
+$searchMainDiv = $(`#search-main-div`);
+checkBox(form = $searchForm, checkboxes = "[type='checkbox']", parents = "label[href]");
+checkBox(form = $searchForm, checkboxes = "[type='radio']", parents = "label[href]");
+</script>

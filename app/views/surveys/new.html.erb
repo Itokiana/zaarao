@@ -1,0 +1,79 @@
+<%= render 'shared/nota-bene' %>
+<div class="makeTop scroll-here" scroll-to="50">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card pb-2 pt-1">
+                <div class="container">
+                    <div class="">
+                        <h4>
+                            <%= t('surveys.create_new_survey') %>
+                        </h4>
+                        <%= form_with(model: @survey, url: surveys_path, local: true, html: {id: "create-survey-form"}) do |form| %>
+                        <%= render 'shared/error_messages', item: @survey %>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                                <div class="form-group">
+                                    <%= form.label :name, t('activerecord.attributes.title'), class: "bmd-label-floating" %>
+                                    <%= form.text_field :name, class: "form-control", required: "" %>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <%= form.label :end_date, t('activerecord.attributes.end_date'), class: "label-control" %>
+                                    <%= form.text_field :end_date, class: "form-control datetimepicker", required: "" %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <%= form.label :type, t('activerecord.attributes.type'), class: "bmd-label-floating" %>
+                            <select name="survey[type_id]" id="survey_type_id" class="form-control">
+                                <% Type.all.each do |type| %>
+                                <option value="<%= type.id %>">
+                                    <%= t("types.#{type.id}") %>
+                                </option>
+                                <% end %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <%= form.label :cover_picture, t('tags.labels.cover_picture') %>
+                            <div class="file-upload">
+                                <div class="file-upload-content">
+                                    <img class="file-upload-image w-100 img-thumbnail br-0" src="<%= @survey.cover_picture.attached? ? url_for(survey.cover_picture) : " javascript:;" %>" alt="your image" />
+                                    <div class="image-title-wrap text-left">
+                                        <button type="button" onclick="removeUpload()" class="remove-image btn btn-danger pt-3 w-auto">Remove <span class="image-title">Uploaded Image</span></button>
+                                    </div>
+                                </div>
+                                <div class="image-upload-wrap">
+                                    <%= form.file_field :cover_picture, class: "file-upload-input", onchange: "readURL(this);" %>
+                                    <label class="drag-text" for="survey_cover_picture" style="display: block; cursor: pointer;">
+                                        <h3>
+                                            <%= t('tags.labels.drag_and_drop_a_file') %>
+                                        </h3>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="survey_description" class="label-control mb-0">Description</label>
+                            <%= form.text_area :description, class: "form-control", required: "" %>
+                        </div>
+                        <div class="actions">
+                            <%= form.submit t('tags.buttons.save'), id: "create-survey-btn", class: "collapse btn btn-block" %>
+                            <%= form.submit t('tags.buttons.save'), id: "fake-create-survey-btn", class: "btn btn-block" %>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).on('ready turbolinks:load', function() {
+    $(`#fake-create-survey-btn`).click(function(event) {
+        event.preventDefault();
+        $(`#create-survey-btn`).click();
+    });
+});
+</script>
+<%= render 'shared/tinymce-editor', textarea: "textarea#survey_description", menubar: "file insert" %>

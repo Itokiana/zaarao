@@ -1,0 +1,78 @@
+<!--Section: Post-->
+<section class="container mt-3">
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+        <!--Grid column-->
+        <div class="col-md-12 mb-4 px-0">
+            <!-- Featured image -->
+            <!--Card-->
+            <div class="card mb-4">
+                <% if current_user == @actuality.admin %>
+                <%= link_to [:edit, @actuality, locale: I18n.locale], data: {turbolinks: false}, class: "text-primary close zi-1 ml-auto" do %>
+                <i class="fa fa-edit fa-2x"></i>
+                <% end %>
+                <% end %>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <%= t('tags.by') %> <a href="<%= user_path(id: @actuality.admin.id) %>" style="color: rgb(156, 39, 176);">
+                                <%= @actuality.admin.fullname %> </a>
+                            <%= t('tags.one') %>
+                            <%= I18n.l(@actuality.created_at, format: :short) %>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="text-right">
+                                <span class="badge badge-info"><i class="fa fa-eye"></i>
+                                    <%= count(@actuality.viewers.length) %></span> |
+                                <span class="badge badge-info"><i class="fa fa-heart"></i>
+                                    <%= count(@actuality.likes.length) %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!--Card content-->
+                <div class="card-body" style="overflow: scroll;">
+                    <p class="h2">
+                        <%= @actuality.name %>
+                    </p>
+                    <p class="pt-5">
+                        <%= @actuality.html_description %>
+                    </p>
+                </div>
+                <hr class="hr">
+                <div class="card-footer" style="">
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="badge badge-dark">
+                                    <%= fa_icon 'eye', text: count(@actuality.viewers.length) %>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <dd id="actuality-<%= @actuality.id %>-heart">
+                                    <%= render 'votes/short_vote', vote_type: "heart", item: @actuality, item_type: "actuality", vote_weight: 1, color: "danger" %>
+                                </dd>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="my-5">
+                <div class="card-body p-0">
+                    <%= render 'comments/new', comment: Comment.build_from( @actuality, current_user.id, '' ), item: @actuality, item_id: @actuality.id, item_type: 'actuality' %>
+                    <section id="actuality-<%= @actuality.id %>-comments" class="comments">
+                        <%= render 'comments/index', comments: @actuality.comments, defcon: 0 %>
+                    </section>
+                </div>
+            </section>
+            <!--Section: Author Box-->
+        </div>
+    </div>
+    <!--Grid column-->
+    <!--Grid row-->
+    <% if current_user.is_admin? %>
+    <%= link_to (fa_icon "pencil"), edit_actuality_path(id: @actuality.id), class: 'btn btn-outline-primary' %>
+    <% end %>
+</section>
+<!--Section: Post-->

@@ -1,0 +1,29 @@
+<div class="section section-signup page-header " style="background-image: url('/assets/route.jpg');">
+    <div class="container pt-xs-5 mt-auto mb-lg-50">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 ml-auto mr-auto">
+                <div class="card card-login">
+                    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "form", method: :post }) do |f| %>
+                    <div class="card-header card-header-primary text-center">
+                        <h4 class="card-title">  <%= t('activerecord.attributes.user.forgot_your_password')  %></h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="material-icons">mail</i>
+                                </span>
+                            </div>
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t('activerecord.attributes.user.placeholder') , class: "form-control", required: "" %>
+                        </div>
+                    </div>
+                    <div class="footer text-center">
+                        <%= f.submit t('activerecord.attributes.user.reset')  , class: "btn btn-outline-primary btn-link btn-wd btn-lg" %>
+                    </div>
+                    <% end %>
+                </div>
+                <%= render "users/shared/links" %>
+            </div>
+        </div>
+    </div>
+</div>

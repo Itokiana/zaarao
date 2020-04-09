@@ -1,0 +1,15 @@
+<li id="option<%= option.id %>">
+    <div class="option w-100">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <a data-method="DELETE" data-remote="true" href="<%= option_path(id: option.id) %>" for="#option<%= option.id %>" class="remove close text-danger"><i class="fa fa-times-circle-o"></i></a>
+                </span>
+            </div>
+            <input type="text" name="" value="<%= option.name %>" class="form-control" placeholder="" disabled="disabled">
+        </div>
+    </div>
+</li>
+<script type="text/javascript" data-turbolinks-track="reload">
+    removeCard();
+</script>

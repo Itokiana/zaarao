@@ -1,0 +1,33 @@
+<div class="media" id="comment<%= comment.id %>">
+    <a class="float-left" href="javascript:;">
+        <div class="avatar">
+            <img class="media-object" src="<%= url_for(comment.user.avatar) %>" alt="...">
+        </div>
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">
+            <%= comment.user.fullname %>
+            <small>&#xB7;
+                <%= time_ago_in_words(comment.created_at) %></small>
+        </h4>
+        <p id="comment-<%= comment.id %>-body">
+            <%= comment.body %>
+        </p>
+        <div class="media-footer">
+            <% if false %>
+            <a href="javascript:;" class="btn btn-primary btn-link" rel="tooltip" title="Reply to Comment">
+                <i class="material-icons">reply</i> Reply
+            </a>
+            <% end %>
+            <dd id="comment-<%= comment.id %>-heart" class="btn btn-danger btn-link">
+                <%= render 'votes/short_vote', vote_type: "heart", item: comment, item_type: "comment", vote_weight: 1, color: "success" %>
+            </dd>
+        </div>
+        <% if defcon < 1 %>
+        <%= render 'comments/new', comment: Comment.build_from( comment, current_user.id, '' ), item: comment, item_id: comment.id, item_type: 'comment' %>
+        <section id="comment-<%= comment.id %>-comments" class="comments">
+            <%= render 'comments/index', comments: comment.comment_threads, defcon: 1 %>
+        </section>
+        <% end %>
+    </div>
+</div>

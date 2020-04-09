@@ -1,0 +1,87 @@
+<!--Section: Post-->
+<section class="mt-3">
+    <div class="container">
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+            <!--Grid column-->
+            <div class="col-md-12 px-0 mb-4">
+                <!-- Featured image -->
+                <!--Card-->
+                <div class="card mb-4">
+                    <% if current_user == @idea.admin %>
+                        <%= link_to [:edit, @idea, locale: I18n.locale], data: {turbolinks: false}, class: "text-primary close zi-1 ml-auto" do %>
+                            <i class="fa fa-edit fa-2x"></i>
+                        <% end %>
+                    <% end %>
+                    <% if !@idea.content_file? %>
+                    <div class="ImgBoxes m-0 br-0 br-t-5" <% if @idea.cover_picture.attached? %> style="background: url(
+                        <%= url_for(@idea.cover_picture) %>) no-repeat black center;"
+                        <% else %> style="background-color: #000;"
+                        <% end %>>
+                        <% if @idea.has_video? %>
+                        <%= video_tag @idea.video.url.to_s, controls: true, autoplay: true, style: "height: -webkit-fill-available; height: -moz-fill-available; height: -o-fill-available;", class: "w-100" %>
+                        <% elsif !@idea.has_image? %>
+                        <%= image_tag @idea.file.url.to_s, class: "w-100" %>
+                        <% else %>
+                        File not supported
+                        <% end %>
+                    </div>
+                    <% end %>
+                    <!--Card content-->
+                    <div class="card-body pt-5">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <%= t('tags.by') %> <a href="<%= user_path(id: @idea.admin.id) %>" style="color: rgb(156, 39, 176);">
+                                    <%= @idea.admin.fullname %> </a>
+                                <%= t('tags.one') %>
+                                <%= I18n.l(@idea.created_at, format: :short) %>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="text-right">
+                                    <span class="badge badge-info"><i class="fa fa-eye"></i>
+                                        <%= count(@idea.viewers.length) %></span> |
+                                    <span class="badge badge-info"><i class="fa fa-comments"></i>
+                                        <%= count(@idea.comments.length) %></span>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="h5 my-4">
+                            <%= @idea.name %>
+                        </h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <p>
+                                    <%= @idea.html_description %>
+                                </p>
+                            </div>
+                            <div class="col-sm-1">
+                                <section id="ratings-idea-<%= @idea.id %>" class="ratings"></section>
+                                <dl>
+                                    <dd id="idea-<%= @idea.id %>-positive_report">
+                                        <%= render 'votes/report', vote_type: "positive_report", item: @idea, item_type: "idea", vote_weight: 1, color: "success" %>
+                                    </dd>
+                                    <dd id="idea-<%= @idea.id %>-negative_report">
+                                        <%= render 'votes/report', vote_type: "negative_report", item: @idea, item_type: "idea", vote_weight: 1, color: "danger" %>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <section class="my-5">
+                    <div class="card-body p-0">
+                        <%= render 'comments/new', comment: Comment.build_from( @idea, current_user.id, '' ), item: @idea, item_id: @idea.id, item_type: 'idea' %>
+                        <section id="idea-<%= @idea.id %>-comments" class="comments">
+                            <%= render 'comments/index', comments: @idea.comments, defcon: 0 %>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!--Grid column-->
+        <!--Grid row-->
+    </div>
+</section>
+<!--Section: Post-->

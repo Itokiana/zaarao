@@ -1,0 +1,2 @@
+class ZaraoController < ApplicationController
+end

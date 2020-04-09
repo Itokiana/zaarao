@@ -1,0 +1,26 @@
+<% if flash.any? %>
+<div id="flashes" class="w-xs-100 p-1 w-xs-100 right-0">
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %> mb-0 zi-1000 w-auto">
+        <div class="container">
+            <div class="alert-icon">
+                <% case key %>
+                <% when 'danger' %>
+                <i class="material-icons">error_outline</i>
+                <% when 'warning' %>
+                <i class="material-icons">warning</i>
+                <% when 'success' %>
+                <i class="material-icons">check</i>
+                <% when 'info' %>
+                <i class="material-icons">info_outline</i>
+                <% end %>
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="material-icons" style="color: brown;">clear</i></span>
+            </button>
+            <b><%= key.capitalize %> alert:</b><%= value %>
+        </div>
+    </div>
+    <% end %>
+</div>
+<% end %>

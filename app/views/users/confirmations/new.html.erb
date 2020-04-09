@@ -1,0 +1,37 @@
+<div class="section section-signup page-header " style="background-image: url('/assets/route.jpg');">
+    <div class="container pt-xs-5 mt-auto mt-xs-0 ">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 ml-auto mr-auto theA">
+                <div class="card card-login pb-2">
+                    <div class="card-header card-header-primary text-center">
+                        <h4 class="card-title text-capitalize">
+                            <%= t('users.confirmations.new.resend_confirmation_instructions') %>
+                        </h4>
+                    </div>
+                    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="material-icons">mail</i>
+                                </span>
+                            </div>
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="footer text-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <%= f.submit t('users.confirmations.new.resend_confirmation_instructions'), class: "btn btn-outline-primary btn-link btn-wd btn-lg changeWidth w-75" %>
+                            </div>
+                            <div class=" col-12">
+                                <%= render "users/shared/links" %>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

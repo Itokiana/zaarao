@@ -1,0 +1,26 @@
+<div class="">
+    <div class="panel panel-default">
+        <%= form_with(model: question) do |f| %>
+        <div class="panel-body">
+            <div class="mt-2 pt-2">
+                <div class="input-group control-group">
+                    <%= f.text_field :name, class: "form-control new-question", placeholder: t('surveys.entre') %>
+                    <div class="input-group-btn">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <%= f.check_box :mcq, class: "form-check-input" %>MCQ
+                                <span class="form-check-sign">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group-btn">
+                    <button class="btn btn-success add-more-question px-3" type="submit"><i class="fa fa-plus"> <%= t('surveys.add_question') %></i></button>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

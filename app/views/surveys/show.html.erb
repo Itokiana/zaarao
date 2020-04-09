@@ -1,0 +1,171 @@
+<link href="/assets/mdb-pro-css/msteppers.css" rel="stylesheet">
+<script type="text/javascript" src="/assets/mdb-pro-js/msteppers.js"></script>
+<!--Section: Post-->
+<section class="mt-3">
+    <div class="container">
+        <div class="row wow fadeIn">
+            <div class="col-md-12 px-0">
+                <div class="card">
+                    <% if current_user == @survey.admin %>
+                    <%= link_to [:edit, @survey, locale: I18n.locale], data: {turbolinks: false}, class: "text-primary close zi-1 ml-auto" do %>
+                    <i class="fa fa-edit fa-2x"></i>
+                    <% end %>
+                    <% end %>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <%= t('tags.by') %> <a href="<%= user_path(id: @survey.admin.id) %>" style="color: rgb(156, 39, 176);">
+                                            <%= @survey.admin.fullname %> </a>
+                                        <%= t('tags.one') %>
+                                        <%= I18n.l(@survey.created_at, format: :short) %>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="text-right">
+                                            <span class="badge badge-info"><i class="fa fa-eye"></i>
+                                                <%= count(@survey.viewers.length) %></span> |
+                                            <span class="badge badge-info"><i class="fa fa-users"></i>
+                                                <%= count(@survey.safe_users.length) %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <h3>
+                                    <%= @survey.name %>
+                                </h3>
+                            </div>
+                        </div>
+                        <blockquote class="blockquote bg-dark-o-10">
+                            <p>
+                                <%= @survey.html_description %>
+                            </p>
+                            <div class="blockquote-footer">
+                                <%= t('activerecord.attributes.deadline') %> :
+                                <%= I18n.l(@survey.end_date, format: :long) %>
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.Vertical Steppers -->
+<% if @survey.finished? %>
+<%= render 'surveys/result', survey: @survey, males: @survey.users.where(gender: "male"), females: @survey.users.where(gender: "female") %>
+<% elsif you_are_in_this(@survey) %>
+<section class="container">
+    <div class="jumbotron text-center">
+        <strong class="">
+            <%= t('surveys.survey_submitted') %></strong>
+    </div>
+</section>
+<% else %>
+<div class="container">
+    <div class="card px-4">
+        <div class="card-content">
+            <%= form_with(url: survey_path, data: { remote: false }) do |f| %>
+            <ul class="stepper demos list-unstyled">
+                <% @survey.questions.each_with_index do |question, id| %>
+                <li class="step <% if id == 0 %>active<% end %>">
+                    <div data-step-label="<% if id==0 %>
+                        <%= t('surveys.labels.question.one', number: id + 1) %>
+                        <% else %>
+                        <%= t('surveys.labels.question.other', number: id + 1) %>
+                        <% end %>" class="step-title  waves-dark">
+                        <%= question.name %>
+                    </div>
+                    <div class="step-content" style="">
+                        <div class="row">
+                            <% question.options.each_with_index do |option, opt_id| %>
+                            <div class="option col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 offset-0">
+                                <div class="input-group">
+                                    <% if question.mcq %>
+                                    <div class="input-group-prepend">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" value="<%= option.id %>" name="option[<%= option.id %>]">
+                                                <%= option.name %>
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <% else %>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="question[<%= question.id %>]" id="option<%= option.id %>" value="<%= option.id %>" <% if opt_id==0 %>required
+                                            <% end %>>
+                                            <%= option.name %>
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                            <% end %>
+                        </div>
+                        <div class="step-actions">
+                            <button class=" waves-dark btn blue next-step">CONTINUE</button>
+                            <% if id != 0 %>
+                            <button class=" waves-dark btn btn-link previous-step">BACK</button>
+                            <% end %>
+                        </div>
+                    </div>
+                </li>
+                <% end %>
+                <li class="step">
+                    <div class="step-title  waves-dark">
+                        <%= t('surveys.labels.finished') %>
+                    </div>
+                    <div class="step-content">
+                        <% if current_user.man? %>
+                        <%= t('surveys.labels.thanks.male', name: current_user.fullname) %>
+                        <% elsif current_user.woman? %>
+                        <%= t('surveys.labels.thanks.female', name: current_user.fullname) %>
+                        <% end %>
+                        <div class="step-actions">
+                            <%= f.submit t('surveys.submit'), :disable_with => 'Submiting...', class: "waves-dark btn blue" %>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <% end %>
+        </div>
+    </div>
+</div>
+<section class="my-5">
+    <div class="card-body p-0">
+        <%= render 'comments/new', comment: Comment.build_from( @survey, current_user.id, '' ), item: @survey, item_id: @survey.id, item_type: 'survey' %>
+        <section id="survey-<%= @survey.id %>-comments" class="comments">
+            <%= render 'comments/index', comments: @survey.comments, defcon: 0 %>
+        </section>
+    </div>
+</section>
+<script type="text/javascript">
+var stepper = document.querySelector('.stepper');
+var stepperInstace = new MStepper(stepper, {
+    // Default active step.
+    firstActive: 0,
+    // Allow navigation by clicking on the next and previous steps on linear steppers.
+    linearStepsNavigation: true,
+    // Auto focus on first input of each step.
+    autoFocusInput: true,
+    // Set if a loading screen will appear while feedbacks functions are running.
+    showFeedbackPreloader: true,
+    // Auto generation of a form around the stepper.
+    autoFormCreation: true,
+    // Function to be called everytime a nextstep occurs. It receives 2 arguments, in this sequece: stepperForm, activeStepContent.
+    // validationFunction: defaultValidationFunction, // more about this default functions below
+    // Enable or disable navigation by clicking on step-titles
+    stepTitleNavigation: true,
+    // Preloader used when step is waiting for feedback function. If not defined, Materializecss spinner-blue-only will be used.
+    feedbackPreloader: '<div class="spinner-layer spinner-blue-only">...</div>'
+})
+</script>
+<% end %>

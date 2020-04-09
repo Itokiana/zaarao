@@ -1,0 +1,145 @@
+mg:
+  activerecord:
+    attributes:
+      user:
+        confirmation_sent_at: Daty fanesorana ny fanamafisana
+        confirmation_token: Fanalahidy fanamafisana ny tenimiafina
+        confirmed_at: Voamarina fa
+        created_at: Voasoratra ao amin'ny
+        current_password: Ny tenimiafina ankehitriny
+        current_sign_in_at: Daty ny fifandraisana misy ankehitriny
+        current_sign_in_ip: IP an'ny fifandraisana ankehitriny
+        email: mailaka
+        encrypted_password: Ny tenimiafina mifangaro
+        failed_attempts: Tsy nahomby ny ezaka natao
+        last_sign_in_at: Daty farany misy ny fifandraisana farany
+        last_sign_in_ip: IP an'ny fifandraisana farany
+        locked_at: Mihidy
+        password: tenimiafina
+        password_confirmation: Ny fanamafisana ny tenimiafina
+        remember_created_at: Voatahiry an
+        remember_me: Tadidinao aho?
+        reset_password_sent_at: Haverina indray ny lakile
+        reset_password_token: Ny fanalahidy tenimiafina
+        sign_in_count:  Isanny fifandraisana
+        unconfirmed_email: Tsy voamarina ny mailaka
+        unlock_token: Ny fanalahidy lakile
+        updated_at: Fanavaozana daty
+    models:
+      user: mpampiasa
+  devise:
+    confirmations:
+      confirmed: Nohamafisina ny kaontinao.
+      new:
+        resend_confirmation_instructions: Avereno ny torolàlana fanamafisana
+      send_instructions: Rehefa afaka minitra vitsy, dia ho mailaka ianao miaraka amin'ny torolàlana hanamarina ny kaontinao.
+      send_paranoid_instructions: Raha misy ny mailakao ao amin'ny tranokalanay, dia hahazo hafatra ao anatin'ny minitra vitsy ianao miaraka amin'ny torolàlana hanamafisana ny kaontinao.
+    failure:
+      email_availble: "mailaka na Tenimiafina diso"
+      already_authenticated: Efa mifandray ianao.
+      inactive: Mbola tsy voahetsika ny kaontinao.
+      invalid: "%{authentication_keys} na tenimiafina tsy mety."
+      last_attempt: Mbola manana tranga ianao alohan'ny hanakanana ny kaontinao.
+      locked: Ny kaontinao dia mihidy.
+      not_found_in_database: "%{authentication_keys} na tenimiafina tsy mety."
+      timeout: Ela loatra ny fe-potoana tsy nanaovanao zavatra, azafady miverena mifandray indray .
+      unauthenticated: Tsy maintsy miditra ianao na misoratra anarana ra te hanohy.
+      unconfirmed: Ianao dia tsy maintsy manamafy ny kaontinao amin'ny mailaka.
+    mailer:
+      confirmation_instructions:
+        # action: Confirmer mon courriel
+        # greeting: Bienvenue %{recipient} !
+        # instruction: 'Azonao atao ny manamarina ny mailaka miaraka amin'ny rohy eto ambany: '
+        subject: Torolàlana fanamafisana
+      email_changed:
+        greeting: Salama %{recipient} !
+        message: Hifandray aminao izahay hampandre anao fa niova ny adiresy mailaka amin'ny %{email).
+        subject: Mailaka novaina
+      password_change:
+        greeting: Salama %{recipient} !
+        message: Mifandraika aminao izahay hampandre anao fa efa niova ny tenimiafinao.
+        subject: Niova ny tenimiafina
+      reset_password_instructions:
+        action: Ovaho ny tenimiafina
+        greeting: Salama %{recipient} !
+        instruction: 'Nisy olona nangataka rohy hanova ny tenimiafinao, indreto:'
+        instruction_2: Raha tsy nanao io fangatahana io ianao dia azafady ravao ny mailaka.
+        instruction_3: Tsy hiova ny tenimiafinao raha tsy tsindrio io rohy io ary miditra ny tenimiafina vaovao.
+        subject: Torolàlana hanovana ny tenimiafina
+      unlock_instructions:
+        action: Sokafy ny kaontiko
+        greeting: Salama %{recipient} !
+        instruction: 'Araho ity rohy ity hanokatra ny kaontinao:'
+        message: Voasakana ny kaontinao noho ny fanandramana nandefasana azy tsy nahomby.
+        subject: Torolàlana manokatra ny kaonty
+    omniauth_callbacks:
+      failure: 'Tsy afaka manamarina anao izahay amin ny %{kind} noho ny antony manaraka: ''%{reason}'' .'
+      success: Nomena alalana avy amin'ny kaontinao %{kind}.
+    passwords:
+      edit:
+        change_my_password: Ovaho ny tenimiafina
+        change_your_password: Ovay ny tenimiafinao
+        confirm_new_password: Hamarino ny tenimiafinao vaovao
+        new_password: Tenimiafina vaovao
+      new:
+        forgot_your_password: Adino adino?
+        send_me_reset_password_instructions: Alefaso aho hanavaozana ny tenimiafina
+      no_token: Tsy afaka miditra amin'ity pejy ity ianao raha tsy miditra aminy amin'ny mailaka famerenan'ny tenimiafina. Raha tena avy amin'ny mailaka toy izany ianao dia diniho fa naverinao ilay URL manontolo.
+      send_instructions: Rehefa afaka minitra vitsivitsy, dia hahazo mailaka milaza aminao ny fomba hamerenanao ny tenimiafina ianao.
+      send_paranoid_instructions: Raha misy ny mailakao ao amin'ny tranokalanay, dia mahazo rohy ianao hahazoana ny tenimiafina.
+      updated: Novana ny tenimiafinao. Mifandray ianao izao.
+      updated_not_active: Novana ny tenimiafinao.
+    registrations:
+      destroyed: Veloma! Voafao ny kaontinao Manantena ny hahita anao tsy ho ela aho.
+      edit:
+        are_you_sure: Azo antoka ve?
+        cancel_my_account: Azo antoka ve?
+        currently_waiting_confirmation_for_email: 'Fanamafisana miandry ny:% {email}'
+        leave_blank_if_you_don_t_want_to_change_it: avelao ho foana ny saha ity mba hamela azy tsy niova
+        title: Ovay %{resource}
+        unhappy: Tsy faly?
+        update: fiovana
+        we_need_your_current_password_to_confirm_your_changes: mila ny tenimiafinao ankehitriny hampanan-kery ireo fanovana ireo
+      new:
+        sign_up: fisoratana anarana
+      signed_up: Tonga soa ianao.
+      signed_up_but_inactive: Nahavita soa aman-tsara ianao. Saingy, tsy afaka miditra izahay satria tsy mbola nihetsika ny kaontinao.
+      signed_up_but_locked: Nahavita soa aman-tsara ianao. Na izany aza, tsy afaka niditra izahay raha nohidiana ny kaontinao.
+      signed_up_but_unconfirmed: Hafatra misy rohy fanamafisana dia alefa aminao amin'ny mailaka. Azafady araho ity rohy ity hampiasaina ny kaontinao.
+      update_needs_confirmation: Nanova ny kaontinao ianao, saingy mila mandinika ny adiresy mailaka vaovao anananao ianao. Azafady mba jereo ny mailaka ary tsindrio ny rohy fanamafisana mba hanamarinana ny adiresy vaovao.
+      updated: Nahomby ny fanovana ny kaontinao.
+      updated_but_not_signed_in: Ny kaontinao dia vita soa aman-tsara. Tsy maintsy miditra ao ianao satria efa niova ny tenimiafinao.
+    sessions:
+      already_signed_out: Niala ianao
+      new:
+        sign_in: miditra
+      signed_in: Tafiditra soamantsara
+      signed_out: Niala ianao
+    shared:
+      links:
+        back: hiverina
+        didn_t_receive_confirmation_instructions: Mbola tsy nahazo mailaka fanamafisana ?
+        didn_t_receive_unlock_instructions: Mbola tsy nahazo mailaka fanokafana kaonty ?
+        forgot_your_password: Adino adino?
+        sign_in: Mifandray
+        sign_in_with_provider: Mifandray @ %{provider}
+        sign_up: fisoratana anarana
+      minimum_password_length:
+        one: "(%{count} toetra farafaharatsiny)"
+        other: "(%{count} mpilalao amin'ny farafaharatsiny)"
+    unlocks:
+      new:
+        resend_unlock_instructions: Avereno ny torolàlana manidy
+      send_instructions: Tao anatin'ny minitra vitsivitsy monja dia hahazo mailaka ianao miaraka amin'ny toromarika hamoha ny kaontinao.
+      send_paranoid_instructions: Raha misy ny mailakao ao amin'ny tranokalanay, dia hahazo hafatra ao anatin'ny minitra vitsivitsy ianao raha mila fandefasana ny kaontinao.
+      unlocked: Nosokatra ny kaontinao. Azafady miditra.
+  errors:
+    messages:
+      already_confirmed: dia efa voamarina
+      confirmation_period_expired: tsy maintsy hamafisina amin'ny% {vanim-potoana), mangataka fanampiana hafa
+      expired: lany ny lany, mangataka fanampiana iray hafa
+      not_found: tsy hita
+      not_locked: tsy nohidiana
+      not_saved:
+        one: 'misy hadisoana nanakana an ity (ity na ity) %{resource} tsy ho voasoratra:'
+        other: "%{count} lesoka no nanakana io (ity na ity) %{resource} tsy ho voarakitra: "

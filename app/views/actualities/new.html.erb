@@ -1,0 +1,14 @@
+<%= render 'shared/nota-bene' %>
+<div class="row makeTop scroll-here" scroll-to="50">
+    <div class="col-12 offset-0">
+        <div class="card pb-2 pt-1">
+            <div class="container">
+                <h4 class="">
+                    <%= t('actualities.create_new_actuality') %>
+                </h4>
+                <%= render 'actualities/form', actuality: @actuality %>
+            </div>
+        </div>
+    </div>
+</div>
+<%= render 'shared/tinymce-editor', textarea: "textarea#actuality_description", menubar: "file insert" %>

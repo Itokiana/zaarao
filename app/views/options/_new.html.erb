@@ -1,0 +1,23 @@
+<div class="option w-100">
+    <div class="input-group w-100">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-list"></i>
+            </span>
+        </div>
+        <input id="option-name<%= question.id %>" class="form-control" placeholder="" required="required" type="text" name="option[name<%= question.id %>]">
+    </div>
+</div>
+<div class="input-group-btn">
+    <button class="btn btn-primary add-option px-3" for="<%= question.id %>" type="button"><i class="fa fa-plus"></i></button>
+</div>
+
+<script type="text/javascript">
+$('.add-option').bind('click', function(event) {
+    event.preventDefault();
+    $question_id = $(this).attr('for');
+    $name = $("#option-name" + $question_id).val();
+    createOption($question_id, $name);
+    unbind("click");
+});
+</script>

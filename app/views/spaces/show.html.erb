@@ -1,0 +1,137 @@
+<div class="row">
+    <aside class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12">
+                <div class="card px-3 mt-3">
+                    <h3>
+                        <%= t('tags.labels.about') %>
+                    </h3>
+                    <h5>
+                        <%= @space.admin.fullname %>
+                    </h5>
+                    <div class="pa right-0 text-right">
+                        <img src="<%= url_for(@space.admin.avatar) %>" class="img-avatar round img-fluid b-solid-white-3" style="min-width: 13vh; max-width: 13vh; min-height: 13vh; max-height: 13vh;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="card px-3 text-center">
+                    <h3>
+                        <span class="mdc-fab__icon material-icons text-success">verified_user</span>
+                    </h3>
+                    <p>
+                        <%= t('tags.labels.this').capitalize %>
+                        <%= t('spaces.title') %>
+                        <%= t('tags.labels.is_administered_by') %>
+                    </p>
+                    <p><strong>
+                            <%= @space.name %></strong></p>
+                    <p>
+                        <%= t('tags.labels.last').capitalize %>
+                        <%= t('tags.labels.administration_login') %>: <strong>
+                            <%= time_ago_in_words(@space.admin.last_sign_in_at) %></strong>
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="card px-3 text-center disabled o-50" title="Available soon">
+                    <h3><i class="fa fa-envelope"></i></h3>
+                    <p>
+                        <%= t('tags.labels.message').capitalize %>
+                    </p>
+                    <p>
+                        <%= t('tags.labels.a').capitalize %>
+                        <%= t('tags.labels.remark') %>
+                        <%= t('tags.labels.or') %>
+                        <%= t('tags.labels.a') %>
+                        <%= t('tags.labels.request') %>
+                    </p>
+                    <button class="btn btn-outline-primary btn-round mt-1 mx-auto disabled" disabled="">
+                        <%= t('tags.labels.send') %>
+                        <%= t('tags.labels.a') %>
+                        <%= t('tags.labels.message') %></button>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <aside class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="row">
+            <div class="col-6">
+                <div class="card px-3">
+                    <h3>
+                        <i class="material-icons mdc-chip__icon fa-1x">people</i>
+                        <%= count(@space.members.length) %>
+                    </h3>
+                    <p>
+                        <%= t('tags.labels.commited_citizens', citizens: t('tags.labels.citizens'), commited: t('tags.labels.commited')) %>
+                    </p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card px-3">
+                    <h3>
+                        <i class="material-icons mdc-chip__icon fa-1x text-primary">forum</i>
+                        <%= count(@space.contributions.length) %>
+                    </h3>
+                    <p>
+                        <%= t('tags.labels.citizens_contributions') %>
+                    </p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card px-3">
+                    <h3>
+                        <i class="material-icons mdc-chip__icon fa fa-lightbulb-o fa-1x text-gold"></i>
+                        <%= count(@space.ideas.length) %>
+                    </h3>
+                    <p>
+                        <%= t('tags.ideas') %>
+                        <%= t('tags.labels.accomplished') %>
+                    </p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card px-3 disabled o-50" title="Available soon">
+                    <h3>
+                        <i class="material-icons mdc-chip__icon fa fa-paper-plane fa-1x text-success"></i>
+                        <%= count(576195) %>
+                    </h3>
+                    <p>
+                        <%= t('tags.labels.responses').capitalize %>
+                        <%= t('tags.labels.to') %>
+                        <%= t('tags.labels.citizens').downcase %>
+                    </p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card px-3">
+                    <h3>
+                        <i class="material-icons mdc-chip__icon fa fa-cogs fa-1x text-info"></i>
+                        <%= count(@space.surveys.length) %>
+                    </h3>
+                    <p>
+                        <%= t('tags.labels.commited_surveys') %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+<style type="text/css">
+.card {
+    margin: 5% 0 0 0;
+}
+
+.img-avatar {
+    width: 50%;
+    height: 50%;
+}
+
+.img-avatar.round {
+    border-radius: 50%;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+</style>
